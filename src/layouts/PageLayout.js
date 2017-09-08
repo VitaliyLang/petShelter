@@ -3,6 +3,8 @@ import { IndexLink, Link } from 'react-router'
 import PropTypes from 'prop-types'
 import './PageLayout.scss'
 
+//app static layout 
+
 export const PageLayout = ({ children }) => (
   <div className='container text-center'>
     <h1>React Redux Starter Kit</h1>
