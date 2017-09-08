@@ -2,16 +2,21 @@
 import LandingPage from './LandingPage'
 import React from 'react'
 import { Route } from 'react-router'
+import Category from './Category'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
-export const createRoutes = (store) => (
+export const createRoutes = (store) => ([
     {
   path        : '/',
   component   : LandingPage
-}
-);
+  },
+  {
+    path      : 'categories/category/:categID',
+    component : Category
+  }
+]);
 
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
