@@ -1,0 +1,19 @@
+main{
+    width: 75%;
+    background-image: url('../img/bg.png');
+    div{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;  
+        a{
+            flex-basis: 30%;
+            margin: 10px 0;
+            height: 200px;
+            background: #25910D;
+            overflow: hidden;
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
