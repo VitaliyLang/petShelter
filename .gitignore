@@ -6,3 +6,5 @@ coverage
 .idea/
 .yarn-cache
 build
+package-lock.json
+build/webpack.config.js
