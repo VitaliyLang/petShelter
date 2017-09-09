@@ -4,12 +4,21 @@ import PropTypes from 'prop-types'
 
 class AnimalItem extends Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.bottom;
+        this.seen = false;
+    }
+    componentDidMount(){
+        this.bottom = this.element.getBoundingClientRect().bottom;
     }
     render(){
+        let inView = (this.bottom - this.props.scrolltop) < window.innerHeight;
+        if(this.element){
+            this.seen = (this.element.src == this.props.url)
+        }
         return(
-            <Link to = "/">
-               <img src={this.props.url} alt = "No picture"/>
+            <Link to = "/" >
+               <img src={ inView || this.seen ? this.props.url : ''} alt ='' ref={(elem)=>this.element = elem}/>
             </Link>
         )
     }
