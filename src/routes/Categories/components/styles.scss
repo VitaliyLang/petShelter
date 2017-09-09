@@ -1,0 +1,24 @@
+.container{
+    li{
+        list-style: none;
+        div{
+            height: 35px;
+            width: 70px;
+            border-radius: 10px;
+            background: blue;
+            margin-bottom: 10px;
+            text-align: center;
+            padding-top: 6px;
+            a{
+                text-decoration: none;
+                color: #fff;
+            }
+        }
+        div:hover{
+            cursor: pointer;
+        }
+        div.click{
+            background:red;
+        }
+    }
+}
