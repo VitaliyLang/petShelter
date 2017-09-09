@@ -25,7 +25,7 @@ class Category extends React.Component{
         return(
             <div onClick={categorClick} 
                 className={(click ? 'click': '')}>
-                    <Link to='/categories/category'>{data}</Link>
+                    <Link to={'/categories/category/'+data}>{data}</Link>
             </div>
         )
     }

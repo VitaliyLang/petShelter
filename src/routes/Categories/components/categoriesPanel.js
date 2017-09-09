@@ -12,7 +12,7 @@ class CategoriesPanel extends React.Component {
         if(data.length > 0){
             panelTamplate = data.map((item,i) => {
                 return(
-                    <li className={'categorLi '} key={i}>
+                    <li className='categorLi ' key={i}>
                         <Category category={item}/>
                     </li>
                 )
