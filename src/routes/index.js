@@ -32,35 +32,6 @@ export const createRoutes = (store) => ([
 
 ]);
 
-    component: StaticLayout,
-    childRoutes: [
-      {
-        path: '/categories',
-        component: Categories
-      }, {
-        path: 'categories/category/:categID',
-        component: Category
-      }, {
-        path: 'animals/animal/:animalID',
-        component: AnimalDetails
-      }, {
-        path: '/admin/:action',
-        component: Admin
-      }, {
-        path: '/contacts',
-        component: Contacts
-      }, {
-        path: '/about',
-        component: About
-      }, {
-        path: '/partners',
-        component: Partners
-      }
-
-    ]
-  }
-])
-
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
     using getChildRoutes with the following signature:
 

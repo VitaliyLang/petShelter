@@ -2,22 +2,15 @@ import React from 'react'
 import FormLayout from './formLayout/FormLayout.js'
 
 
-class Form extends React.Component {
-
-	render(children) {
-		return(
-			<div>
-			<FormLayout />
-			<div>
-			{children}
-			</div>
+function Form(props) {
+  return (
+    <div>
+					<FormLayout>
+						{props.children}
+					</FormLayout>
+			
 			</div>
 			
-
-		)
-	}
+  );
 }
-
 export default Form
-
-

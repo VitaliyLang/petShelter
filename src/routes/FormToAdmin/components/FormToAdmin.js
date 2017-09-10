@@ -1,17 +1,17 @@
 import React from 'react'
-//import CategoriesPanel from './CategoriesPanel'
-//import './styles.scss'
 import Form from 'modules/form/'
-
+import FormInput from 'modules/form/components/FormInput'
 
 class FormToAdmin extends React.Component {
-		constructor(props){
-        super(props)
+	constructor(props){
+     super(props)
     }
-    render(){
+    render(props){
         return(
         	<div>
-            <Form></Form>
+            <Form>
+              <FormInput />
+            </Form>
           </div>
         )
     }
