@@ -4,6 +4,7 @@ import React from 'react'
 import { Route } from 'react-router'
 import Category from './Category'
 import Categories from './Categories'
+import Admin from './Admin'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -20,7 +21,12 @@ export const createRoutes = (store) => ([
   {
     path      : 'categories/category/:categID',
     component : Category
+  },
+  {
+    path      : '/admin/:action',
+    component : Admin
   }
+
 ]);
 
 
