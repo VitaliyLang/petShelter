@@ -1,0 +1,14 @@
+button {
+	border-radius: 5% 5% 5% 5%;
+	background: transparent;
+	height: 50px;
+	width: 150px;
+	outline: none;
+	border: 1px solid white;
+	color:white;
+	cursor:pointer;
+	&:hover {
+		border-color: gray;
+		color:gray;
+	}
+}
