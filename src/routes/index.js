@@ -5,29 +5,45 @@ import { Route } from 'react-router'
 import Category from './Category'
 import Categories from './Categories'
 import Admin from './Admin'
+import Contacts from './Contacts'
+import About from './About'
+import Partners from './Partners'
+import StaticLayout from '../layouts/index'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
-export const createRoutes = (store) => ([
-    {
-  path        : '/',
-  component   : LandingPage
-  },
-  {
-    path      : '/categories',
-    component : Categories
-  },  
-  {
-    path      : 'categories/category/:categID',
-    component : Category
-  },
-  {
-    path      : '/admin/:action',
-    component : Admin
-  }
+    export const createRoutes = (store) => ([
+         {
+             path: '/',
+             component: LandingPage
+         },
+         {
+            component: StaticLayout,
+            childRoutes: [
+                {
+                    path: '/categories',
+                    component: Categories
+                }, {
+                    path: 'categories/category/:categID',
+                    component: Category
+                }, {
+                    path: '/admin/:action',
+                    component: Admin
+                }, {
+                    path: '/contacts',
+                    component: Contacts
+                }, {
+                    path: '/about',
+                    component: About
+                }, {
+                    path: '/partners',
+                    component: Partners
+                }
 
-]);
+            ]
+        }
+    ])
 
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
