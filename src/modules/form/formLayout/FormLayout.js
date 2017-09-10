@@ -1,20 +1,12 @@
 import React from 'react'
-// import {Link} from 'react-router'
-//import './FormLayout.scss'
 
+function FormLayout(props) {
+  return (
+    <div className={'FancyBorder FancyBorder-' + props.color}>
+      <h1> form Layout</h1>
+      {props.children}
 
-
-class FormLayout extends React.Component {
-   
-    render(){
-        return(
-          <div>
-            <form>
-              <h2>form will be here</h2>
-            </form>
-          </div>
-        )
-    }
+    </div>
+  );
 }
-
 export default FormLayout
