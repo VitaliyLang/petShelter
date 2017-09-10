@@ -5,11 +5,13 @@ import { Route } from 'react-router'
 import Category from './Category'
 import Categories from './Categories'
 import Admin from './Admin'
+import GoesShelter from './FormToAdmin'
 import Contacts from './Contacts'
 import About from './About'
 import Partners from './Partners'
 import StaticLayout from '../layouts/index'
 import AnimalDetails from './AnimalDetails/index'
+
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -20,6 +22,16 @@ export const createRoutes = (store) => ([
     component: LandingPage
   },
   {
+    path      : '/admin/:action',
+    component : Admin
+  },
+  {
+    path      : '/goes-shelter',
+    component : GoesShelter 
+  }
+
+]);
+
     component: StaticLayout,
     childRoutes: [
       {
