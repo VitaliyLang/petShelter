@@ -17,7 +17,7 @@ class AnimalItem extends Component{
             this.seen = (this.element.src == this.props.url)
         }
         return(
-            <Link to = "/" >
+            <Link to='/animals/animal/1' >
                <img src={ inView || this.seen ? this.props.url : ''} alt ='' ref={(elem)=>this.element = elem}/>
             </Link>
         )

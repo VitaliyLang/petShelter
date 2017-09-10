@@ -1,0 +1,31 @@
+*, :after, :before {
+  box-sizing: inherit;
+}
+
+.animal-info {
+  background-color: green;
+
+  padding: 30px 30px 70px 30px;
+}
+
+.animal-info:after {
+  display: table;
+  clear: both;
+  content: '';
+}
+
+.animal-info img {
+  width: 55%;
+  float: left;
+}
+
+.animal-info ul {
+  float: left;
+}
+
+.text-info {
+  margin-top: 30px;
+  text-align: left;
+  font-size: 1.5em;
+  display: block;
+}
