@@ -1,12 +1,44 @@
 .navigationPanelContainer {
 
-    ul li {
+    .adminMenu, .adminSubmenu {
         list-style: none;
-        border: 1px solid black;
-        padding: 10px;
+        padding: 0;
+        margin: 0;
     }
-    .links {
-        text-decoration: none;
-        color: black;
+    
+    .adminMenu {
+        .links {
+            display: block;
+            text-decoration: none;
+            padding: 10px;
+            color: #000;
+
+            &:hover {
+
+            }
+        }
+
+        li {
+            &:hover .adminSubmenu {
+                display: block;
+                max-height: 200px;
+            }
+        }  
+    
+        ul {
+            li {
+                list-style: none;
+                padding: 10px;
+            }
+        }
+    }
+
+    .adminSubmenu {
+        overflow: hidden;
+        max-height: 0;
+        -webkit-transition: all 0.5s ease-out;
     }
 }
+    
+ 
+    

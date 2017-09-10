@@ -1,0 +1,12 @@
+.message {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+    margin:5px;
+
+    .links {
+        text-decoration: none;
+        color: black;
+    }
+}

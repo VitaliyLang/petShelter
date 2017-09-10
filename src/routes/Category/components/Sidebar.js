@@ -5,13 +5,14 @@ class Sidebar extends Component{
     constructor(props){
         super(props)
     }
+
     render(){
         return(
             <aside>
                 <h2> Filter </h2>
                 <p> Sex </p>
                 <label>
-                    <input type = "radio" name = "sex" value = "any" checked/> Any
+                    <input type = "radio" name = "sex" value = "any" defaultChecked /> Any
                 </label><br/>
                 <label>
                     <input type = "radio" name = "sex" value = "male"/> Male
@@ -21,7 +22,7 @@ class Sidebar extends Component{
                 </label>
                 <p> Size </p>
                 <label>
-                    <input type = "radio" name = "size" value = "any" checked/> Any
+                    <input type = "radio" name = "size" value = "any" defaultChecked /> Any
                 </label><br/>
                 <label>
                     <input type = "radio" name = "size" value = "small"/> Small
@@ -34,7 +35,7 @@ class Sidebar extends Component{
                 </label>
                 <p> Age </p>
                 <label>
-                    <input type = "radio" name = "age" value = "baby" checked/> Any
+                    <input type = "radio" name = "age" value = "baby" defaultChecked /> Any
                 </label><br/>
                 <label>
                     <input type = "radio" name = "age" value = "baby"/> Baby

@@ -6,22 +6,20 @@ import Category from './Category'
 import Categories from './Categories'
 import Admin from './Admin'
 import GoesShelter from './FormToAdmin'
+import Contacts from './Contacts'
+import About from './About'
+import Partners from './Partners'
+import StaticLayout from '../layouts/index'
+import AnimalDetails from './AnimalDetails/index'
+
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ([
-    {
-  path        : '/',
-  component   : LandingPage
-  },
   {
-    path      : '/categories',
-    component : Categories
-  },  
-  {
-    path      : 'categories/category/:categID',
-    component : Category
+    path: '/',
+    component: LandingPage
   },
   {
     path      : '/admin/:action',
@@ -34,6 +32,34 @@ export const createRoutes = (store) => ([
 
 ]);
 
+    component: StaticLayout,
+    childRoutes: [
+      {
+        path: '/categories',
+        component: Categories
+      }, {
+        path: 'categories/category/:categID',
+        component: Category
+      }, {
+        path: 'animals/animal/:animalID',
+        component: AnimalDetails
+      }, {
+        path: '/admin/:action',
+        component: Admin
+      }, {
+        path: '/contacts',
+        component: Contacts
+      }, {
+        path: '/about',
+        component: About
+      }, {
+        path: '/partners',
+        component: Partners
+      }
+
+    ]
+  }
+])
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
     using getChildRoutes with the following signature:

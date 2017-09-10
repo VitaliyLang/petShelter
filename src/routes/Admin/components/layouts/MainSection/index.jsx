@@ -9,7 +9,7 @@ class MainSection extends React.Component {
 
     render(){
         return(
-            <main>
+            <main className='main_admin'>
                 {this.props.children}
             </main>
         )
