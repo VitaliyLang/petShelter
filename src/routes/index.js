@@ -5,6 +5,7 @@ import { Route } from 'react-router'
 import Category from './Category'
 import Categories from './Categories'
 import Admin from './Admin'
+import GoesShelter from './FormToAdmin'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -25,6 +26,10 @@ export const createRoutes = (store) => ([
   {
     path      : '/admin/:action',
     component : Admin
+  },
+  {
+    path      : '/goes-shelter',
+    component : GoesShelter 
   }
 
 ]);
