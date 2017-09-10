@@ -1,0 +1,28 @@
+.header {
+    background-color: #79bd8f;
+    font-size: 18px;
+    margin: 0;
+    border-bottom: 2px solid #00a388;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+
+        .logo {
+            margin-right: auto;
+        }
+
+        a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 41px;
+        }
+    }
+
+    .active {
+        background-color: darken(#79bd8f, 10%);
+    }
+}
