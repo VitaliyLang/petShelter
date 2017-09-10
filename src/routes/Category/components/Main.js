@@ -23,7 +23,7 @@ class Main extends Component {
     }
     render() {
         return (
-            <main onScroll = {this.updateViewport} ref={(main)=>this.main = main}>
+            <main className='main_category' onScroll = {this.updateViewport} ref={(main)=>this.main = main}>
                 <div className="category_container">
                     {animals.map((animal, index) => 
                         <AnimalItem url={animal.url} key={index} scrolltop ={this.state.scrolltop}/>
