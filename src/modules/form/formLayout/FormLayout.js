@@ -1,12 +1,14 @@
 import React from 'react'
+import './FormLayout.scss'
+
 
 function FormLayout(props) {
   return (
-    <div className={'FancyBorder FancyBorder-' + props.color}>
-      <h1> form Layout</h1>
+  
+    <form className="form">
       {props.children}
-
-    </div>
+   </form>
+  
   );
 }
 export default FormLayout
