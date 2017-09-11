@@ -8,7 +8,7 @@ class FormInputEmail extends React.Component {
    
     render(){
         return(
-          <input type='text' placeholder="email" />
+          <input type='text' placeholder="email" class='input_email' />
         )
     }
 }
