@@ -4,7 +4,7 @@ import './inputs.scss'
 class PasswordInput extends React.Component {
 	render() {
 		return(
-			<input type="password" placeholder="Pass" />
+			<input type="password" placeholder="Pass" className='form_input' />
 		)
 	}
 }
