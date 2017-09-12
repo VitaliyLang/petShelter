@@ -11,6 +11,7 @@ import About from './About'
 import Partners from './Partners'
 import StaticLayout from '../layouts/index'
 import AnimalDetails from './AnimalDetails/index'
+import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -49,6 +50,10 @@ export const createRoutes = (store) => ([
             }
 
         ]
+    },
+    {
+        path: '*',
+        component: NotFound
     }
 ])
 
