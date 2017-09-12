@@ -23,9 +23,19 @@
   float: left;
 }
 
+.animal-info button {
+  color: red;
+}
+
+//.animal-info ul:after {
+//  display: table;
+//  clear: both;
+//  content: '';
+//}
+
 .text-info {
-  margin-top: 30px;
+  margin: 20px 30px 20px 0 ;
   text-align: left;
-  font-size: 1.5em;
+  font-size: 0.7em;
   display: block;
 }
