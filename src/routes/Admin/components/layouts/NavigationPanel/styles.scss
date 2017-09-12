@@ -1,44 +1,48 @@
 .navigationPanelContainer {
-
-    .adminMenu, .adminSubmenu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
     
-    .adminMenu {
-        .links {
-            display: block;
-            text-decoration: none;
-            padding: 10px;
-            color: #000;
-
-            &:hover {
-
-            }
+        width: 20%;
+        background-color: #393b36;
+    
+        .adminMenu, .adminSubmenu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-
-        li {
-            &:hover .adminSubmenu {
+        
+        .adminMenu {
+            .links {
                 display: block;
-                max-height: 200px;
-            }
-        }  
+                text-decoration: none;
+                padding: 20px;
+                color: #ffffff;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     
-        ul {
+                &:hover {
+    
+                }
+            }
+    
             li {
-                list-style: none;
-                padding: 10px;
+                &:hover .adminSubmenu {
+                    display: block;
+                    max-height: 200px;
+                }
+            }  
+        
+            ul {
+                li {
+                    list-style: none;
+                    padding-left: 10px;
+                }
             }
         }
-    }
-
-    .adminSubmenu {
-        overflow: hidden;
-        max-height: 0;
-        -webkit-transition: all 0.5s ease-out;
-    }
-}
     
- 
-    
+        .adminSubmenu {
+            overflow: hidden;
+            max-height: 0;
+            -webkit-transition: all 1s ease-in-out;
+        }
+    }
+        
+     
+        

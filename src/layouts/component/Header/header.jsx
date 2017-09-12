@@ -9,7 +9,11 @@ class Header extends React.Component{
             <header className="header">
                 <nav>
                     <ul>
-                        <li className = "logo"><Link to='/'>Logo</Link></li>
+                        <li className = "logo">
+                            <Link to='/'>
+                                <img src={require('./logo.png')} alt='logo'/>
+                            </Link>
+                        </li>
                         <li><Link activeClassName="active" to='/contacts'>Contacts</Link></li>
                         <li><Link activeClassName="active" to='/about'>About</Link></li>
                         <li><Link activeClassName="active" to='/partners'>Partners</Link></li>
