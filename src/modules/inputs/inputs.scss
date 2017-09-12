@@ -1,0 +1,35 @@
+.form_input {
+	width: 410px;
+  height: 65px;
+  border-radius: 3px;
+  background-color: #3c9e72;
+  box-shadow: inset 1px 1px 3px 0 #ccd1d9;
+  // border: solid 1px #ffffff;
+  padding-left: 20px;
+  font-size: 16px;
+  outline: none;
+
+  
+  &::placeholder {
+  // font-size: 16px;
+  text-align: left;
+  color: #ffffff;
+  }
+  &:focus {
+    color: white;
+    border: 1px solid gray;
+    outline: none;
+  }
+  
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; 
+  }
+
+
+}
+
+// .email_input {
+//     margin-bottom: 20px;
+//   }

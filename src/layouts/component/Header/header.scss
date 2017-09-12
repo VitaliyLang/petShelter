@@ -3,22 +3,33 @@
     font-size: 18px;
     margin: 0;
     border-bottom: 2px solid #00a388;
-
+    height: 12vh;
+    nav{
+        height: 100%;
+    }
     ul {
         list-style-type: none;
         margin: 0;
         display: flex;
         justify-content: flex-end;
-
+        align-items: center;
+        height: 100%;
+        li{
+            margin-right: 20px;
+        }
         .logo {
             margin-right: auto;
+
+            img {
+                height: 10vh;
+            }
         }
 
         a {
             display: block;
             color: #fff;
             text-decoration: none;
-            padding: 41px;
+            padding: 30px;
         }
     }
 

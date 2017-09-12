@@ -9,8 +9,10 @@ class MainSection extends React.Component {
 
     render(){
         return(
-            <main>
-                {this.props.children}
+            <main className="main background">
+                <div className="layer">
+                    {this.props.children}
+                </div>
             </main>
         )
     }

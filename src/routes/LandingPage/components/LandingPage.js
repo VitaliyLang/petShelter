@@ -16,7 +16,7 @@ export const LandingPage = () => (
 
     				<div className="relocation_nav">
 	          	<div className="goesShelter_box">
-	            <Link  className="wrap" to='/' activeClassName='page-layout__nav-item--active'>
+	            <Link  className="wrap" to='/goes-shelter' activeClassName='page-layout__nav-item--active'>
 	            <div className='goesShelter' > 
 			        		<h1 className='homeP' >goesShelter</h1>
 				 				</div>
