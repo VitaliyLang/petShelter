@@ -24,18 +24,21 @@
 }
 
 .animal-info button {
-  color: red;
+  float: left;
+  font-weight: bold;
+  margin-top: 380px;
+  margin-left: 3px;
 }
 
-//.animal-info ul:after {
-//  display: table;
-//  clear: both;
-//  content: '';
-//}
+.animal-info:after {
+  display: table;
+  clear: both;
+  content: '';
+}
 
 .text-info {
   margin: 20px 30px 20px 0 ;
   text-align: left;
-  font-size: 0.7em;
+  font-size: 1.2em;
   display: block;
 }

@@ -7,8 +7,8 @@ class AnimalDetails extends Component {
     return (
       <div className='animal-info'>
         <AnimalInfo />
-        <button>Take it!</button>
         <AnimalPicture />
+        <button>Take it!</button>
       </div>
     )
   }
