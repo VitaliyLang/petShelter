@@ -29,10 +29,11 @@ import './FormToAdmin.scss'
 				<div className="admin_form_wrapper">
 				<div className="admin_form">
 					<Formsy.Form  className="form" onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
+						
 						<MainInput name="email" type="email" validations="isEmail" placeholder="email" validations={{minLength: 7}} validationError="This is not a valid email" required/>
 						<MainInput name="name" type="text" placeholder="Name" validations={{minLength: 3}} validationError="Name should contain more than 2 letters" required/>
 						<MainInput name="name" type="number" placeholder="Phone number" validations={{minLength: 10}} validationError="Phone number should looks like: 0XX XXX XX XX" required/>	
-						<button  type="submit" disabled={!this.state.canSubmit}>Submit</button>
+						<button  type="submit" className='prim_btn' disabled={!this.state.canSubmit}>Submit</button>
 					</Formsy.Form>
 				</div>
 				</div>
