@@ -3,35 +3,36 @@ import AnimalItem from './AnimalItem'
 import './Main.scss'
 import animals from '../data'
 
-
-
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            scrolltop: 0
-        }
-        this.updateViewport = this.updateViewport.bind(this);
+  constructor (props) {
+    super(props)
+    this.state = {
+      scrolltop: 0
     }
-    componentDidMount() {
-        this.updateViewport();
-    }
-    updateViewport() {
-        this.setState({
-            scrolltop: this.main.scrollTop
-        });
-    }
-    render() {
-        return (
-            <main className='main_category' onScroll = {this.updateViewport} ref={(main)=>this.main = main}>
-                <div className="category_container">
-                    {animals.map((animal, index) => 
-                        <AnimalItem url={animal.url} key={index} scrolltop ={this.state.scrolltop}/>
-                    )}
-                </div>
-            </main>
-        )
-    }
+    this.updateViewport = this.updateViewport.bind(this)
+  }
+
+  componentDidMount () {
+    this.updateViewport()
+  }
+
+  updateViewport () {
+    this.setState({
+      scrolltop: this.main.scrollTop
+    })
+  }
+
+  render () {
+    return (
+      <main className='main_category' onScroll={this.updateViewport} ref={(main) => this.main = main}>
+        <div className='category_container'>
+          {animals.map((animal, index) =>
+            <AnimalItem category={this.props.category} url={animal.url} key={index} scrolltop={this.state.scrolltop}/>
+          )}
+        </div>
+      </main>
+    )
+  }
 }
 
 export default Main
