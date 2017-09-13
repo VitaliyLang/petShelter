@@ -7,7 +7,7 @@ class PrimaryButton extends React.Component {
    
     render(props){
         return(
-          <button type="submit" class="primaryBtn">Submit</button>
+          <button type="submit" className="primaryBtn">Submit</button>
         )
     }
 }
