@@ -1,9 +1,10 @@
-
 import React from 'react'
 import Formsy from 'formsy-react';
 import MainInput from 'modules/inputs/MainInput'
 import './FormToAdmin.scss'
-// import 'modules/buttons/buttons.scss'
+import { connect } from 'react-redux'
+import { addPerson } from '../../../store/actions'
+
 
 	const FormToAdmin = React.createClass({
 		getInitialState() {
@@ -22,8 +23,12 @@ import './FormToAdmin.scss'
 			});
 		},
 		submit(model) {
-			someDep.saveEmail(model.email);
-		},
+      this.addPerson(model);
+    },
+    addPerson(personInformation){
+      this.props.onAddPerson(personInformation);
+      console.log(this.props);
+    },
 		render() {
 			return (
 				<div className="admin_form_wrapper">
@@ -39,6 +44,25 @@ import './FormToAdmin.scss'
 				</div>
 			);
 		}
-	});
+  });
 
-	export default FormToAdmin
+//it is only mapStateToProps example for us
+const mapStateToProps = state => {
+  return {
+    people: console.log(state.people)
+  }
+}
+  
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPerson: personInformation => {
+      dispatch(addPerson(personInformation))
+    }
+  }
+}
+  
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormToAdmin);
+
