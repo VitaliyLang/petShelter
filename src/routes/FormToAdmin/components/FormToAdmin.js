@@ -1,32 +1,43 @@
+
 import React from 'react'
-import Form from 'modules/form/'
-import EmailInput from 'modules/inputs/EmailInput'
-import PasswordInput from 'modules/inputs/PasswordInput'
-import PhoneInput from 'modules/inputs/PhoneInput'
-import PrimaryButton from 'modules/buttons/PrimaryButton'
+import Formsy from 'formsy-react';
+import MainInput from 'modules/inputs/MainInput'
 import './FormToAdmin.scss'
+// import 'modules/buttons/buttons.scss'
 
-class FormToAdmin extends React.Component {
-	constructor(props){
-     super(props)
-    }
-    render(props){
-        return(
-        	<div className="admin_form">
-            <Form >
-              <h3 className="form_header">Sample Logo</h3>
-              <p className="form_text">You need just 30 seconds to enjoy your mobile workforce. Just tell us:</p>
-              <EmailInput />
-              <PasswordInput />
-              <PhoneInput />
-              <PrimaryButton>Send request</PrimaryButton>
-            </Form>
-          </div>
-        )
-    }
-}
+	const FormToAdmin = React.createClass({
+		getInitialState() {
+			return {
+				canSubmit: false
+			}
+		},
+		enableButton() {
+			this.setState({
+				canSubmit: true
+			});
+		},
+		disableButton() {
+			this.setState({
+				canSubmit: false
+			});
+		},
+		submit(model) {
+			someDep.saveEmail(model.email);
+		},
+		render() {
+			return (
+				<div className="admin_form_wrapper">
+				<div className="admin_form">
+					<Formsy.Form  className="form" onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
+						<MainInput name="email" type="email" validations="isEmail" placeholder="email" validations={{minLength: 7}} validationError="This is not a valid email" required/>
+						<MainInput name="name" type="text" placeholder="Name" validations={{minLength: 3}} validationError="Name should contain more than 2 letters" required/>
+						<MainInput name="name" type="number" placeholder="Phone number" validations={{minLength: 10}} validationError="Phone number should looks like: 0XX XXX XX XX" required/>	
+						<button  type="submit" disabled={!this.state.canSubmit}>Submit</button>
+					</Formsy.Form>
+				</div>
+				</div>
+			);
+		}
+	});
 
-export default FormToAdmin
-
-
-
+	export default FormToAdmin
