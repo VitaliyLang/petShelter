@@ -1,5 +1,19 @@
-aside {
+.aside_category {
     width: 20%;
     background-color: #393b36;
     color: #ffffff;
+    h2{
+        text-align: center;
+    }
+    p{
+        padding-left: 50px;
+        font-size: 18px;  
+    }
+    label{
+        padding-left: 15px;
+    }
+    button{
+        margin: 10px auto;
+        display: block;
+    }
 }

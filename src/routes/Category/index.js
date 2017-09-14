@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import Main from './components/Main'
-import Sidebar from './components/Sidebar'
+import Main from './components/Main.jsx'
+import Sidebar from './components/Sidebar.jsx'
 import './style.scss'
 
 class Category extends Component{

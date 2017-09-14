@@ -23,9 +23,9 @@ function rowRenderer({
             <Link className = "load"><img src="http://www.myiconfinder.com/uploads/iconsets/256-256-7a1b32bc6cee8e58f09af677cbfb0255.png" /></Link>
         </div>
         : <div className='flex-container_img'>
-            <Link><img src={listModify[index][0].url} /></Link>
-            <Link><img src={listModify[index][1].url} /></Link>
-            <Link><img src={listModify[index][2].url} /></Link>
+            <Link to = '/animals/animal/1'><img src={listModify[index][0].url} /></Link>
+            <Link to = '/animals/animal/1'><img src={listModify[index][1].url} /></Link>
+            <Link to = '/animals/animal/1'><img src={listModify[index][2].url} /></Link>
         </div>
         style.top = style.height*index;
     return (
@@ -44,7 +44,15 @@ class Main extends Component {
             height : 250
         }
         this.update = this.update.bind(this);
+        this.update = this.debounce(this.update, 300);
     }
+    debounce (fn, delay) {
+        let timer
+        return function () {
+          clearTimeout(timer)
+          timer = setTimeout(fn, delay)
+        }
+      }
     update(){
         this.setState({
             height: window.innerWidth * 0.8 * 0.3 / 1.33
