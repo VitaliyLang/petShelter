@@ -26,7 +26,29 @@
 	align-items: center;
 	justify-content: space-around;
 }
+<<<<<<< HEAD
 
+=======
+.prim_btn {
+	border-radius: 5% 5% 5% 5%;
+	background: transparent;
+	height: 50px;
+	width: 150px;
+	outline: none;
+	border: 1px solid white;
+	color:white;
+	cursor:pointer;
+	&:hover {
+		border-color: gray;
+		color:gray;
+	}
+	&:disabled {
+		border-color: gray;
+		color:gray;
+		cursor: not-allowed;
+	}
+}
+>>>>>>> master
 // import React from 'react'
 // import Formsy from 'formsy-react';
 // import MyOwnInput from 'modules/inputs/MainInput'
