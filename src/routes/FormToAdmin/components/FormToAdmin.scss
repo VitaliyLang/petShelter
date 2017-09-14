@@ -7,7 +7,7 @@
 .admin_form {
 	display: flex;
 	justify-content: center;
-	padding-top: 20px; 
+	padding-top: 20px;
 	background-color: rgba(60,143,87,.9);
 	height: 88vh;
 }
@@ -26,9 +26,6 @@
 	align-items: center;
 	justify-content: space-around;
 }
-<<<<<<< HEAD
-
-=======
 .prim_btn {
 	border-radius: 5% 5% 5% 5%;
 	background: transparent;
@@ -48,7 +45,6 @@
 		cursor: not-allowed;
 	}
 }
->>>>>>> master
 // import React from 'react'
 // import Formsy from 'formsy-react';
 // import MyOwnInput from 'modules/inputs/MainInput'
@@ -88,4 +84,4 @@
 // 		}
 // 	});
 
-	// export default FormToAdmin
+// export default FormToAdmin
