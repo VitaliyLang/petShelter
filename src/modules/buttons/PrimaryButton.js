@@ -1,15 +1,20 @@
 import React from 'react'
+import {Button} from 'react-materialize'
 import './buttons.scss'
-
 
 
 class PrimaryButton extends React.Component {
    
-    render(props){
+    render(){
         return(
-          <button type="submit" className="primaryBtn">Submit</button>
+          <Button type="submit" waves='light' className="primaryBtn">button</Button>
         )
     }
 }
 
 export default PrimaryButton
+
+
+// import {Button, Icon} from 'react-materialize'
+
+// <button type="submit" className="primaryBtn">Submit</button>

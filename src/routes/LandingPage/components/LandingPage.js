@@ -8,7 +8,7 @@ import goesShelter from '../assets/goes_to_shelter.jpg'
 export const LandingPage = () => (
 
 
-    <div className = "container">
+    <div className = "main_wrapper">
     				
     				<h2>Welcome to Pet Shelter</h2>
     				<h3>Home for homeless , Place of new friendships</h3>

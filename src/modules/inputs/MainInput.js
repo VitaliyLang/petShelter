@@ -16,16 +16,18 @@ const MyInput = React.createClass({
     return (
       <div className={className}>
         <label htmlFor={this.props.name}>{this.props.title}</label>
-        <input
-        	className = 'form_input'
-        	placeholder = {this.props.placeholder || ''}
-          type={this.props.type || 'text'}
-          name={this.props.name}
-          onChange={this.changeValue}
-          value={this.getValue()}
-          checked={this.props.type === 'checkbox' && this.getValue() ? 'checked' : null}
-        />
-        <span className='validation-error'>{errorMessage}</span>
+        <div className="input_box">
+          <input
+          	className = 'form_input'
+          	placeholder = {this.props.placeholder || ''}
+            type={this.props.type || 'text'}
+            name={this.props.name}
+            onChange={this.changeValue}
+            value={this.getValue()}
+            checked={this.props.type === 'checkbox' && this.getValue() ? 'checked' : null}
+          />
+          <span className='validation-error'>{errorMessage}</span>
+        </div>
       </div>
     );
   }
