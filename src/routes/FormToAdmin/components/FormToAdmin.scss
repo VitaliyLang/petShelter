@@ -1,3 +1,5 @@
+@import '_variables';
+
 .admin_form_wrapper {
 	background-image: url('../assets/bg1.jpg');
 	background-size: cover;
@@ -7,7 +9,7 @@
 .admin_form {
 	display: flex;
 	justify-content: center;
-	padding-top: 20px; 
+	padding-top: 20px;
 	background-color: rgba(60,143,87,.9);
 	height: 88vh;
 }
@@ -15,73 +17,19 @@
 	color:white;
 }
 
-.form {
+.form_box {
 	height: 500px;
 	width: 450px;
 	padding: 20px;
-	background:#393b36;
-	// border: 2px solid black;
+	background: $form-gray;
+	border: 1px solid black;
 	display: flex;
 	flex-direction:column;
 	align-items: center;
 	justify-content: space-around;
-}
-.prim_btn {
-	border-radius: 5% 5% 5% 5%;
-	background: transparent;
-	height: 50px;
-	width: 150px;
-	outline: none;
-	border: 1px solid white;
-	color:white;
-	cursor:pointer;
-	&:hover {
-		border-color: gray;
-		color:gray;
-	}
-	&:disabled {
-		border-color: gray;
-		color:gray;
-		cursor: not-allowed;
+	.form {
+		display: flex;
+		flex-direction: column;
+		align-items:center;
 	}
 }
-// import React from 'react'
-// import Formsy from 'formsy-react';
-// import MyOwnInput from 'modules/inputs/MainInput'
-// import './FormToAdmin.scss'
-// // import 'modules/buttons/buttons.scss'
-
-// 	const FormToAdmin = React.createClass({
-// 		getInitialState() {
-// 			return {
-// 				canSubmit: false
-// 			}
-// 		},
-// 		enableButton() {
-// 			this.setState({
-// 				canSubmit: true
-// 			});
-// 		},
-// 		disableButton() {
-// 			this.setState({
-// 				canSubmit: false
-// 			});
-// 		},
-// 		submit(model) {
-// 			someDep.saveEmail(model.email);
-// 		},
-// 		render() {
-// 			return (
-// 				<div className="admin_form_wrapper">
-// 				<div className="admin_form">
-// 					<Formsy.Form onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-// 						<MyOwnInput name="email" type="email" validations="isEmail" validations={{minLength: 7}} validationError="This is not a valid email" required/>
-// 						<button  type="submit" disabled={!this.state.canSubmit}>Submit</button>
-// 					</Formsy.Form>
-// 				</div>
-// 				</div>
-// 			);
-// 		}
-// 	});
-
-	// export default FormToAdmin

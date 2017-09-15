@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router'
+import '../../../styles/main.scss'
 import './header.scss'
 
 class Header extends React.Component{

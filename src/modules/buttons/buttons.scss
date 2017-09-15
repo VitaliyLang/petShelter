@@ -1,14 +1,39 @@
-button {
-	border-radius: 5% 5% 5% 5%;
-	background: transparent;
-	height: 50px;
+@import '_variables';
+
+// button {
+// 	border-radius: 5% 5% 5% 5%;
+// 	background: transparent;
+// 	height: 50px;
+// 	width: 150px;
+// 	outline: none;
+// 	border: 1px solid white;
+// 	color:white;
+// 	cursor:pointer;
+// 	&:hover {
+// 		border-color: gray;
+// 		color:gray;
+// 	}
+// }
+
+.primaryBtn {
+	background: $primary-green;
+	color:$form-gray;
 	width: 150px;
-	outline: none;
-	border: 1px solid white;
-	color:white;
 	cursor:pointer;
+	outline: none;
+
 	&:hover {
-		border-color: gray;
-		color:gray;
+		background: $primary-dark-green;
+		color:$secondary-light-gray;
 	}
+
 }
+
+input, select, textarea{
+    color: $primary-green;
+}
+
+textarea:focus, input:focus {
+    color: $primary-green;
+}
+
