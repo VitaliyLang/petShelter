@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import Label from './Label.jsx'
 import './Sidebar.scss'
+import {Input, Button} from 'react-materialize'
+
 
 class Sidebar extends Component{
     constructor(props){
@@ -18,24 +19,24 @@ class Sidebar extends Component{
                     <h2> Filter </h2>
 
                     <p> Sex </p>
-                    <Label name = 'sex' value = 'Any' checked/><br/>
-                    <Label name = 'sex' value = 'Male'/><br/>
-                    <Label name = 'sex' value = 'Female'/>
+                    <Input type = 'radio'  value = "green" name = 'sex' className='with-gap' label = 'Any' value = 'any'  defaultChecked />
+                    <Input type = 'radio' name = 'sex' className='with-gap' label = 'Male' value = 'male'/>
+                    <Input type = 'radio' name = 'sex' className='with-gap' label = 'Female' value = 'female'/>
 
                     <p> Size </p>
-                    <Label name = 'size' value = 'Any' checked/><br/>
-                    <Label name = 'size' value = 'Small'/><br/>
-                    <Label name = 'size' value = 'Medium'/><br/>
-                    <Label name = 'size' value = 'Large'/>
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Any' value = 'any'  defaultChecked />
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Small' value = 'small'/>
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Medium' value = 'medium'/>
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Large' value = 'large'/>
 
                     <p> Age </p>
-                    <Label name = 'age' value = 'Any' checked/><br/>
-                    <Label name = 'age' value = 'Baby' /><br/>
-                    <Label name = 'age' value = 'Young' /><br/>
-                    <Label name = 'age' value = 'Adult' /><br/>
-                    <Label name = 'age' value = 'Senior' /><br/>
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Any' value = 'any'  defaultChecked />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Baby' value = 'baby' />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Young' value = 'young' />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Adult' value = 'adult' />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Senior' value = 'senior' />
 
-                    <button type = "submit"> Apply </button>
+                    <Button type = "submit" className = "filter waves-effect waves-light primaryBtn"> Apply </Button>
                 </form>
             </aside>
         ) 
