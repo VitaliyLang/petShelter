@@ -9,38 +9,6 @@ for (let i = 0, y = 0; i < animals.length; i += 3, y++) {
   listModify[y] = [animals[i], animals[i + 1], animals[i + 2]]
 }
 
-function rowRenderer ({
-                        key,
-                        index,
-                        isScrolling,
-                        isVisible,
-                        style
-                      }) {
-  const content = isScrolling
-    ? <div className='flex-container_img'>
-      <Link className="load"><img
-        src="http://www.myiconfinder.com/uploads/iconsets/256-256-7a1b32bc6cee8e58f09af677cbfb0255.png"/></Link>
-      <Link className="load"><img
-        src="http://www.myiconfinder.com/uploads/iconsets/256-256-7a1b32bc6cee8e58f09af677cbfb0255.png"/></Link>
-      <Link className="load"><img
-        src="http://www.myiconfinder.com/uploads/iconsets/256-256-7a1b32bc6cee8e58f09af677cbfb0255.png"/></Link>
-    </div>
-    : <div className='flex-container_img'>
-      <Link to={`/categories/test/${index}`}><img src={listModify[index][0].url}/></Link>
-      <Link to='/categories/test/1'><img src={listModify[index][1].url}/></Link>
-      <Link to='/categories/test/1'><img src={listModify[index][2].url}/></Link>
-    </div>
-  style.top = style.height * index
-  return (
-    <div
-      key={key}
-      style={style}
-    >
-      {content}
-    </div>
-  )
-}
-
 class Main extends Component {
   constructor (props) {
     super(props)
@@ -74,6 +42,38 @@ class Main extends Component {
     window.removeEventListener('resize', this.update)
   }
 
+  rowRenderer ({
+                  key,
+                  index,
+                  isScrolling,
+                  isVisible,
+                  style
+                }) {
+    const content = isScrolling
+      ? <div className='flex-container_img'>
+        <Link className='load'><img
+          src='http://www.myiconfinder.com/uploads/iconsets/256-256-7a1b32bc6cee8e58f09af677cbfb0255.png' /></Link>
+        <Link className='load'><img
+          src='http://www.myiconfinder.com/uploads/iconsets/256-256-7a1b32bc6cee8e58f09af677cbfb0255.png' /></Link>
+        <Link className='load'><img
+          src='http://www.myiconfinder.com/uploads/iconsets/256-256-7a1b32bc6cee8e58f09af677cbfb0255.png' /></Link>
+      </div>
+      : <div className='flex-container_img'>
+        <Link to={`/categories/${this.props.category}/1`}><img src={listModify[index][0].url} /></Link>
+        <Link to={`/categories/${this.props.category}/1`}><img src={listModify[index][1].url} /></Link>
+        <Link to={`/categories/${this.props.category}/1`}><img src={listModify[index][2].url} /></Link>
+      </div>
+    style.top = style.height * index
+    return (
+      <div
+        key={key}
+        style={style}
+      >
+        {content}
+      </div>
+    )
+  }
+
   render () {
     return (
       <List
@@ -81,7 +81,7 @@ class Main extends Component {
         height={600}
         rowCount={listModify.length}
         rowHeight={this.state.height}
-        rowRenderer={rowRenderer}
+        rowRenderer={this.rowRenderer.bind(this)}
         style={{
           height: '100%',
           width: '80%'
