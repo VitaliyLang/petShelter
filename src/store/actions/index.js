@@ -6,3 +6,11 @@ export const addPerson = personInformation => {
       email: personInformation.email
     }
 }
+
+export const doLogin = checked => {
+  return {
+    type: 'IS_LOGIN',
+    isLogin: checked
+  }
+}
+
