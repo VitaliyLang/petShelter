@@ -51,7 +51,9 @@ import Button from 'modules/buttons/PrimaryButton'
 						<Formsy.Form  className="form" onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
 							<MainInput name="email" type="email" validations="isEmail" placeholder="email"  validationError="This is not a valid email" required/>
 							<MainInput name="name" type="text" placeholder="Name" validations={{minLength: 6}} validationError="Name should contain more than 6 letters" required/>
+							<MainInput name="password" type="password" placeholder="Password" required/>
 							<MainInput name="phoneNumber" type="number" placeholder="Phone number" validations={{minLength: 10}} validationError="Phone number should looks like: 0XX XXX XX XX" required/>	
+							<MainInput name="animal" type="text" placeholder="Your Animal" />
 							<Button  type="submit"  disabled={!this.state.canSubmit}>Submit</Button>
 						</Formsy.Form>
 					</div>

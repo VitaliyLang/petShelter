@@ -2,8 +2,7 @@ import React from 'react'
 import Formsy from 'formsy-react';
 import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
-import { firebaseConnect, helpers,dataToJS } from 'react-redux-firebase'
-import { doLogin } from '../../store/actions'
+import { firebaseConnect,firebase, helpers,dataToJS } from 'react-redux-firebase'
 import { signPerson } from '../../components/fireBase'
 
 
@@ -14,7 +13,6 @@ class signIn extends React.Component{
         this.enableButton = this.enableButton.bind(this);
         this.disableButton = this.disableButton.bind(this);
         this.logIn = this.logIn.bind(this);
-        this.doLogin = this.props.doLogin.bind(this);
     }
 
     enableButton() {
@@ -35,13 +33,13 @@ class signIn extends React.Component{
         let uid = signPerson(props,personInformation,link);
         uid.then(res => {
             if(res){
-                this.doLogin(true);
                 this.props.router.push(link)
             }
         })
+        .catch(err => alert(err.message));
     }
 
-    render(){
+    render(){        
         return (
             <div className='form_wrapper'>
                 <h2>Sign In</h2>
@@ -58,10 +56,5 @@ class signIn extends React.Component{
 const wrappedsignIn = firebaseConnect()(signIn)
 
 export default connect(
-    state => ({isLogin: state.initLogin}),
-    dispatch => ({
-        doLogin: (checked) => {
-            dispatch(doLogin(checked))
-        }
-    })
+    state => ({firebase: state.firebase})
 )(wrappedsignIn)

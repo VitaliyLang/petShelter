@@ -12,12 +12,14 @@ class Admin extends React.Component {
     }
 
     componentWillMount(){
-        console.log(this);
-        let checked = this.props.isLogin.isLogin;
-        if(!checked){
-            alert('You are not authorization')
-            this.props.router.push('/login');
-        }
+        this.props.firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+             console.log('signedIn', user.uid)
+            }else{
+                alert('You are not authorization')
+                this.props.router.push('/login');  
+            }
+        });
     }
 
     render(){
@@ -37,10 +39,4 @@ class Admin extends React.Component {
   
 const wrappedAdmin = firebaseConnect()(Admin)
   
-export default connect(
-    state => ({isLogin: state.initLogin})
-)(wrappedAdmin)
-/*,
-onLogin: checked => {
-    dispatch(doLogin(checked))
-}*/
+export default connect()(wrappedAdmin)
