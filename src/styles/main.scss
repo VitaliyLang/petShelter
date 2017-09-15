@@ -467,3 +467,15 @@ template {
 [hidden] {
   display: none;
 }
+
+.breadcrumbs {
+  padding-left: 20px;
+  color: white;
+  background-color: #393b36;
+}
+
+.breadcrumbs a {
+  color: white;
+  text-decoration: none;
+}
+

@@ -4,6 +4,7 @@ import MainInput from 'modules/inputs/MainInput'
 import './FormToAdmin.scss'
 import { connect } from 'react-redux'
 import { addPerson } from '../../../store/actions'
+<<<<<<< HEAD
 import Button from 'modules/buttons/PrimaryButton'
 // import 'modules/inputs/inputs.scss'
 
@@ -50,13 +51,14 @@ import Button from 'modules/buttons/PrimaryButton'
 		}
   });
 
+
 //it is only mapStateToProps example for us
 const mapStateToProps = state => {
   return {
     people: console.log(state.people)
   }
 }
-  
+
 const mapDispatchToProps = dispatch => {
   return {
     onAddPerson: personInformation => {
@@ -64,9 +66,8 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-  
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(FormToAdmin);
-
