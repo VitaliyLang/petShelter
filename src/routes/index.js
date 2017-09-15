@@ -1,7 +1,7 @@
 // We only need to import the modules necessary for initial render
 import LandingPage from './LandingPage'
 import React from 'react'
-import {Route} from 'react-router'
+import { Route } from 'react-router'
 import Category from './Category'
 import Categories from './Categories'
 import Admin from './Admin'
@@ -17,46 +17,56 @@ import NotFound from './NotFound'
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ([
-    {
-        path: '/',
-        component: LandingPage
-    }, {
-        component: StaticLayout,
-        childRoutes: [
-            {
-                path: '/categories',
-                component: Categories
-            }, {
-                path: 'categories/category/:categID',
-                component: Category
-            }, {
-                path: 'animals/animal/:animalID',
-                component: AnimalDetails
-            }, {
-                path: '/admin/:action',
-                component: Admin
-            }, {
-                path: '/goes-shelter',
-                component: GoesShelter
-            }, {
-                path: '/contacts',
-                component: Contacts
-            }, {
-                path: '/about',
-                component: About
-            }, {
-                path: '/partners',
-                component: Partners
-            }
+  {
+    name: 'home',
+    path: '/',
+    component: LandingPage
+  }, {
+    component: StaticLayout,
+    childRoutes: [
+      {
+        name: 'categories',
+        path: '/categories',
+        component: Categories,
+        childRoutes: [{
+          name: 'category',
+          path: ':categID',
+          component: Category,
+          childRoutes: [{
+            name: 'animal details',
+            path: ':animalID',
+            component: AnimalDetails
+          }]
+        }]
+      }, {
+        name: 'admin',
+        path: '/admin/:action',
+        component: Admin
+      }, {
+        name: 'goes shelter',
+        path: '/goes-shelter',
+        component: GoesShelter
+      }, {
+        name: 'contacts',
+        path: '/contacts',
+        component: Contacts
+      }, {
+        name: 'about',
+        path: '/about',
+        component: About
+      }, {
+        name: 'partners',
+        path: '/partners',
+        component: Partners
+      }
 
-        ]
-    },
-    {
-        path: '*',
-        component: NotFound
-    }
+    ]
+  },
+  {
+    path: '*',
+    component: NotFound
+  }
 ])
-
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
     using getChildRoutes with the following signature:
