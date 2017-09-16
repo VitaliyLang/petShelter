@@ -1,9 +1,12 @@
 .flex-container_img{
     display: flex;
     justify-content: space-around;
+    background-color: #393b36;
     a{
         flex-basis: 25%;
         margin-top: 10px;
+        overflow: hidden;
+        cursor: pointer;
     }
     img{
         width: 100%;
@@ -18,5 +21,17 @@
             width: 30%;
             margin: auto;
         }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+    .flex-container_img a{
+        flex-basis: 45%;
+    }
+}
+
+@media (min-width: 200px) and (max-width: 600px) {
+    .flex-container_img a{
+        flex-basis: 90%;
     }
 }
