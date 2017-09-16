@@ -15,4 +15,19 @@ function ReadItem(prop){
     return categoriesArr;
 }
 
-export {ReadItem}
+/////////////////////////////////////////////////////////////////////
+
+function signPerson(props,personInformation,link){
+   return  props.firebase.login({
+        email: personInformation.email,
+        password: personInformation.password
+    })
+    .then((res) => {   
+        return Promise.resolve(res);
+    })
+    .catch((err) => Promise.reject(err))
+}
+///////////////////////////////////////////////////////////////
+
+
+export {ReadItem,signPerson}

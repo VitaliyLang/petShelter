@@ -1,12 +1,12 @@
 const firebaseConfig = {
-    apiKey: 'AIzaSyA5BxHJuAbSUSY3YOErfNufvn5IpIvZIMw',
-    authDomain: 'study-4e29c.firebaseapp.com',
-    databaseURL: 'https://study-4e29c.firebaseio.com/',
+    apiKey: 'AIzaSyCZQ_vlsXnB7RfZQ_93ImHA3dgMlQjzwPQ',
+    authDomain: 'petshelter-15372.firebaseapp.com',
+    databaseURL: 'https://petshelter-15372.firebaseio.com/',
     //storageBucket: '<your-storage-bucket>'
 }
   // react-redux-firebase options
 const config = {
-    userProfile: 'user', // firebase root where user profiles are stored
+    userProfile: 'users', // firebase root where user profiles are stored
     enableLogging: false, // enable/disable Firebase's database logging
 }
 

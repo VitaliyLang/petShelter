@@ -3,7 +3,8 @@ import Formsy from 'formsy-react';
 import MainInput from 'modules/inputs/MainInput'
 import './FormToAdmin.scss'
 import { connect } from 'react-redux'
-import { addPerson } from '../../../store/actions'
+import { firebaseConnect, helpers,dataToJS } from 'react-redux-firebase'
+import { addPerson} from '../../../store/actions'
 import Button from 'modules/buttons/PrimaryButton'
 // import 'modules/inputs/inputs.scss'
 
@@ -26,11 +27,21 @@ import Button from 'modules/buttons/PrimaryButton'
 		},
 		submit(model) {
       this.addPerson(model);
-    },
+		},
+		createNewUser({ email, password, username }) {
+			  this.props.firebase.createUser(
+				{ email, password },
+				{ username, email }
+			)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+		},
     addPerson(personInformation){
-      this.props.onAddPerson(personInformation);
-      console.log(this.props);
-    },
+			this.props.onAddPerson(personInformation);
+			this.createNewUser({ email: personInformation.email,
+			password: personInformation.email,
+			username: personInformation.name});
+		},
 		render() {
 			return (
 				<div className="admin_form_wrapper main_section">
@@ -43,6 +54,7 @@ import Button from 'modules/buttons/PrimaryButton'
 							<MainInput name="name" type="text" placeholder="Name" validations={{minLength: 6}} validationError="Name should contain more than 6 letters" required/>
 							<MainInput name="phoneNumber" type="number" placeholder="Phone number" validations={{minLength: 10}} validationError="Phone number should looks like: 0XX XXX XX XX" required/>	
 							<Button disabled={!this.state.canSubmit}>Submit</Button>
+
 						</Formsy.Form>
 					</div>
 				</div>
@@ -55,7 +67,7 @@ import Button from 'modules/buttons/PrimaryButton'
 //it is only mapStateToProps example for us
 const mapStateToProps = state => {
   return {
-    people: console.log(state.people)
+		people: console.log(state.people)
   }
 }
 
@@ -63,11 +75,18 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddPerson: personInformation => {
       dispatch(addPerson(personInformation))
-    }
+		}
   }
 }
 
-export default connect(
+/*export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FormToAdmin);
+)(FormToAdmin);*/
+
+const wrappedFormToAdmin = firebaseConnect()(FormToAdmin)
+
+export default connect(
+	mapStateToProps,
+  mapDispatchToProps
+)(wrappedFormToAdmin)

@@ -11,6 +11,7 @@ import About from './About'
 import Partners from './Partners'
 import StaticLayout from '../layouts/index'
 import AnimalDetails from './AnimalDetails/index'
+import SignIn from './SignIn'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -58,6 +59,9 @@ export const createRoutes = (store) => ([
         name: 'partners',
         path: '/partners',
         component: Partners
+      },{
+        path: '/login',
+        component: SignIn
       }
 
     ]

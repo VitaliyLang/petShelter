@@ -32,7 +32,7 @@ class Categories extends React.Component {
 }
 
 const wrappedCategories = firebaseConnect([
-  'categories'
+    '/'
 ])(Categories)
 
 export default connect(
