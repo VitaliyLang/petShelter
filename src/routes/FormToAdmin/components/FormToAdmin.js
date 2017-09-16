@@ -4,7 +4,6 @@ import MainInput from 'modules/inputs/MainInput'
 import './FormToAdmin.scss'
 import { connect } from 'react-redux'
 import { addPerson } from '../../../store/actions'
-<<<<<<< HEAD
 import Button from 'modules/buttons/PrimaryButton'
 // import 'modules/inputs/inputs.scss'
 

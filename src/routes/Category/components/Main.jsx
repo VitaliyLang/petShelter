@@ -3,6 +3,7 @@ import './Main.scss'
 import * as animals from '../data.json'
 import { List } from 'react-virtualized'
 import { Link } from 'react-router'
+import '../style.scss'
 
 const listModify = []
 for (let i = 0, y = 0; i < animals.length; i += 3, y++) {
@@ -77,6 +78,7 @@ class Main extends Component {
   render () {
     return (
       <List
+        className = 'ver-scroll pet-list'
         width={1200}
         height={600}
         rowCount={listModify.length}
@@ -84,7 +86,7 @@ class Main extends Component {
         rowRenderer={this.rowRenderer.bind(this)}
         style={{
           height: '100%',
-          width: '80%'
+          width: '100%'
         }}
       />
     )

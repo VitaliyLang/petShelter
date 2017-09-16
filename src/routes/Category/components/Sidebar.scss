@@ -1,12 +1,16 @@
+@import '_variables';
+@import '_scroll';
+
 .aside_category {
     width: 20%;
-    background-color: #393b36;
+    background-color: $form-gray;
     color: #ffffff;
+    overflow-y:auto; 
     h2{
         text-align: center;
     }
     p{
-        padding-left: 50px;
+        padding-left: 10px;
         font-size: 18px;  
     }
     label{
@@ -16,4 +20,27 @@
         margin: 10px auto;
         display: block;
     }
+    
+}
+
+[type="radio"]:not(:checked), [type="radio"]:checked {
+    position: inherit;
+    left: 0px;
+    opacity: 1;
+
+}
+label {
+  color: $primary-light-green;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  input {
+    margin-right:10px; 
+  }
+}
+
+.radio_box {
+  display: flex;
+  flex-direction:column;
+  padding-left: 20px;
 }
