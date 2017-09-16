@@ -1,0 +1,36 @@
+.hrz-scroll {
+	&::-webkit-scrollbar {
+	   height: 4px;
+	  background-color: #e2e5eb;
+	  border-radius: 5px;
+	}
+
+	&::-webkit-scrollbar-track {
+	    height: 4px;
+	  	background-color: #e2e5eb !important;
+	  	border-radius: 5px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+	  background-color: #b1b4c1 !important;
+	  border-radius: 5px;
+	}
+}
+.ver-scroll {
+	&::-webkit-scrollbar {
+	  width: 10px;
+	  background-color: #e2e5eb;
+	  border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+	    width: 10px;
+	  	background-color: #e2e5eb !important;
+	  	border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+	  background-color: #b1b4c1 !important;
+	  border-radius: 10px;
+	}
+}

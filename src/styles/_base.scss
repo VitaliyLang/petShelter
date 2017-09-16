@@ -7,6 +7,8 @@ can easily be swapped out without `core.scss` ever having to know.
 For example:
 */
 @import '_variables';
+@import '_scroll';
+
 
 // @import './variables/components';
 // @import './themes/default';
