@@ -3,13 +3,17 @@
     justify-content: space-around;
     background-color: #393b36;
     a{
-        flex-basis: 30%;
+        flex-basis: 25%;
         margin-top: 10px;
         overflow: hidden;
         cursor: pointer;
     }
     img{
         width: 100%;
+        min-width: 150px;
+        min-height: 150px;
+        height: 150px;
+        border-radius: 2px;
     }
     .load{
         display: flex;

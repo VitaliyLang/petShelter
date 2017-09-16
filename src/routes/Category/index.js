@@ -16,7 +16,7 @@ class Category extends Component {
       )
     } else {
       return (
-        <div className=" flex-container ">
+        <div className="flex-container">
           <Sidebar/>
           <Main category={this.props.params.categID}/>
         </div>

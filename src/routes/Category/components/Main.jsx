@@ -6,7 +6,6 @@ import { Link } from 'react-router'
 import * as loading from './loading.png'
 
 
-
 class Main extends Component {
   constructor(props) {
     super(props)
@@ -98,6 +97,7 @@ class Main extends Component {
   render() {
     return (
       <List
+        className = 'ver-scroll pet-list'
         width={1200}
         height={600}
         rowCount={this.state.listModify.length}
