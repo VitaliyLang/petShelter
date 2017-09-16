@@ -106,7 +106,8 @@ class Main extends Component {
         style={{
           height: '100%',
           width: '80%',
-          outline : 'none'
+          outline : 'none',
+          background: '#393b36'
         }}
       />
     )
