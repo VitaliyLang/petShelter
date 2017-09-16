@@ -16,6 +16,7 @@ import Button from 'modules/buttons/PrimaryButton'
 		enableButton() {
 			this.setState({
 				canSubmit: true
+				
 			});
 		},
 		disableButton() {
@@ -41,7 +42,7 @@ import Button from 'modules/buttons/PrimaryButton'
 							<MainInput name="email" type="email" validations="isEmail" placeholder="email"  validationError="This is not a valid email" required/>
 							<MainInput name="name" type="text" placeholder="Name" validations={{minLength: 6}} validationError="Name should contain more than 6 letters" required/>
 							<MainInput name="phoneNumber" type="number" placeholder="Phone number" validations={{minLength: 10}} validationError="Phone number should looks like: 0XX XXX XX XX" required/>	
-							<Button  type="submit"  disabled={!this.state.canSubmit}>Submit</Button>
+							<Button disabled={!this.state.canSubmit}>Submit</Button>
 						</Formsy.Form>
 					</div>
 				</div>

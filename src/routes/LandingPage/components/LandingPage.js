@@ -5,6 +5,7 @@ import './LandingPage.scss'
 import goesHome from '../assets/goes_home.jpg'
 import goesShelter from '../assets/goes_to_shelter.jpg'
 
+
 export const LandingPage = () => (
 
 
@@ -32,10 +33,12 @@ export const LandingPage = () => (
 			        </Link>
 			        </div>
 
-			      </div>     
+			      </div>   
+			        
    
   </div>
 )
+
 
 
 export default LandingPage
