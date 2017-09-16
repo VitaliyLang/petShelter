@@ -1,50 +1,46 @@
 import React, {Component} from 'react'
-import Label from './Label.jsx'
-import MainInput from 'modules/inputs/MainInput'
-import Button from 'modules/buttons/PrimaryButton'
 import './Sidebar.scss'
+import {Input, Button} from 'react-materialize'
+
+
 class Sidebar extends Component{
-  constructor(props){
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    constructor(props){
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
-  handleSubmit(e){
-    e.preventDefault();
-  }
-  render(){
-    return(
-      <aside className = "aside_category ver-scroll">
-      <form onSubmit = {this.handleSubmit}>
-      <p> Filter </p>
+    handleSubmit(e){
+        e.preventDefault();
+    }
+    render(){
+        return(
+            <aside className = "aside_category">
+                <form onSubmit = {this.handleSubmit}>
+                    <h2> Filter </h2>
 
-      <p> Sex </p>
-      <div className="radio_box">
-        <Label className="radio_btn" name = 'sex' value = 'Any'  />
-        <Label name = 'sex' value = 'Male'/>
-        <Label name = 'sex' value = 'Female'/>
-      </div>
-      <p> Size </p>
-      <div className="radio_box">
-        <Label name = 'size' value = 'Any' />
-        <Label name = 'size' value = 'Small'/>
-        <Label name = 'size' value = 'Medium'/>
-        <Label name = 'size' value = 'Large'/>
-      </div>
+                    <p> Sex </p>
+                    <Input type = 'radio'  value = "green" name = 'sex' className='with-gap' label = 'Any' value = 'any'  defaultChecked />
+                    <Input type = 'radio' name = 'sex' className='with-gap' label = 'Male' value = 'male'/>
+                    <Input type = 'radio' name = 'sex' className='with-gap' label = 'Female' value = 'female'/>
 
-      <p> Age </p>
-      <div className="radio_box">
-        <Label name = 'age' value = 'Any' />
-        <Label name = 'age' value = 'Baby' />
-        <Label name = 'age' value = 'Young' />
-        <Label name = 'age' value = 'Adult' />
-        <Label name = 'age' value = 'Senior' />
-      </div>
-      <Button type = "submit"> Apply </Button>
-      </form>
-      </aside>
-      ) 
-  }
+                    <p> Size </p>
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Any' value = 'any'  defaultChecked />
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Small' value = 'small'/>
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Medium' value = 'medium'/>
+                    <Input type = 'radio' name = 'size' className='with-gap' label = 'Large' value = 'large'/>
+
+                    <p> Age </p>
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Any' value = 'any'  defaultChecked />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Baby' value = 'baby' />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Young' value = 'young' />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Adult' value = 'adult' />
+                    <Input type = 'radio' name = 'age' className='with-gap' label = 'Senior' value = 'senior' />
+
+                    <Button type = "submit" className = "filter waves-effect waves-light primaryBtn"> Apply </Button>
+                </form>
+            </aside>
+        ) 
+    }
 }
 
 export default Sidebar
