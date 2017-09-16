@@ -3,46 +3,40 @@ import './Main.scss'
 import * as animals from '../data.json'
 import { List } from 'react-virtualized'
 import { Link } from 'react-router'
-import * as loading from './loading.png'
-
+import {connect} from 'react-redux'
+import changeH from '../../../store/actions/category/changeHeight'
+import modifyL from '../../../store/actions/category/modifyList'
+import changeB from '../../../store/actions/category/changeBottom'
+import changeT from '../../../store/actions/category/changeTop'
 
 class Main extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      height: window.innerWidth * 0.8 * 0.3 / 1.33,
-      listModify: animals
-    }
     this.update = this.update.bind(this)
     this.rowRenderer = this.rowRenderer.bind(this)
     this.updateDebounce = this.debounce(this.update, 300);
+    this.onRowsRendered = this.onRowsRendered.bind(this);
   }
 
   update() {
-    if(window.innerWidth>1000){
+    if (window.innerWidth > 1000) {
       let arr = [];
       for (let i = 0, y = 0; i < animals.length; i += 3, y++) {
         arr[y] = [animals[i], animals[i + 1], animals[i + 2]]
       }
-      this.setState({
-        height: window.innerWidth * 0.8 * 0.3 / 1.33,
-        listModify: arr
-      })
-    }else if(window.innerWidth > 600){
+      this.props.changeHeight(window.innerWidth * 0.18);
+      this.props.modifyList(arr);
+    } else if (window.innerWidth > 600) {
       let arr = [];
       for (let i = 0, y = 0; i < animals.length; i += 2, y++) {
         arr[y] = [animals[i], animals[i + 1]]
       }
-      this.setState({
-        height: window.innerWidth * 0.8 * 0.45 / 1.33,
-        listModify: arr
-      })
-    }else{
+      this.props.changeHeight(window.innerWidth * 0.27);
+      this.props.modifyList(arr);
+    } else {
       let arr = animals;
-      this.setState({
-        height: window.innerWidth * 0.8 * 0.9 / 1.33,
-        listModify: arr
-      })
+      this.props.changeHeight(window.innerWidth * 0.55);
+      this.props.modifyList(arr);
     }
   }
 
@@ -62,7 +56,10 @@ class Main extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDebounce)
   }
-
+  onRowsRendered({ overscanStartIndex, overscanStopIndex, startIndex, stopIndex}){
+    this.props.changeTop(startIndex);
+    this.props.changeBottom(stopIndex);
+  }
   rowRenderer({
       key,
       index,
@@ -70,22 +67,24 @@ class Main extends Component {
       isVisible,
       style
     }) {
-    let content = isScrolling
-      ? <div className='flex-container_img'>
-          {Array.isArray(this.state.listModify[index])
-            ? this.state.listModify[index].map((elem, index) => <Link className='load' key={index}><img src={loading} /></Link>)
-            : <Link className='load'><img src={loading} /></Link>
-          }
-        </div>
-      : <div className='flex-container_img'>
-          {Array.isArray(this.state.listModify[index])
-            ? this.state.listModify[index].map((elem, index) =>{
-              if(elem===undefined) return <Link/>;
-              return <Link to={`/categories/${this.props.category}/1`} key={index}><img src={elem.url} /></Link>
-            })
-            : <Link to={`/categories/${this.props.category}/1`}><img src={this.state.listModify[index].url} /></Link>
-          }
-        </div>
+      let content = this.props.categoryStore.top <= index && index <= this.props.categoryStore.bottom
+      ?<div className='flex-container_img'>
+      {Array.isArray(this.props.categoryStore.listModify[index])
+        ? this.props.categoryStore.listModify[index].map((elem, index) => {
+          if (!elem) return <Link className='empty'/>;
+          return <Link to={`/categories/${this.props.category}/1`} key={index} style={{backgroundImage: `url(${elem.url})`}} />
+        })
+        : <Link to={`/categories/${this.props.category}/1`} style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url})` }} />
+      }
+    </div>
+       :<div className='flex-container_img'>
+      {Array.isArray(this.props.categoryStore.listModify[index])
+        ? this.props.categoryStore.listModify[index].map((elem, index) => <Link className='load' key={index} />)
+        : <Link className='load' />
+      }
+    </div>
+
+
     style.top = style.height * index
     return (
       <div key={key} style={style}>
@@ -93,25 +92,37 @@ class Main extends Component {
       </div>
     )
   }
-
+  
   render() {
+    console.log(this.props.categoryStore);
     return (
       <List
-        className = 'ver-scroll pet-list'
+        className='ver-scroll pet-list'
         width={1200}
-        height={600}
-        rowCount={this.state.listModify.length}
-        rowHeight={this.state.height}
+        height={900}
+        rowCount={this.props.categoryStore.listModify.length}
+        rowHeight={this.props.categoryStore.height}
         rowRenderer={this.rowRenderer}
+        onRowsRendered={this.onRowsRendered}
         style={{
           height: '100%',
           width: '80%',
-          outline : 'none',
-          background: '#393b36'
+          outline: 'none',
+          backgroundColor: '#383D40'
         }}
       />
     )
   }
 }
 
-export default Main
+export default connect(
+  state=>({
+    categoryStore: state.category
+  }),
+  dispatch=>({
+    changeHeight: (heigh)=> dispatch(changeH(heigh)),
+    modifyList : (arr)=> dispatch(modifyL(arr)),
+    changeTop: (number)=> dispatch(changeT(number)),
+    changeBottom: (number)=> dispatch(changeB(number))
+  })
+)(Main)
