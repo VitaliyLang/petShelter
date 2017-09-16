@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+
 class Category extends React.Component {
   constructor (props) {
     super(props)
@@ -25,7 +26,7 @@ class Category extends React.Component {
         return(
             <div onClick={categorClick}
                 className={(click ? 'click': '')}>
-                    <Link to={'/categories/'+data}>{data}</Link>
+                <Link to={'/categories/'+data}>{data}</Link>
             </div>
         )
     }
