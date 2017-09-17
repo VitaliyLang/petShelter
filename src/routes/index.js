@@ -12,6 +12,7 @@ import Partners from './Partners'
 import StaticLayout from '../layouts/index'
 import AnimalDetails from './AnimalDetails/index'
 import SignIn from './SignIn'
+import FormToAdmin from './SignUp'
 import NotFound from './NotFound'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -62,6 +63,9 @@ export const createRoutes = (store) => ([
       },{
         path: '/login',
         component: SignIn
+      },{
+        path: '/signup',
+        component: FormToAdmin
       }
 
     ]
