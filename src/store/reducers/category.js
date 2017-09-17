@@ -1,8 +1,6 @@
-import * as animals from '../../routes/Category/data.json'
-
 const initialState = {
     height: window.innerWidth * 0.18,
-    listModify: animals
+    listModify: []
 }
 
 export default (state = initialState, action)=>{
