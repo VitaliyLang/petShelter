@@ -7,6 +7,23 @@ import './styles/main.scss'
 // ------------------------------------
 const store = createStore(window.__INITIAL_STATE__)
 
+// SW and Manifest Register
+// ------------------------------------
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+}
+
+const head = document.getElementsByTagName('head')[0];
+
+const manifest = () =>{
+    let link = document.createElement('link');
+    link.setAttribute('rel', 'manifest');
+    link.setAttribute('href', '/manifestrules.json');
+    return link;
+}
+
+head.appendChild(manifest());
+
 // Render Setup
 // ------------------------------------
 const MOUNT_NODE = document.getElementById('root')
