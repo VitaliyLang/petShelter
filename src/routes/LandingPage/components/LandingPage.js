@@ -17,7 +17,7 @@ export const LandingPage = () => (
 	          	<div className="goesShelter_box">
 	            <Link  className="wrap" to='/goes-shelter' activeClassName='page-layout__nav-item--active'>
 	            <div className='goesShelter' > 
-			        		<h1 className='homeP' >goesShelter</h1>
+			        		<h1 className='homeP' >Goes Shelter</h1>
 				 				</div>
 	 						</Link>           
 	 						</div>
@@ -27,7 +27,7 @@ export const LandingPage = () => (
 							<div className="goes_home_box">		    				
 		          <Link className="wrap" to='/categories' activeClassName='page-layout__nav-item--active'>
 		          	<div className='goesHome'>
-		          			<h1 className='homeP'>goesHome</h1>
+		          			<h1 className='homeP'>Goes Home</h1>
 		          	</div>
 		          	
 			        </Link>
