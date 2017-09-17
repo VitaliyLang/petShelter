@@ -13,8 +13,19 @@ class Admin extends React.Component {
 
     componentWillMount(){
         this.props.firebase.auth().onAuthStateChanged((user) => {
+            let role = '';
             if (user) {
-             console.log('signedIn', user.uid)
+                this.props.firebase.database().ref('/users/'+user.uid).once('value').then((snapshot) => {
+                    if(snapshot.val().role == 'admin'){
+                        console.log('signedIn');
+                    }else{
+                        throw new Error('No permission')
+                    }                    
+                })
+                .catch(err => {
+                    alert('You are not authorization')
+                    this.props.router.push('/login');  
+                })
             }else{
                 alert('You are not authorization')
                 this.props.router.push('/login');  
