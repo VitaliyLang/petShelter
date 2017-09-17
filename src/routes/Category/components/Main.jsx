@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Main.scss'
-import * as animals from '../data.json'
 import { List } from 'react-virtualized'
 import { Link } from 'react-router'
 import {connect} from 'react-redux'
@@ -19,6 +18,7 @@ class Main extends Component {
   }
 
   update() {
+    let animals = this.props.filter.filteredList;
     if (window.innerWidth > 1000) {
       let arr = [];
       for (let i = 0, y = 0; i < animals.length; i += 3, y++) {
@@ -51,10 +51,11 @@ class Main extends Component {
   componentDidMount() {
     this.update();
     window.addEventListener('resize', this.updateDebounce);
+    window.addEventListener('submit', this.update);
   }
-
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDebounce)
+    window.removeEventListener('resize', this.updateDebounce);
+    window.removeEventListener('submit', this.update);
   }
   onRowsRendered({ overscanStartIndex, overscanStopIndex, startIndex, stopIndex}){
     this.props.changeTop(startIndex);
@@ -84,7 +85,6 @@ class Main extends Component {
       }
     </div>
 
-
     style.top = style.height * index
     return (
       <div key={key} style={style}>
@@ -92,9 +92,7 @@ class Main extends Component {
       </div>
     )
   }
-  
   render() {
-    console.log(this.props.categoryStore);
     return (
       <List
         className='ver-scroll pet-list'
@@ -117,7 +115,8 @@ class Main extends Component {
 
 export default connect(
   state=>({
-    categoryStore: state.category
+    categoryStore: state.category,
+    filter: state.filterAnimals
   }),
   dispatch=>({
     changeHeight: (heigh)=> dispatch(changeH(heigh)),

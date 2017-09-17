@@ -18,6 +18,7 @@ class Categories extends React.Component {
     let categoriesArr = [];
     const { categories } = this.props;
     categoriesArr = ReadItem(categories);
+    console.log(categoriesArr);
     if (this.props.children) {
       return (
         this.props.children

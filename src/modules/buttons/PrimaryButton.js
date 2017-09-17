@@ -7,7 +7,12 @@ class PrimaryButton extends React.Component {
    
     render(){
         return(
-          <Button type="submit" waves='light' className="primaryBtn">button</Button>
+          <Button 
+	          type="submit"  
+	          waves='light' 
+	          className="primaryBtn"
+	          disabled={false || this.props.disabled}
+	          >button</Button>
         )
     }
 }

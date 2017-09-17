@@ -1,5 +1,7 @@
 import React from 'react'
 import Category from './Category.js'
+import {Slider} from 'react-materialize'
+import {Slide} from 'react-materialize'
 
 class CategoriesPanel extends React.Component {
     constructor(props) {
@@ -25,7 +27,6 @@ class CategoriesPanel extends React.Component {
                 <ul className='categorUl'>
                     {panelTamplate}
                 </ul>
-                
         </div>
         )
     }

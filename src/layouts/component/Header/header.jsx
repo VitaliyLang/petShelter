@@ -12,7 +12,7 @@ class Header extends React.Component{
                     <ul>
                         <li className = "logo">
                             <Link to='/'>
-                                <img src={require('./logo.png')} alt='logo'/>
+                                <img src={require('./petLogo.png')} alt='logo'/>
                             </Link>
                         </li>
                         <li><Link activeClassName="active" to='/contacts'>Contacts</Link></li>
