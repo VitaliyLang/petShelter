@@ -1,24 +1,23 @@
 .flex-container_img{
     display: flex;
     justify-content: space-around;
-    background-color: #393b36;
+    height: 100%;
     a{
         flex-basis: 30%;
-        align-items: center;
-        margin-top: 10px;
-        overflow: hidden;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,.7);
+        margin: 10px 0;
         cursor: pointer;
-        display: flex;
+        background-size: cover;
+        background-position: center;
+
     }
-    img{
-        width: 100%;
+    .empty{
+        box-shadow: none;
     }
     .load{
-        display: flex;
-        img{
-            width: 30%;
-            margin: auto;
-        }
+        background: url('./Spinner.gif') no-repeat center;
+        background-size: 50%;
     }
 }
 
@@ -28,8 +27,12 @@
     }
 }
 
-@media (min-width: 200px) and (max-width: 600px) {
-    .flex-container_img a{
-        flex-basis: 90%;
+@media (max-width: 600px) {
+    .pet-list{
+        width: 100% !important;
+        a{
+            flex-basis: 90%;
+        }
+
     }
 }
