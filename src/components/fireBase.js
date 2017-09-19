@@ -2,6 +2,7 @@ import { firebaseConnect, helpers } from 'react-redux-firebase'
 const { isLoaded, isEmpty, pathToJS, dataToJS } = helpers
 
 function ReadItem(prop,onlyKey=false){
+    console.log('prop',prop);
     let resArr = [], resObjArr = [], resObj = {};
     let resList = !isLoaded(prop)?
     'Is loading':
@@ -33,7 +34,7 @@ function signPerson(props,personInformation,link){
 }
 ///////////////////////////////////////////////////////////////
 
-function createNewUser(props,{ email, password, username, phoneNumber, active = false, animalId = '', type = 'give', role='user'}) {
+function createNewUser(props,{ email, password=String(Math.random()).slice(-8), username, phoneNumber, active = false, animalId = '', type = 'give', role='user'}) {
     let date = new Date().toLocaleString().split(',')[0];
     props.firebase.createUser(
       { email, password },
@@ -47,7 +48,8 @@ function createNewUser(props,{ email, password, username, phoneNumber, active = 
           props.firebase.database().ref('/usersList/').set(usersList)
           .then((res)=>{
               //props.firebase.logout();                     
-              alert('Your request is sent successfully. Wait for our answer soon.');                    
+              alert('Your request is sent successfully. Wait for our answer soon.');
+              return                     
           })
           .catch(err=>console.log(err));                    
       })
@@ -57,6 +59,7 @@ function createNewUser(props,{ email, password, username, phoneNumber, active = 
       this.props.firebase.database().ref().update(updates);*/
   })
   .catch((err) => console.log(err));
+  return
 }
 
 //////////////////////////////////////////////////////////////

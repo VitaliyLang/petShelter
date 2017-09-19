@@ -19,6 +19,7 @@ class Main extends Component {
 
   update() {
     let animals = this.props.filter.filteredList;
+    console.log(animals);
     if (window.innerWidth > 1000) {
       let arr = [];
       for (let i = 0, y = 0; i < animals.length; i += 3, y++) {

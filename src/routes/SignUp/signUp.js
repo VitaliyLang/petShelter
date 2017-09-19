@@ -3,12 +3,11 @@ import Formsy from 'formsy-react';
 import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
 import { firebaseConnect, helpers,dataToJS } from 'react-redux-firebase'
-import { addPerson} from '../../store/actions'
 import Button from 'modules/buttons/PrimaryButton'
 import {createNewUser} from '../../components/fireBase'
 // import 'modules/inputs/inputs.scss'
 
-	const FormToAdmin = React.createClass({
+	const Animal = React.createClass({
 		getInitialState() {
 			return {
 				canSubmit: false
@@ -25,25 +24,31 @@ import {createNewUser} from '../../components/fireBase'
 			});
 		},
 		submit(model) {
-      this.addPerson(model);
+      		this.addAnimal(model);
         },
-        ////////////////////////////////////////////////////
-		
-    addPerson(personInformation){
-			this.props.onAddPerson(personInformation);
-			createNewUser(this.props,personInformation);
+        		
+    addAnimal(animalInformation){
+			let {category,sex,size,age} = animalInformation;
+			let newPostKey = this.props.firebase.database().ref().child('animals').push().key;
+			let updates = {};
+			updates['/animals/'+category+'/'+newPostKey] = animalInformation;
+			updates['categories/' + category] = category[0].toUpperCase() + category.slice(1);
+			//updates['/animals/'+category+'/'+sex+'/'+size+'/'+age+'/'+newPostKey] = animalInformation;
+			//updates['/users..../animalId'] = newPostKey;//adding animalId to UserTable;
+			alert('Animal is added');
+			return this.props.firebase.database().ref().update(updates)
 		},
 		render() {
 			return (
-				<div className="admin_form_wrapper main_section">
-				<div className="admin_form">
-					<div className='form_box'>
-						
+				<div className="animal_form_wrapper main_section">
+				<div className="animal_form">
+					<div className='form_box'>						
 						<Formsy.Form  className="form" onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-							<MainInput name="email" type="email" validations="isEmail" placeholder="email"  validationError="This is not a valid email" required/>
-							<MainInput name="username" type="text" placeholder="Name" validations={{minLength: 6}} validationError="Name should contain more than 6 letters" required/>
-							<MainInput name="password" type="password" placeholder="Password" required/>
-							<MainInput name="phoneNumber" type="number" placeholder="Phone number" validations={{minLength: 10}} validationError="Phone number should looks like: 0XX XXX XX XX" required/>	
+							<MainInput name="category" type="text" placeholder="Category" required/>
+							<MainInput name="sex" type="text" placeholder="Sex" required/>
+							<MainInput name="size" type="text" placeholder="Size" required/>
+							<MainInput name="age" type="text" placeholder="age" required/>
+							<MainInput name="alias" type="text" placeholder="Alias" required/>
 							<Button  type="submit">Submit</Button>
 						</Formsy.Form>
 					</div>
@@ -53,30 +58,9 @@ import {createNewUser} from '../../components/fireBase'
 		}
   });
 
-
-//it is only mapStateToProps example for us
-const mapStateToProps = state => {
-  return {
-		people: console.log(state.people)
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddPerson: personInformation => {
-      dispatch(addPerson(personInformation))
-		}
-  }
-}
-
-/*export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FormToAdmin);*/
-
-const wrappedFormToAdmin = firebaseConnect()(FormToAdmin)
-
-export default connect(
-	mapStateToProps,
-  mapDispatchToProps
-)(wrappedFormToAdmin)
+	const wrappedAnimal = firebaseConnect(['/'])(Animal)
+	export default connect(
+		({firebase}) => ({
+    		animals: dataToJS(firebase, 'animals')
+  		})
+	)(wrappedAnimal)
