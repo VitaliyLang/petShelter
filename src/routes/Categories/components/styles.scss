@@ -3,17 +3,17 @@
 .container{
     li{
         list-style: none;
-        div{
-            height: 35px;
-            width: 70px;
-            border-radius: 10px;
-            background: blue;
-            margin-bottom: 10px;
-            text-align: center;
-            padding-top: 6px;
+        div{            
             a{
                 text-decoration: none;
                 color: #fff;
+                height: 35px;
+                width: 70px;
+                border-radius: 10px;
+                background: blue;
+                margin-bottom: 10px;
+                text-align: center;
+                padding-top: 6px;
             }
         }
         div:hover{
