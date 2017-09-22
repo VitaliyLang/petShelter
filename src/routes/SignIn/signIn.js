@@ -3,7 +3,9 @@ import Formsy from 'formsy-react';
 import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
 import { firebaseConnect,firebase, helpers,dataToJS } from 'react-redux-firebase'
+import Button from 'modules/buttons/PrimaryButton'
 import { signPerson } from '../../components/fireBase'
+import './style.scss'
 
 
 class signIn extends React.Component{
@@ -33,10 +35,12 @@ class signIn extends React.Component{
         let uid = signPerson(props,personInformation,link);
         uid.then(res => {
             if(res){
-                this.props.router.push(link)
+                this.props.router.push(link);
+                return;
             }
         })
         .catch(err => alert(err.message));
+        return
     }
 
     render(){        
