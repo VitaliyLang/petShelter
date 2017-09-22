@@ -13,9 +13,6 @@ const __PROD__ = project.env === 'production'
 
 const config = {
   entry: {
-    normalize: [
-      inProjectSrc('normalize'),
-    ],
     main: [
       inProjectSrc(project.main),
     ],
@@ -140,9 +137,9 @@ config.plugins.push(extractStyles)
 // ------------------------------------
 config.module.rules.push({
   test    : /\.(png|jpg|gif)$/,
-  loader  : 'url-loader',
+  loader  : 'file-loader',
   options : {
-    limit : 8192,
+    outputPath: 'img/',
   },
 })
 
@@ -195,7 +192,7 @@ if (__DEV__) {
 // Bundle Splitting
 // ------------------------------------
 if (!__TEST__) {
-  const bundles = ['normalize', 'manifest']
+  const bundles = ['main']
 
   if (project.vendors && project.vendors.length) {
     bundles.unshift('vendor')
