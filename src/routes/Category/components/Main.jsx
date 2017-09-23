@@ -18,7 +18,7 @@ class Main extends Component {
   }
 
   update() {
-    let animals = this.props.filter.filteredList;
+    let animals = this.props.listAnimals;
     console.log(animals);
     if (window.innerWidth > 1000) {
       let arr = [];
@@ -117,7 +117,8 @@ class Main extends Component {
 export default connect(
   state=>({
     categoryStore: state.category,
-    filter: state.filterAnimals
+    filter: state.filterAnimals,
+    listAnimals: state.listAnimals.animals
   }),
   dispatch=>({
     changeHeight: (heigh)=> dispatch(changeH(heigh)),

@@ -1,44 +1,64 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { firebaseConnect, helpers } from 'react-redux-firebase'
 import CategoriesPanel from './CategoriesPanel'
 import PropTypes from 'prop-types'
+import getInvite from '../../../store/actions/categories'
+import getAnimals from '../../../store/actions/animals'
+import {ReadItem} from '../../../components/fireBase'
 import './styles.scss'
 
-const { isLoaded, isEmpty, pathToJS, dataToJS } = helpers
-
-import {ReadItem} from '../../../components/fireBase'
-
 class Categories extends React.Component {
+
   static propTypes = {
-    categories: PropTypes.object,
-    firebase: PropTypes.object
+    categories: PropTypes.object
   }
+
+  constructor(props){
+    super(props)
+    this.categoriesArr = [];
+  }
+
+  componentWillMount(){
+    let {onGetInvite} = this.props;
+    onGetInvite('/categories');
+  }
+  
   render(){
-    let categoriesArr = [];
-    const { categories } = this.props;
-    categoriesArr = ReadItem(categories);
-    console.log(categoriesArr);
-    if (this.props.children) {
-      return (
-        this.props.children
-      )
-    } else {
-      return (
-        <CategoriesPanel categories={categoriesArr} />
-      )
+    let { categories, onGetInvite, listAnimals, onGetAnimals } = this.props;
+    if(categories.error || categories.isLoading){
+      return null;
     }
+
+    this.categoriesArr = ReadItem(categories.categories);
+      
+    if (this.props.children) {
+        return (
+          this.props.children
+        )
+      } else {
+        return (
+         <CategoriesPanel categories={this.categoriesArr} onGetAnimals={onGetAnimals} listAnimals={listAnimals} />
+        )
+      }
   }
 }
 
-const wrappedCategories = firebaseConnect([
-    '/'
-])(Categories)
+let mapStateToProps = (state) => {
+  return {
+    categories: state.categories,
+    listAnimals: state.listAnimals
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    onGetInvite: (link) => dispatch(getInvite(link)),
+    onGetAnimals: (link) => dispatch(getAnimals(link))
+  };
+}
 
 export default connect(
-  ({firebase}) => ({
-    categories: dataToJS(firebase, 'categories'),
-    profile: pathToJS(firebase, 'profile')
-  })
-)(wrappedCategories)
+  mapStateToProps,
+  mapDispatchToProps
+)(Categories)
 

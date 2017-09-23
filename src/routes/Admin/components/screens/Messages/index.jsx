@@ -13,20 +13,23 @@ class Messages extends React.Component {
         let messageArr = [];
         const { users } = this.props,
             onlyKey = true;
-        messageArr = ReadItem(users,onlyKey);
-        let tamplate = [];
-        if(messageArr.length > 0){
-            tamplate = messageArr.map((item,i) => {
-                return(                    
-                    <Message key={i} message={item}/>
-                )
-            })
+        if(users){
+            messageArr = ReadItem(users,onlyKey);
+            let tamplate = [];
+            if(messageArr.length > 0){
+                tamplate = messageArr.map((item,i) => {
+                    return(                    
+                        <Message key={i} message={item}/>
+                    )
+                })
+            }
+            return(
+                <section className='messages'>
+                    {tamplate}
+                </section>
+            )
         }
-        return(
-            <section className='messages'>
-                {tamplate}
-            </section>
-        )
+        return null        
     }
 }
 

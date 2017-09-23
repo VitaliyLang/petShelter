@@ -1,21 +1,18 @@
 import { combineReducers } from 'redux';
-import { firebaseStateReducer as firebase} from 'react-redux-firebase';
-
 import people from './people';
 import category from './category';
 import filterAnimals from './filterAnimals'
-/*export const makeRootReducer = () => {
-  return combineReducers({
-    people,
-    firebase
-  });
-}*/
+import categories from './categories'
+import listAnimals from './listAnimals'
+import messages from './messages'
 
 const makeRootReducer = combineReducers({
   people,
   category,
   filterAnimals,
-  firebase
+  categories,
+  listAnimals,
+  messages
 })
 
 export default makeRootReducer;

@@ -1,13 +1,6 @@
-import { firebaseConnect, helpers } from 'react-redux-firebase'
-const { isLoaded, isEmpty, pathToJS, dataToJS } = helpers
 
 function ReadItem(prop,onlyKey=false){
-    console.log('prop',prop);
     let resArr = [], resObjArr = [], resObj = {};
-    let resList = !isLoaded(prop)?
-    'Is loading':
-    isEmpty(prop)?
-    'is empty':
     Object.keys(prop).map(
         (key, id) => {
             resArr[id]=prop[key];
