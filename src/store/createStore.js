@@ -1,15 +1,14 @@
 import { compose,createStore as createReduxStore, applyMiddleware } from 'redux';
-import makeRootReducer from './reducers/';
-import { reduxFirebase } from 'react-redux-firebase';
+import rootReducer from './reducers/';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {firebaseConfig, config} from './firebaseConfig/firebase';
+import thunk from 'redux-thunk';
+
 const createStore = (initialState = {}) => { 
-  
-	const createStoreWithMiddleware = composeWithDevTools(
-		reduxFirebase(firebaseConfig, config)
-		)(createReduxStore)
-  
-  const store = createStoreWithMiddleware(makeRootReducer);    
+	const composeEnhancers = composeWithDevTools({});
+	const store = createReduxStore(rootReducer,
+		initialState,
+		composeEnhancers(applyMiddleware(thunk))
+	  );  
  
   return store;
 }

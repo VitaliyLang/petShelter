@@ -4,18 +4,22 @@ import MainSection from './components/layouts/MainSection'
 import Routing from './routing.js'
 import './styles.scss'
 import { connect } from 'react-redux'
-import { firebaseConnect } from 'react-redux-firebase'
+import getMessages from '../../store/actions/messages'
+import getAnimals from '../../store/actions/animals'
 
 class Admin extends React.Component {
     constructor(props){
         super(props)
     }
 
-    componentWillMount(){
-        this.props.firebase.auth().onAuthStateChanged((user) => {
+    componentDidMount(){
+        this.props.onGetMessages('/users');
+        this.props.onGetAnimals('/animals');
+        /*const {firebase} = this.props;
+        firebase.auth().onAuthStateChanged((user) => {
             let role = '';
             if (user) {
-                this.props.firebase.database().ref('/users/'+user.uid).once('value').then((snapshot) => {
+                firebase.database().ref('/users/'+user.uid).once('value').then((snapshot) => {
                     if(snapshot.val().role == 'admin'){
                         console.log('signedIn');
                     }else{
@@ -31,9 +35,32 @@ class Admin extends React.Component {
                 this.props.router.push('/login');  
             }
         });
+        /*let {auth,profile} = this.props;
+        if (!auth || !auth.uid) {
+            console.log({ error: 'You must be Logged into Toggle Done' })
+        }else{
+            if(profile && profile.role != 'admin'){
+                console.log({ error: 'Permission denided' })
+            }else{
+                console.log('signIN');
+            }
+        }*/
     }
 
+   /* init({profile,auth}){
+        if (!auth || !auth.uid) {
+            console.log({ error: 'You must be Logged into Toggle Done' })
+        }else{
+            if(profile && profile.role != 'admin'){
+                console.log({ error: 'Permission denided' })
+            }else{
+                console.log('signIN');
+            }
+        }
+    }*/
+
     render(){
+        //this.init(this.props);
         return(
             <div className="wrapper">
                 
@@ -47,7 +74,21 @@ class Admin extends React.Component {
 }
 
 //export default Admin
+let mapStateToProps = (state) => {
+  return {
+    messages: state.messages,
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    onGetMessages: (link) => dispatch(getMessages(link)),
+    onGetAnimals: (link) => dispatch(getAnimals(link))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Admin)
   
-const wrappedAdmin = firebaseConnect()(Admin)
-  
-export default connect()(wrappedAdmin)
