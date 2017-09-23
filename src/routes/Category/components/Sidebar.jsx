@@ -2,10 +2,9 @@ import React, {Component} from 'react'
 import './Sidebar.scss'
 import {Input, Button} from 'react-materialize'
 import {connect} from 'react-redux'
-import changeValue from '../../../store/actions/category/changeRadioValue'
-import deleteValue from '../../../store/actions/category/deleteRadioValue'
-import setFiltered from '../../../store/actions/category/setFilteredList.js'
-import * as animals from '../data.json'
+import changeValue from 'store/actions/category/changeRadioValue'
+import deleteValue from 'store/actions/category/deleteRadioValue'
+import setFiltered from 'store/actions/category/setFilteredList.js'
 
 
 class Sidebar extends Component{
@@ -18,12 +17,6 @@ class Sidebar extends Component{
 
     handleSubmit(e){
         e.preventDefault();
-        let keys = Object.keys(this.props.filter);
-        let filteredList = animals.filter((animal)=>{
-            return keys.every((key)=> {
-                return this.props.filter[key] === animal[key]||Array.isArray(this.props.filter[key])})
-        })
-        this.props.setFilteredList(filteredList);
     }
     handleChange(e){
         this.props.changeValue(e.target.name, e.target.value);
@@ -68,7 +61,6 @@ export default connect(
     }),
     dispatch=>({
         changeValue: (name,value)=>dispatch(changeValue(name,value)),
-        deleteValue: (name)=>dispatch(deleteValue(name)),
-        setFilteredList : (arr)=>dispatch(setFiltered(arr))
+        deleteValue: (name)=>dispatch(deleteValue(name))
     })
 )(Sidebar)

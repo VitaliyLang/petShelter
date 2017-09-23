@@ -1,56 +1,74 @@
 import React, { Component } from 'react'
 import './Main.scss'
-import { List } from 'react-virtualized'
-import { Link } from 'react-router'
-import {connect} from 'react-redux'
-import changeH from '../../../store/actions/category/changeHeight'
-import modifyL from '../../../store/actions/category/modifyList'
-import changeB from '../../../store/actions/category/changeBottom'
-import changeT from '../../../store/actions/category/changeTop'
+import { List } from 'react-virtualized';
+import { Link } from 'react-router';
+import {connect} from 'react-redux';
+import debounce from 'modules/helpers/debounce';
+import changeH from 'store/actions/category/changeHeight';
+import modifyL from 'store/actions/category/modifyList';
+import changeB from 'store/actions/category/changeBottom';
+import changeT from 'store/actions/category/changeTop';
+import getAnimals from 'store/actions/animals';
 
 class Main extends Component {
   constructor(props) {
     super(props)
     this.update = this.update.bind(this)
     this.rowRenderer = this.rowRenderer.bind(this)
-    this.updateDebounce = this.debounce(this.update, 300);
+    this.updateDebounce = debounce(this.update, 300);
     this.onRowsRendered = this.onRowsRendered.bind(this);
   }
-
   update() {
     let animals = this.props.listAnimals;
-    console.log(animals);
-    if (window.innerWidth > 1000) {
-      let arr = [];
-      for (let i = 0, y = 0; i < animals.length; i += 3, y++) {
-        arr[y] = [animals[i], animals[i + 1], animals[i + 2]]
+    const keys = Object.keys(animals);
+
+    const filter = this.props.filter;
+    const filterKeys = Object.keys(filter);
+
+    const WIDTH = window.innerWidth;
+    const ITEM_HEIGHT_L = 0.6;
+    const ITEM_HEIGHT_M = 0.4;
+    const ITEM_HEIGHT_S = 0.2;
+    const M = 960;
+    const S = 500;
+
+    const arr = [];
+    const temporary = [];
+    
+
+    for (let i = 0; i < keys.length; i++) {
+      temporary[i] = animals[keys[i]];
+    }
+    let filtered = temporary.filter((animal)=>{
+      return filterKeys.every((key)=> {
+        return filter[key] === animal[key]
+      })
+    })
+    animals = filtered;
+    if (WIDTH > M) {
+      for (let i = 0, y = 0; i < keys.length; i += 3, y++) {
+        arr[y] = [animals[i],animals[i+1],animals[i+2]]
       }
-      this.props.changeHeight(window.innerWidth * 0.18);
-      this.props.modifyList(arr);
-    } else if (window.innerWidth > 600) {
-      let arr = [];
-      for (let i = 0, y = 0; i < animals.length; i += 2, y++) {
-        arr[y] = [animals[i], animals[i + 1]]
+      this.props.changeHeight(WIDTH * ITEM_HEIGHT_S);
+    } else if (WIDTH > S) {
+      for (let i = 0, y = 0; i < keys.length; i += 2, y++) {
+        arr[y] = [animals[i],animals[i+1]]
       }
-      this.props.changeHeight(window.innerWidth * 0.27);
-      this.props.modifyList(arr);
+      this.props.changeHeight(WIDTH * ITEM_HEIGHT_M);
     } else {
-      let arr = animals;
-      this.props.changeHeight(window.innerWidth * 0.55);
-      this.props.modifyList(arr);
+      for (let i = 0; i < keys.length; i++) {
+        arr[i] = animals[i];
+      }
+      this.props.changeHeight(WIDTH * ITEM_HEIGHT_L);
     }
+    this.props.modifyList(arr);
   }
-
-  debounce(fn, delay) {
-    let timer
-    return function () {
-      clearTimeout(timer)
-      timer = setTimeout(fn, delay)
-    }
+  componentWillMount(){
+    let link = location.pathname.replace('categories', 'animals');
+    link = link.toLocaleLowerCase().slice(1);
+    Promise.resolve(this.props.onGetAnimals(link)).then(this.update);
   }
-
   componentDidMount() {
-    this.update();
     window.addEventListener('resize', this.updateDebounce);
     window.addEventListener('submit', this.update);
   }
@@ -85,7 +103,6 @@ class Main extends Component {
         : <Link className='load' />
       }
     </div>
-
     style.top = style.height * index
     return (
       <div key={key} style={style}>
@@ -98,7 +115,7 @@ class Main extends Component {
       <List
         className='ver-scroll pet-list'
         width={1200}
-        height={900}
+        height={600}
         rowCount={this.props.categoryStore.listModify.length}
         rowHeight={this.props.categoryStore.height}
         rowRenderer={this.rowRenderer}
@@ -113,7 +130,6 @@ class Main extends Component {
     )
   }
 }
-
 export default connect(
   state=>({
     categoryStore: state.category,
@@ -124,6 +140,7 @@ export default connect(
     changeHeight: (heigh)=> dispatch(changeH(heigh)),
     modifyList : (arr)=> dispatch(modifyL(arr)),
     changeTop: (number)=> dispatch(changeT(number)),
-    changeBottom: (number)=> dispatch(changeB(number))
+    changeBottom: (number)=> dispatch(changeB(number)),
+    onGetAnimals: (link) => dispatch(getAnimals(link))
   })
 )(Main)
