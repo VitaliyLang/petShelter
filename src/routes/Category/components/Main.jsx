@@ -7,7 +7,7 @@ import changeH from '../../../store/actions/category/changeHeight'
 import modifyL from '../../../store/actions/category/modifyList'
 import changeB from '../../../store/actions/category/changeBottom'
 import changeT from '../../../store/actions/category/changeTop'
-
+import getAnimals from '../../../store/actions/animals'
 class Main extends Component {
   constructor(props) {
     super(props)
@@ -16,31 +16,36 @@ class Main extends Component {
     this.updateDebounce = this.debounce(this.update, 300);
     this.onRowsRendered = this.onRowsRendered.bind(this);
   }
-
   update() {
     let animals = this.props.listAnimals;
     console.log(animals);
-    if (window.innerWidth > 1000) {
-      let arr = [];
-      for (let i = 0, y = 0; i < animals.length; i += 3, y++) {
-        arr[y] = [animals[i], animals[i + 1], animals[i + 2]]
-      }
-      this.props.changeHeight(window.innerWidth * 0.18);
-      this.props.modifyList(arr);
-    } else if (window.innerWidth > 600) {
-      let arr = [];
-      for (let i = 0, y = 0; i < animals.length; i += 2, y++) {
-        arr[y] = [animals[i], animals[i + 1]]
-      }
-      this.props.changeHeight(window.innerWidth * 0.27);
-      this.props.modifyList(arr);
-    } else {
-      let arr = animals;
-      this.props.changeHeight(window.innerWidth * 0.55);
-      this.props.modifyList(arr);
-    }
-  }
+    const WIDTH = window.innerWidth;
+    const ITEM_HEIGHT_L = 0.6;
+    const ITEM_HEIGHT_M = 0.4;
+    const ITEM_HEIGHT_S = 0.2;
+    const M = 960;
+    const S = 500;
+    const arr = [];
+    const keys = Object.keys(animals);
 
+    if (WIDTH > M) {
+      for (let i = 0, y = 0; i < keys.length; i += 3, y++) {
+        arr[y] = [animals[keys[i]],animals[keys[i+1]],animals[keys[i+2]]]
+      }
+      this.props.changeHeight(WIDTH * ITEM_HEIGHT_S);
+    } else if (WIDTH > S) {
+      for (let i = 0, y = 0; i < keys.length; i += 2, y++) {
+        arr[y] = [animals[keys[i]],animals[keys[i+1]]]
+      }
+      this.props.changeHeight(WIDTH * ITEM_HEIGHT_M);
+    } else {
+      for (let i = 0; i < keys.length; i++) {
+        arr[i] = animals[keys[i]];
+      }
+      this.props.changeHeight(WIDTH * ITEM_HEIGHT_L);
+    }
+    this.props.modifyList(arr);
+  }
   debounce(fn, delay) {
     let timer
     return function () {
@@ -48,9 +53,12 @@ class Main extends Component {
       timer = setTimeout(fn, delay)
     }
   }
-
+  componentWillMount(){
+    let link = location.pathname.replace('categories', 'animals');
+    link = link.toLocaleLowerCase().slice(1);
+    Promise.resolve(this.props.onGetAnimals(link)).then(this.update);
+  }
   componentDidMount() {
-    this.update();
     window.addEventListener('resize', this.updateDebounce);
     window.addEventListener('submit', this.update);
   }
@@ -85,7 +93,6 @@ class Main extends Component {
         : <Link className='load' />
       }
     </div>
-
     style.top = style.height * index
     return (
       <div key={key} style={style}>
@@ -113,7 +120,6 @@ class Main extends Component {
     )
   }
 }
-
 export default connect(
   state=>({
     categoryStore: state.category,
@@ -124,6 +130,7 @@ export default connect(
     changeHeight: (heigh)=> dispatch(changeH(heigh)),
     modifyList : (arr)=> dispatch(modifyL(arr)),
     changeTop: (number)=> dispatch(changeT(number)),
-    changeBottom: (number)=> dispatch(changeB(number))
+    changeBottom: (number)=> dispatch(changeB(number)),
+    onGetAnimals: (link) => dispatch(getAnimals(link))
   })
 )(Main)
