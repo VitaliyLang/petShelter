@@ -192,7 +192,14 @@ if (__DEV__) {
 if (project.vendors && project.vendors.length) {
   config.entry.vendor = project.vendors
 }
-config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }))
+config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+  name: 'vendor',
+  filename: 'vendor.js',
+  minChunks (module, count) {
+    const context = module.context
+    return context && context.indexOf('node_modules') >= 0
+  },
+}))
 
 // Production Optimizations
 // ------------------------------------
