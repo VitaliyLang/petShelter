@@ -26,4 +26,12 @@
     .aside_category{
         display: none;
     }
+    .filter_block{
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        z-index: 100;
+        height: 100vh;
+    }
 }

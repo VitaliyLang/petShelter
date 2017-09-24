@@ -26,12 +26,20 @@ class Sidebar extends Component {
         browserHistory.push(`${path}?${query}`);
     }
     handleSubmit(e) {
+        if(window.innerWidth<500){
+            this.aside.classList.remove('filter_block')
+        }
         e.preventDefault();
         this.setQuery();
     }
     componentWillMount(){
         let query = this.props.location.query;
         this.props.setValues(query);
+    }
+    componentDidMount(){
+        if(window.innerWidth<500){
+            this.aside.classList.add('filter_block')
+        }
     }
     handleChange(e) {
         e.target.value == 'any'
@@ -50,7 +58,7 @@ class Sidebar extends Component {
         }
         let keys = Object.keys(values);
         return (
-            <aside className="aside_category">
+            <aside className="aside_category" ref={(el)=>{this.aside=el}}>
                 <form onSubmit={this.handleSubmit}>
                     <h2> Filter </h2>
                     {keys.map((key, index) => {

@@ -89,6 +89,7 @@ class Main extends Component {
     isVisible,
     style
     }) {
+    
     let content = this.props.categoryStore.top <= index && index <= this.props.categoryStore.bottom
       ? <div className='flex-container_img'>
         {Array.isArray(this.props.categoryStore.listModify[index])
@@ -96,7 +97,7 @@ class Main extends Component {
             if (!elem) return <Link className='empty' />;
             return <Link to={`/categories/${this.props.category}/1`} key={index} style={{ backgroundImage: `url(${elem.url})` }} />
           })
-          : <Link to={`/categories/${this.props.category}/1`} style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url})` }} />
+          :<Link to={`/categories/${this.props.category}/1`} style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url})` }} />
         }
       </div>
       : <div className='flex-container_img'>
@@ -117,7 +118,7 @@ class Main extends Component {
       <List
         className='ver-scroll pet-list'
         width={1200}
-        height={600}
+        height={400}
         rowCount={this.props.categoryStore.listModify.length}
         rowHeight={this.props.categoryStore.height}
         rowRenderer={this.rowRenderer}
