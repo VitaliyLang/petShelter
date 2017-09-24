@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import './styles/main.scss'
-
+require('normalize')
 // Store Initialization
 // ------------------------------------
 const store = createStore(window.__INITIAL_STATE__)
@@ -73,4 +73,4 @@ if (__DEV__) {
 
 // Let's Go!
 // ------------------------------------
-if (!__TEST__) render()
+render()

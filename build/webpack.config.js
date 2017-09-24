@@ -8,14 +8,10 @@ const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
 
 const __DEV__ = project.env === 'development'
-const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
 const config = {
   entry: {
-    normalize: [
-      inProjectSrc('normalize'),
-    ],
     main: [
       inProjectSrc(project.main),
     ],
@@ -41,7 +37,6 @@ const config = {
     new webpack.DefinePlugin(Object.assign({
       'process.env': { NODE_ENV: JSON.stringify(project.env) },
       __DEV__,
-      __TEST__,
       __PROD__,
     }, project.globals))
   ],
@@ -140,9 +135,9 @@ config.plugins.push(extractStyles)
 // ------------------------------------
 config.module.rules.push({
   test    : /\.(png|jpg|gif)$/,
-  loader  : 'url-loader',
+  loader  : 'file-loader',
   options : {
-    limit : 8192,
+    outputPath : 'img/',
   },
 })
 
@@ -194,15 +189,10 @@ if (__DEV__) {
 
 // Bundle Splitting
 // ------------------------------------
-if (!__TEST__) {
-  const bundles = ['normalize', 'manifest']
-
-  if (project.vendors && project.vendors.length) {
-    bundles.unshift('vendor')
-    config.entry.vendor = project.vendors
-  }
-  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ names: bundles }))
+if (project.vendors && project.vendors.length) {
+  config.entry.vendor = project.vendors
 }
+config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }))
 
 // Production Optimizations
 // ------------------------------------
