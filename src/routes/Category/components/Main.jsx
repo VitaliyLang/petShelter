@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Main.scss'
+import './Main.scss';
 import { List } from 'react-virtualized';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';

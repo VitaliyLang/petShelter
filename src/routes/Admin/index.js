@@ -1,11 +1,14 @@
-import React from 'react'
-import NavigationPanel from './components/layouts/NavigationPanel'
-import MainSection from './components/layouts/MainSection'
-import Routing from './routing.js'
-import './styles.scss'
-import { connect } from 'react-redux'
-import getMessages from '../../store/actions/messages'
-import getAnimals from '../../store/actions/animals'
+import React from 'react';
+import NavigationPanel from './components/layouts/NavigationPanel';
+import MainSection from './components/layouts/MainSection';
+import Routing from './routing.js';
+import './styles.scss';
+import { connect } from 'react-redux';
+import getMessages from '../../store/actions/messages';
+import getAnimals from '../../store/actions/animals';
+import signin from '../../store/actions/signin';
+import giveOrders from '../../store/actions/giveOrders';
+import firebase from 'firebase';
 
 class Admin extends React.Component {
     constructor(props){
@@ -13,54 +16,13 @@ class Admin extends React.Component {
     }
 
     componentDidMount(){
+        this.props.onSignin();
         this.props.onGetMessages('/users');
         this.props.onGetAnimals('/animals');
-        /*const {firebase} = this.props;
-        firebase.auth().onAuthStateChanged((user) => {
-            let role = '';
-            if (user) {
-                firebase.database().ref('/users/'+user.uid).once('value').then((snapshot) => {
-                    if(snapshot.val().role == 'admin'){
-                        console.log('signedIn');
-                    }else{
-                        throw new Error('No permission')
-                    }                    
-                })
-                .catch(err => {
-                    alert('You are not authorization')
-                    this.props.router.push('/login');  
-                })
-            }else{
-                alert('You are not authorization')
-                this.props.router.push('/login');  
-            }
-        });
-        /*let {auth,profile} = this.props;
-        if (!auth || !auth.uid) {
-            console.log({ error: 'You must be Logged into Toggle Done' })
-        }else{
-            if(profile && profile.role != 'admin'){
-                console.log({ error: 'Permission denided' })
-            }else{
-                console.log('signIN');
-            }
-        }*/
+        //this.props.onGiveOrders('GeBCjUmz9TNgddaAp1hiN9KbTGl2');
     }
 
-   /* init({profile,auth}){
-        if (!auth || !auth.uid) {
-            console.log({ error: 'You must be Logged into Toggle Done' })
-        }else{
-            if(profile && profile.role != 'admin'){
-                console.log({ error: 'Permission denided' })
-            }else{
-                console.log('signIN');
-            }
-        }
-    }*/
-
     render(){
-        //this.init(this.props);
         return(
             <div className="wrapper">
                 
@@ -73,17 +35,18 @@ class Admin extends React.Component {
     }
 }
 
-//export default Admin
 let mapStateToProps = (state) => {
   return {
-    messages: state.messages,
+    messages: state.messages
   }
 }
 
 let mapDispatchToProps = (dispatch) => {
   return {
     onGetMessages: (link) => dispatch(getMessages(link)),
-    onGetAnimals: (link) => dispatch(getAnimals(link))
+    onGetAnimals: (link) => dispatch(getAnimals(link)),
+    onSignin: () => dispatch(signin()),
+    onGiveOrders: (userKey) => dispatch(giveOrders(userKey))
   };
 }
 

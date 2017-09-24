@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 import Formsy from 'formsy-react';
-import MainInput from 'modules/inputs/MainInput'
-import { connect } from 'react-redux'
-import { firebaseConnect, helpers,dataToJS } from 'react-redux-firebase'
-import Button from 'modules/buttons/PrimaryButton'
-import {createNewUser} from '../../components/fireBase'
+import MainInput from 'modules/inputs/MainInput';
+import { connect } from 'react-redux';
+import Button from 'modules/buttons/PrimaryButton';
+import addAnimal from '../../store/actions/addAnimal'
 // import 'modules/inputs/inputs.scss'
 
 	const Animal = React.createClass({
@@ -28,16 +27,8 @@ import {createNewUser} from '../../components/fireBase'
         },
         		
     addAnimal(animalInformation){
-			let {category,sex,size,age} = animalInformation;
-			let newPostKey = this.props.firebase.database().ref().child('animals').push().key;
-			let updates = {};
-			updates['/animals/'+category+'/'+newPostKey] = animalInformation;
-			updates['categories/' + category] = category[0].toUpperCase() + category.slice(1);
-			//updates['/animals/'+category+'/'+sex+'/'+size+'/'+age+'/'+newPostKey] = animalInformation;
-			//updates['/users..../animalId'] = newPostKey;//adding animalId to UserTable;
-			alert('Animal is added');
-			return this.props.firebase.database().ref().update(updates)
-		},
+			this.props.onAddAnimal('LDq2ZZuAYpNAvGMVcjnnnlRcMcA3', animalInformation);			
+	},
 		render() {
 			return (
 				<div className="animal_form_wrapper main_section">
@@ -58,9 +49,19 @@ import {createNewUser} from '../../components/fireBase'
 		}
   });
 
-	const wrappedAnimal = firebaseConnect(['/'])(Animal)
-	export default connect(
-		({firebase}) => ({
-    		animals: dataToJS(firebase, 'animals')
-  		})
-	)(wrappedAnimal)
+  let mapStateToProps = (state) => {
+  return {
+    addAnimal: state.addAnimal
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    onAddAnimal: (key,obj) => dispatch(addAnimal(key,obj))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Animal)

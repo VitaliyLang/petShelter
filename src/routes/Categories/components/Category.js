@@ -23,7 +23,7 @@ class Category extends React.Component {
             categorClick = this.categorClick.bind(this);
         return(
             <div onClick={categorClick}>
-                <Link to={'/categories/'+data} id={data.toLowerCase()}>{data}</Link>
+                <Link to={'/categories/'+data.toLowerCase()} id={data.toLowerCase()}>{data}</Link>
             </div>
         )
     }
