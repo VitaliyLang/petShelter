@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import AnimalInfo from './components/AnimalInfo'
-import AnimalPicture from './components/AnimalPicture'
+import AnimalPictures from './components/AnimalPictures.js'
 
 class AnimalDetails extends Component {
   render () {
     return (
-      <div className='animal-info'>
+      <div className = "flex-container">
         <AnimalInfo />
-        <AnimalPicture />
-        <button>Take it!</button>
+        <AnimalPictures />
       </div>
     )
   }
