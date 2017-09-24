@@ -9,7 +9,7 @@ class StaticLayout extends Component {
 
   render () {
     return (
-      <div >
+      <div>
         <Header />
         <div className="main_section">
           <Breadcrumbs className='breadcrumbs' routes={this.props.routes} params={this.props.params} />

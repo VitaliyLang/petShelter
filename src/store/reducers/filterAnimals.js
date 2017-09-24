@@ -9,6 +9,8 @@ export default (state = initialState, action)=>{
             let newState = Object.assign({}, state);
             delete newState[action.name];
             return newState;
+        case 'SET_VALUES':
+            return action.payload
         default:
             return state;
         }
