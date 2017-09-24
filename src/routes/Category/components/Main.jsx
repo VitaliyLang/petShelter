@@ -7,6 +7,7 @@ import changeH from '../../../store/actions/category/changeHeight'
 import modifyL from '../../../store/actions/category/modifyList'
 import changeB from '../../../store/actions/category/changeBottom'
 import changeT from '../../../store/actions/category/changeTop'
+import getAnimals from '../../../store/actions/animals'
 
 class Main extends Component {
   constructor(props) {
@@ -47,6 +48,11 @@ class Main extends Component {
       clearTimeout(timer)
       timer = setTimeout(fn, delay)
     }
+  }
+
+  componentWillMount(){
+    const link = location.pathname.replace('categories', 'animals');
+    this.props.onGetAnimals(link);
   }
 
   componentDidMount() {
@@ -124,6 +130,7 @@ export default connect(
     changeHeight: (heigh)=> dispatch(changeH(heigh)),
     modifyList : (arr)=> dispatch(modifyL(arr)),
     changeTop: (number)=> dispatch(changeT(number)),
-    changeBottom: (number)=> dispatch(changeB(number))
+    changeBottom: (number)=> dispatch(changeB(number)),
+    onGetAnimals: (link) => dispatch(getAnimals(link))
   })
 )(Main)
