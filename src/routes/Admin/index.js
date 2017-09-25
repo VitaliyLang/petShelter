@@ -8,6 +8,7 @@ import getMessages from '../../store/actions/messages';
 import getAnimals from '../../store/actions/animals';
 import signin from '../../store/actions/signin';
 import giveOrders from '../../store/actions/giveOrders';
+import takeAnimal from '../../store/actions/takeAnimal';
 import firebase from 'firebase';
 
 class Admin extends React.Component {
@@ -19,6 +20,7 @@ class Admin extends React.Component {
         this.props.onSignin();
         this.props.onGetMessages('/users');
         this.props.onGetAnimals('/animals');
+        //this.props.onTakeAnimal('-KupDqW5nCMTBujGEZVh', 'dog');
         //this.props.onGiveOrders('GeBCjUmz9TNgddaAp1hiN9KbTGl2');
     }
 
@@ -46,7 +48,8 @@ let mapDispatchToProps = (dispatch) => {
     onGetMessages: (link) => dispatch(getMessages(link)),
     onGetAnimals: (link) => dispatch(getAnimals(link)),
     onSignin: () => dispatch(signin()),
-    onGiveOrders: (userKey) => dispatch(giveOrders(userKey))
+    onGiveOrders: (userKey) => dispatch(giveOrders(userKey)),
+    onTakeAnimal: (animalKey,category) => dispatch(takeAnimal(animalKey,category))
   };
 }
 

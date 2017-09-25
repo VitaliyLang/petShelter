@@ -31,8 +31,8 @@ import {createNewUser} from '../../../components/fireBase'
 		},
 		
     addPerson(personInformation){
-			personInformation.password=String(Math.random()).slice(-8);
-			personInformation.active = true;
+			personInformation.password = String(Math.random()).slice(-8);
+			personInformation.active = false;
 			personInformation.animalId = '';
 			personInformation.type = 'give';
 			personInformation.role = 'user';

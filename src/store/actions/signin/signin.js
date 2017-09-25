@@ -1,7 +1,7 @@
 import database from '../../firebaseConfig/firebase.js';
 import firebase from 'firebase';
 
-export function signin(personObj){
+export function signin(){
     return dispatch => {
       return firebase.auth().onAuthStateChanged((user) => {
         if(user){
