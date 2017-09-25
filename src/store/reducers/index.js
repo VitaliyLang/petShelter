@@ -10,6 +10,7 @@ import signin from './signin';
 import login from './login';
 import giveOrders from './giveOrders';
 import addAnimal from './addAnimal';
+import takeAnimal from './takeAnimal';
 
 const makeRootReducer = combineReducers({
   people,
@@ -22,7 +23,8 @@ const makeRootReducer = combineReducers({
   signin,
   login,
   giveOrders,
-  addAnimal
+  addAnimal,
+  takeAnimal
 })
 
 export default makeRootReducer;
