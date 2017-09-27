@@ -4,7 +4,7 @@ import firebase from 'firebase';
 export function uploadPhoto(file,category,animalUid){
     return dispatch => {
         const fileName = file.name;
-        let animalPhotoRef = storage.ref().child('/animals/'+animalUid+'/'+fileName);
+        let animalPhotoRef = storage.ref().child('/animals/'+category+'/'+animalUid+'/'+fileName);
         let animalPhotoUrl  = '';
         return animalPhotoRef.put(file)
             .then(snap => {
