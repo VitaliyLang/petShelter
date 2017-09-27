@@ -17,13 +17,7 @@ class Dashboard extends React.Component {
 
     render(){
         return(
-            <form>
-        <FileInput name="myImage"
-                   accept=".png,.gif,.jpg,.jpeg"
-                   placeholder="My Image"
-                   className="inputClass"
-                   onChange={this.handleChange} />
-      </form>
+            <p>Infa</p>
         )
     }
 }
