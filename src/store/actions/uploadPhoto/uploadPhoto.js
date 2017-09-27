@@ -4,7 +4,7 @@ import firebase from 'firebase';
 export function uploadPhoto(file,category,animalUid){
     return dispatch => {
         const fileName = file.name;
-        let animalPhotoRef = storage.ref().child('/animals/'+animalUid+'/'+fileName);
+        let animalPhotoRef = storage.ref().child('/animals/'+category+'/'+animalUid+'/'+fileName);
         let animalPhotoUrl  = '';
         return animalPhotoRef.put(file)
             .then(snap => {
@@ -16,10 +16,14 @@ export function uploadPhoto(file,category,animalUid){
             })
             .then(url => {
                 let imgUrlArr = [];
-                if(typeof url.val() == 'object' && url.val()){
-                    imgUrlArr = [...url.val(),animalPhotoUrl];
+                if(url){
+                    if(typeof url.val() == 'object' && url.val()){
+                        imgUrlArr = [...url.val(),animalPhotoUrl];
+                    }else{
+                        imgUrlArr = [url.val(),animalPhotoUrl];
+                    }
                 }else{
-                    imgUrlArr = [url.val(),animalPhotoUrl];
+                    imgUrlArr = [animalPhotoUrl];
                 }
                 return database.ref('/animals/'+category+'/'+animalUid+'/url').set(imgUrlArr)
             })
