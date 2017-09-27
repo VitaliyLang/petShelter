@@ -1,11 +1,12 @@
 import React from 'react'
-
+import PetsTable from '../../layouts/PetsTable';
 class Dashboard extends React.Component {
     render(){
         return(
-            // <CategoriesPanel categories={categoriesArr}/>
-            <p>There will be such information: how many messages are active, how many animals are...
-            </p>
+            <div>
+	            <p>There will be such information: how many messages are active</p>
+	            <PetsTable />
+	          </div>
         )
     }
 }
