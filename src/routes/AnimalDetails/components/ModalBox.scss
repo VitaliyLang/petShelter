@@ -6,6 +6,23 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0,0,0,0.8);
+    display: flex;
     //animation-name: fadeIn;
     //animation-duration: 0.4s
+}
+.modal_form{
+    background-color: #383D40;
+    width: 30%;
+    height: 70%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    input{
+        width: 200px;
+    }
+    .filter{
+        width: 40%;
+    }
 }
