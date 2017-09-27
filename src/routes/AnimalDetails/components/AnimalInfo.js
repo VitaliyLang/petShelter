@@ -1,24 +1,26 @@
-import React, { Component } from 'react'
-import animal from '../data'
-import './AnimalInfo.scss'
-import { Button} from 'react-materialize'
+import React, { Component } from 'react';
+import './AnimalInfo.scss';
+import { Button, Modal } from 'react-materialize';
+import ModalBox from './ModalBox';
 
-class AnimalInfo extends Component {
-
+export default class AnimalInfo extends Component {
+  constructor(props){
+    super(props);
+    this.className = 'modal_box_adopt';
+  }
   render() {
     return (
       <aside className="aside_category details">
-        <h2> Details </h2>
-        <p>name: {animal.name}</p>
-        <p>sex: {animal.sex}</p>
-        <p>age: {animal.age}</p>
-        <p>weight: {animal.weight}</p>
-        <p>color: {animal.color}</p>
-        <p>vaccinations: {new String(animal.vaccination)}</p>
-        <Button type="submit" className="get waves-effect waves-light"> Adopt it </Button>
-      </aside>
+      <h2> Details </h2>
+      <p>name: {this.props.animal.alias}</p>
+      <p>sex: {this.props.animal.sex}</p>
+      <p>age: {this.props.animal.age}</p>
+      <p>size: {this.props.animal.size}</p>
+      <p ref = {(el)=>this.modal=el}>color: {this.props.animal.color}</p>
+      <p>vaccinations: {String(this.props.animal.vaccination)}</p>
+      <Button type="submit" className="get waves-effect waves-light" onClick={this.props.click}> Adopt it </Button>
+      <ModalBox show = {this.props.show} click = {this.props.click}/>
+    </aside>
     )
   }
 }
-
-export default AnimalInfo

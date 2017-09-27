@@ -10,7 +10,6 @@ import changeB from 'store/actions/category/changeBottom';
 import changeT from 'store/actions/category/changeTop';
 import getAnimals from 'store/actions/animals';
 
-const GREY = '#383D40';
 
 class Main extends Component {
   constructor(props) {
@@ -22,7 +21,7 @@ class Main extends Component {
   }
   update() {
     let animals = this.props.listAnimals;
-    const keys = Object.keys(animals);
+    let keys = Object.keys(animals);
 
     const filter = this.props.filter;
     const filterKeys = Object.keys(filter);
@@ -39,14 +38,17 @@ class Main extends Component {
 
 
     for (let i = 0; i < keys.length; i++) {
-      temporary[i] = animals[keys[i]];
+      temporary[i] = Object.assign(animals[keys[i]], {'key': keys[i]});
     }
     let filtered = temporary.filter((animal) => {
       return filterKeys.every((key) => {
         return filter[key] === animal[key]
       })
     })
-    animals = filtered;
+
+    animals = filtered; 
+    keys = Object.keys(animals);
+
     if (WIDTH > M) {
       for (let i = 0, y = 0; i < keys.length; i += 3, y++) {
         arr[y] = [animals[i], animals[i + 1], animals[i + 2]]
@@ -66,9 +68,8 @@ class Main extends Component {
     this.props.modifyList(arr);
   }
   componentWillMount() {
-    let link = location.pathname.replace('categories', 'animals');
-    link = link.toLocaleLowerCase().slice(1);
-    Promise.resolve(this.props.onGetAnimals(link)).then(this.update);
+    let link = location.pathname.toLowerCase().replace('categories', 'animals');
+    Promise.resolve(this.props.onGetAnimals(link)).then(()=>this.update());
   }
   componentDidMount() {
     window.addEventListener('resize', this.updateDebounce);
@@ -89,20 +90,25 @@ class Main extends Component {
     isVisible,
     style
     }) {
-    
     let content = this.props.categoryStore.top <= index && index <= this.props.categoryStore.bottom
       ? <div className='flex-container_img'>
         {Array.isArray(this.props.categoryStore.listModify[index])
           ? this.props.categoryStore.listModify[index].map((elem, index) => {
-            if (!elem) return <Link className='empty' />;
-            return <Link to={`/categories/${this.props.category}/1`} key={index} style={{ backgroundImage: `url(${elem.url})` }} />
+              if (!elem) return <Link className='empty' />;
+              return <Link to={`/categories/${this.props.category}/${elem.key}`} 
+                          key={elem.key} 
+                          style={{ backgroundImage: `url(${elem.url})` }} 
+                      />
           })
-          :<Link to={`/categories/${this.props.category}/1`} style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url})` }} />
+          :<Link to={`/categories/${this.props.category}/${this.props.categoryStore.listModify[index].key}`} 
+                 style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url})` }}
+                 key={index} 
+           />
         }
       </div>
       : <div className='flex-container_img'>
         {Array.isArray(this.props.categoryStore.listModify[index])
-          ? this.props.categoryStore.listModify[index].map((elem, index) => <Link className='load' key={index} />)
+          ? this.props.categoryStore.listModify[index].map((elem, index) => <Link className='load'/>)
           : <Link className='load' />
         }
       </div>
@@ -126,8 +132,7 @@ class Main extends Component {
         style={{
           height: '100%',
           width: '80%',
-          outline: 'none',
-          backgroundColor: GREY
+          outline: 'none'
         }}
       />
     )
