@@ -1,0 +1,30 @@
+.partners_wrapper {
+    background-image: url('../assets/bg1.jpg');
+    background-size: cover;
+    background-repeat: none;
+    height: 100%;
+
+        .partners_container {
+            height: 100%;
+            background-color: rgba(60,143,87,.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+                h4 {
+                    color: white;
+                    margin-bottom: 50px;
+                }
+        }
+}
+
+.partners_brands {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    img {
+       width: 200px;
+       padding: 20px;
+   }
+}

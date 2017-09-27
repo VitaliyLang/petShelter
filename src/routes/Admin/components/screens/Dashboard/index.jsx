@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Button from 'modules/buttons/PrimaryButton';
 import uploadPhoto from '../../../../../store/actions/uploadPhoto'
 import FileInput from 'react-file-input';
+import PetsTable from '../../layouts/PetsTable';
 
 class Dashboard extends React.Component {
     constructor(props){
@@ -17,7 +18,10 @@ class Dashboard extends React.Component {
 
     render(){
         return(
-            <p>Infa</p>
+            <div>
+	            <p>There will be such information: how many messages are active</p>
+	            <PetsTable />
+	          </div>
         )
     }
 }
