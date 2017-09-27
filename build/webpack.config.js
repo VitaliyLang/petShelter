@@ -135,13 +135,8 @@ config.module.rules.push({
   test    : /\.(png|jpg|gif)$/,
   loader  : 'file-loader',
   options : {
-<<<<<<< HEAD
     outputPath : 'img/'
   }
-=======
-    outputPath: 'img/',
-  },
->>>>>>> master
 })
 
 // Fonts
@@ -192,19 +187,8 @@ if (__DEV__) {
 
 // Bundle Splitting
 // ------------------------------------
-<<<<<<< HEAD
 if (project.vendors && project.vendors.length) {
   config.entry.vendor = project.vendors
-=======
-if (!__TEST__) {
-  const bundles = ['main']
-
-  if (project.vendors && project.vendors.length) {
-    bundles.unshift('vendor')
-    config.entry.vendor = project.vendors
-  }
-  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ names: bundles }))
->>>>>>> master
 }
 config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
   name: 'vendor',

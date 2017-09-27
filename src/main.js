@@ -1,53 +1,26 @@
-<<<<<<< HEAD
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
+import './styles/main.scss'
+import { addManifest, registerSW } from './pwa/pwa'
 import 'normalize'
-=======
-import React from 'react';
-import ReactDOM from 'react-dom';
-import createStore from './store/createStore';
-import './styles/main.scss';
-import { addManifest, registerSW } from './pwa/pwa';
 
-require('./normalize')
-
->>>>>>> master
 // Store Initialization
 // ------------------------------------
-const store = createStore(window.__INITIAL_STATE__);
+const store = createStore(window.__INITIAL_STATE__)
 
 // Render Setup
 // ------------------------------------
-<<<<<<< HEAD
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js')
-}
-
-const head = document.getElementsByTagName('head')[0]
-
-const manifest = () => {
-  let link = document.createElement('link')
-  link.setAttribute('rel', 'manifest')
-  link.setAttribute('href', '/manifestrules.json')
-  return link
-}
-
-head.appendChild(manifest())
-
-// Render Setup
-=======
-const MOUNT_NODE = document.getElementById('root');
+const MOUNT_NODE = document.getElementById('root')
 
 // Register SW and Manifest
->>>>>>> master
 // ------------------------------------
-addManifest();
-registerSW();
+addManifest()
+registerSW()
 
 let render = () => {
-  const App = require('./components/App').default;
-  const routes = require('./routes/index').default(store);
+  const App = require('./components/App').default
+  const routes = require('./routes/index').default(store)
 
   ReactDOM.render(
     <App store={store} routes={routes} />,
