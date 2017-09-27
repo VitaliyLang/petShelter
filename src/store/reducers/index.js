@@ -11,6 +11,7 @@ import login from './login';
 import giveOrders from './giveOrders';
 import addAnimal from './addAnimal';
 import takeAnimal from './takeAnimal';
+import modalAdopt from './modalAdopt';
 import uploadPhoto from './uploadPhoto'
 
 const makeRootReducer = combineReducers({
@@ -26,6 +27,7 @@ const makeRootReducer = combineReducers({
   giveOrders,
   addAnimal,
   takeAnimal,
+  modalAdopt,
   uploadPhoto
 })
 

@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import './AnimalPictures.scss'
 import {Carousel} from 'react-materialize'
-import animal from '../data'
+import { connect } from 'react-redux';
+import getAnimals from 'store/actions/animals';
 
 class AnimalPictures extends Component {
+
   render() {
-    return (
+    if(!this.props.listAnimals){
+      return null;
+    }
+     return (
       <div className='pictures'>
         <Carousel options={{ fullWidth: true, indicators: true }}>
-          <div style = {{backgroundImage: 'url(http://cdn3-www.dogtime.com/assets/uploads/gallery/goldador-dog-breed-pictures/puppy-1.jpg)'}}/>
-          <div style = {{backgroundImage: 'url(http://www.thelabradorsite.com/wp-content/uploads/2015/07/yellow-labrador-puppy-garden.jpg)'}}/>
+          <div style = {{backgroundImage: `url(${this.props.listAnimals.url})`}}/>
         </Carousel>
       </div>
     )
@@ -17,4 +21,15 @@ class AnimalPictures extends Component {
   }
 }
 
-export default AnimalPictures
+export default connect(
+  state => ({
+    listAnimals: state.listAnimals.animals
+  }),
+  dispatch => ({onGetAnimals: (link) => dispatch(getAnimals(link))})
+)(AnimalPictures)
+
+//
+//          
+//
+//<div style = {{backgroundImage: `url(${this.props.listAnimals})`}}/>
+        //<div style = {{backgroundImage: `url(${this.props.listAnimals})`}}/>
