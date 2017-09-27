@@ -17,7 +17,7 @@ export function addAnimal(userKey,animalObj) {
           categories[animalObj.category] = animalObj.category[0].toUpperCase() 
           + animalObj.category.slice(1);
           return database.ref('/categories').set(categories)
-          .then(() => dispatch(getInviteFulfilledAction()))
+          .then(() => dispatch(getInviteFulfilledAction(key,animalObj.category)))
         })
       }) 
       .catch((error) => {
@@ -33,8 +33,10 @@ export function addAnimal(userKey,animalObj) {
     }
   }
   
-  function getInviteFulfilledAction() {
+  function getInviteFulfilledAction(key,categ) {
     return {
-      type: 'ADD_ANIMAL_OK'
+      type: 'ADD_ANIMAL_OK',
+      animalUid: key,
+      category: categ
     };
   }

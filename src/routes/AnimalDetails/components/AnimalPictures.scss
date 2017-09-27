@@ -1,14 +1,14 @@
 .pictures{
-    width: 80%;
+    width: 60%;
+    margin-left: 10%;
     background: #383D40;
 }
 .carousel.carousel-slider{
     height: 95% !important;
-    width: 90%;
-    margin: 0 auto;
     div{
-        background-size: cover;
-        background-position: center; 
+        background-size: contain;
+        background-repeat: no-repeat; 
+        background-position: center;
     }
 }
 .carousel .indicators{
