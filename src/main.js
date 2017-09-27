@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
-require('normalize')
+import 'normalize'
 // Store Initialization
 // ------------------------------------
 const store = createStore(window.__INITIAL_STATE__)
@@ -12,16 +12,16 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
 }
 
-const head = document.getElementsByTagName('head')[0];
+const head = document.getElementsByTagName('head')[0]
 
-const manifest = () =>{
-    let link = document.createElement('link');
-    link.setAttribute('rel', 'manifest');
-    link.setAttribute('href', '/manifestrules.json');
-    return link;
+const manifest = () => {
+  let link = document.createElement('link')
+  link.setAttribute('rel', 'manifest')
+  link.setAttribute('href', '/manifestrules.json')
+  return link
 }
 
-head.appendChild(manifest());
+head.appendChild(manifest())
 
 // Render Setup
 // ------------------------------------
@@ -62,10 +62,10 @@ if (__DEV__) {
       './components/App',
       './routes/index',
     ], () =>
-      setImmediate(() => {
-        ReactDOM.unmountComponentAtNode(MOUNT_NODE)
-        render()
-      })
+        setImmediate(() => {
+          ReactDOM.unmountComponentAtNode(MOUNT_NODE)
+          render()
+        })
     )
   }
 }
