@@ -15,7 +15,7 @@ class CategoriesPanel extends React.Component {
             panelTamplate = data.map((item,i) => {
                 return(
                     <li className='categorLi ' key={i}>
-                        <Category category={item}/>
+                        <Category category={item} onGetAnimals={this.props.onGetAnimals} listAnimals={this.props.listAnimals}/>
                     </li>
                 )
             })
@@ -27,7 +27,7 @@ class CategoriesPanel extends React.Component {
                 <ul className='categorUl'>
                     {panelTamplate}
                 </ul>
-        </div>
+            </div>
         )
     }
 }

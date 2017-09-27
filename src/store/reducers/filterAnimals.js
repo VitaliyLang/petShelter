@@ -1,6 +1,4 @@
-import * as animals from '../../routes/Category/data.json'
 const initialState = {
-    filteredList : animals
 }
 
 export default (state = initialState, action)=>{
@@ -11,8 +9,8 @@ export default (state = initialState, action)=>{
             let newState = Object.assign({}, state);
             delete newState[action.name];
             return newState;
-        case 'SET_FILTERED_LIST':
-            return Object.assign({}, state, {filteredList : action.payload})
+        case 'SET_VALUES':
+            return action.payload
         default:
             return state;
         }

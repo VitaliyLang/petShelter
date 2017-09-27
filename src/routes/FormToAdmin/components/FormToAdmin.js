@@ -3,8 +3,8 @@ import Formsy from 'formsy-react';
 import MainInput from 'modules/inputs/MainInput'
 import './FormToAdmin.scss'
 import { connect } from 'react-redux'
-import { firebaseConnect, helpers,dataToJS } from 'react-redux-firebase'
 import { addPerson} from '../../../store/actions'
+import signup from '../../../store/actions/signup'
 import Button from 'modules/buttons/PrimaryButton'
 import {createNewUser} from '../../../components/fireBase'
 // import 'modules/inputs/inputs.scss'
@@ -31,8 +31,14 @@ import {createNewUser} from '../../../components/fireBase'
 		},
 		
     addPerson(personInformation){
-			this.props.onAddPerson(personInformation);
-			createNewUser(this.props,personInformation);
+			personInformation.password = String(Math.random()).slice(-8);
+			personInformation.active = false;
+			personInformation.animalId = '';
+			personInformation.type = 'give';
+			personInformation.role = 'user';
+			this.props.onAuth(personInformation);
+			//this.props.onAddPerson(personInformation);
+			//createNewUser(this.props,personInformation);
 		},
 		render() {
 			return (
@@ -65,18 +71,14 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddPerson: personInformation => {
       dispatch(addPerson(personInformation))
+		},
+		onAuth: personInformation => {
+      dispatch(signup(personInformation))
 		}
   }
 }
 
-/*export default connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FormToAdmin);*/
-
-const wrappedFormToAdmin = firebaseConnect()(FormToAdmin)
-
-export default connect(
-	mapStateToProps,
-  mapDispatchToProps
-)(wrappedFormToAdmin)
+)(FormToAdmin);

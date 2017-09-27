@@ -1,13 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router'
-import { firebaseConnect, helpers } from 'react-redux-firebase'
 import modifyL from '../../../store/actions/category/modifyList'
 import {ReadItem} from '../../../components/fireBase'
-
-const { isLoaded, isEmpty, pathToJS, dataToJS } = helpers
-
-let link = '';
 
 class Category extends React.Component {
   constructor (props) {
@@ -16,11 +11,11 @@ class Category extends React.Component {
 
     categorClick(e) {
         e.preventDefault();
-        let link = 'animals/'+e.target.id, onlyKey = true, annArr = [];
-        this.props.firebase.database().ref(link).once('value').then((snapshot) => {
-          annArr = ReadItem(snapshot.val(),onlyKey);
-          this.props.modifyList(annArr);
-        })
+        let link = '/animals/'+e.target.id, onlyKey = true, annArr = [];
+        let {onGetAnimals} = this.props;
+        onGetAnimals(link);
+        //annArr = ReadItem(snapshot.val(),onlyKey);
+        //this.props.modifyList(annArr);
     }
 
     render(){
@@ -28,23 +23,10 @@ class Category extends React.Component {
             categorClick = this.categorClick.bind(this);
         return(
             <div onClick={categorClick}>
-                <Link to={'/categories/'+data} id={data.toLowerCase()}>{data}</Link>
+                <Link to={'/categories/'+data.toLowerCase()} id={data.toLowerCase()}>{data}</Link>
             </div>
         )
     }
 }
 
-//export default Category
-
-  const wrappedCategory = firebaseConnect([
-    '/'
-]  )(Category)
-
-  export default connect(
-    ({firebase}) => ({
-      animals: dataToJS(firebase, 'animals')
-    }),
-    dispatch=>({
-      modifyList : (arr)=> dispatch(modifyL(arr))
-    })
-  )(wrappedCategory)
+export default Category

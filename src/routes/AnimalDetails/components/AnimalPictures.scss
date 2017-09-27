@@ -1,0 +1,23 @@
+.pictures{
+    width: 80%;
+    background: #383D40;
+}
+.carousel.carousel-slider{
+    height: 95% !important;
+    width: 90%;
+    margin: 0 auto;
+    div{
+        background-size: cover;
+        background-position: center; 
+    }
+}
+.carousel .indicators{
+    top: 0;
+    bottom: auto;
+}
+
+@media (min-width: 500px) and (max-width: 960px) {
+    .carousel.carousel-slider .carousel-item {
+        height: 50%;
+    }
+}

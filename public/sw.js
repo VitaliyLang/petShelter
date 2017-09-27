@@ -8,6 +8,7 @@ self.addEventListener('install', function(event) {
                 '/contacts',
                 '/about',
                 '/partners',
+                '/goes-shelter',
                 '/index.html',
                 '/main.js',
                 '/vendor.js',

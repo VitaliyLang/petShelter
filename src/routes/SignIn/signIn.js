@@ -2,9 +2,9 @@ import React from 'react'
 import Formsy from 'formsy-react';
 import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
-import { firebaseConnect,firebase, helpers,dataToJS } from 'react-redux-firebase'
 import Button from 'modules/buttons/PrimaryButton'
 import { signPerson } from '../../components/fireBase'
+import login from '../../store/actions/login'
 import './style.scss'
 
 
@@ -30,7 +30,7 @@ class signIn extends React.Component{
     }
 
     logIn(personInformation){
-        let props = this.props,
+        /*let props = this.props,
             link = '/admin/dashboard/';
         let uid = signPerson(props,personInformation,link);
         uid.then(res => {
@@ -40,7 +40,8 @@ class signIn extends React.Component{
             }
         })
         .catch(err => alert(err.message));
-        return
+        return*/
+        this.props.onLogin(personInformation);
     }
 
     render(){        
@@ -57,8 +58,19 @@ class signIn extends React.Component{
     }
 }
 
-const wrappedsignIn = firebaseConnect()(signIn)
+let mapStateToProps = (state) => {
+  return {
+    categories: state.login
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    onLogin: ({email, password}) => dispatch(login({email, password}))
+  };
+}
 
 export default connect(
-    state => ({firebase: state.firebase})
-)(wrappedsignIn)
+  mapStateToProps,
+  mapDispatchToProps
+)(signIn)

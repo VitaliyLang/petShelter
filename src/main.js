@@ -1,13 +1,25 @@
+<<<<<<< HEAD
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import 'normalize'
+=======
+import React from 'react';
+import ReactDOM from 'react-dom';
+import createStore from './store/createStore';
+import './styles/main.scss';
+import { addManifest, registerSW } from './pwa/pwa';
+
+require('./normalize')
+
+>>>>>>> master
 // Store Initialization
 // ------------------------------------
-const store = createStore(window.__INITIAL_STATE__)
+const store = createStore(window.__INITIAL_STATE__);
 
-// SW and Manifest Register
+// Render Setup
 // ------------------------------------
+<<<<<<< HEAD
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js')
 }
@@ -24,12 +36,18 @@ const manifest = () => {
 head.appendChild(manifest())
 
 // Render Setup
+=======
+const MOUNT_NODE = document.getElementById('root');
+
+// Register SW and Manifest
+>>>>>>> master
 // ------------------------------------
-const MOUNT_NODE = document.getElementById('root')
+addManifest();
+registerSW();
 
 let render = () => {
-  const App = require('./components/App').default
-  const routes = require('./routes/index').default(store)
+  const App = require('./components/App').default;
+  const routes = require('./routes/index').default(store);
 
   ReactDOM.render(
     <App store={store} routes={routes} />,
