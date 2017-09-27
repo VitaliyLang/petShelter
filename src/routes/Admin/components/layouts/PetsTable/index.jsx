@@ -8,18 +8,28 @@ class PetsTable extends React.Component {
  	}
 		
     render(){
-			var arr =[];
-    	var animals = this.props.allAnimals.animals;
-    	// console.log(animals.dog);
-    	for (var item in animals) {
-    		arr.push(item);
-    	}
-    	console.log(arr);
+		var animals = this.props.allAnimals.animals; //data from response
+        var unsortedAnimals =[];
+    	console.log(animals);
     	
+        for (var item in animals) { 
+    		unsortedAnimals.push(animals[item]);
+    	}
+    
+        var sortedAnimals = [];
+    
+        for (item in unsortedAnimals) { // pushing every animal to one array
+            var thisValues = Object.values(unsortedAnimals[item]);
+            for (var i = 0; i < thisValues.length; i++){
+                sortedAnimals.push(thisValues[i]);
+            }         
+        }
+        console.log("sorted ", sortedAnimals);
+
         return(
      			<div className="table">
 						<h5>here will be some values</h5>
-						
+				     		
      			</div>       
         )
     }
