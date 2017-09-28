@@ -1,9 +1,9 @@
 import database from '../../firebaseConfig/firebase.js'
 
-export function giveOrders(userKey) {
+export function removeAnimal(category,animalKey) {
     return dispatch => {
       const updates ={};
-      updates['/users/' + userKey] = null;
+      updates['/animals/'+category+'/'+animalKey] = null;
       return database.ref().update(updates)
       .then(() => dispatch(getInviteFulfilledAction()))
       .catch((error) => {
@@ -14,13 +14,13 @@ export function giveOrders(userKey) {
     
   function getInviteRejectedAction(error) {
     return {
-      type: 'REMOVE_FALSE',
+      type: 'AANIMAL_REMOVE_FALSE',
       error:error
     }
   }
   
   function getInviteFulfilledAction() {
     return {
-      type: 'REMOVE_OK'
+      type: 'ANIMAL_REMOVE_OK'
     };
   }
