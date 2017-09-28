@@ -8,7 +8,12 @@
     .filter{
         display: block;
         margin: 10px auto;
-        width: auto;
+        max-width: 110px;
+        background: #79bd8f;
+        color: #383d40;
+        &:focus{
+            background-color: #26a69a;
+        }
     }
     p{
         font-size: 1.3rem; 

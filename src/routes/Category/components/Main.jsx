@@ -46,7 +46,7 @@ class Main extends Component {
       })
     })
 
-    animals = filtered; 
+    animals = filtered;
     keys = Object.keys(animals);
 
     if (WIDTH > M) {
