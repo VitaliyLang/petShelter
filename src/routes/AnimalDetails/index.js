@@ -3,7 +3,9 @@ import AnimalInfo from './components/AnimalInfo'
 import AnimalPictures from './components/AnimalPictures.js'
 import { connect } from 'react-redux';
 import getAnimals from 'store/actions/animals';
-import modalAdopt from 'store/actions/modalAdopt'
+import modalAdopt from 'store/actions/modalAdopt';
+import takeAnimal from 'store/actions/takeAnimal';
+import signUp from 'store/actions/signup'
 
 class AnimalDetails extends Component {
   constructor(props){
@@ -20,7 +22,7 @@ class AnimalDetails extends Component {
   render() {
     return (
       <div className="flex-container img-detail">
-        <AnimalInfo animal={this.props.listAnimals} show = {this.props.show} click = {this.btnClick}/>
+        <AnimalInfo animal={this.props.listAnimals} show = {this.props.show} click = {this.btnClick} adopt = {this.props.takeAnimal} signUp = {this.props.signUp}/>
         <AnimalPictures animal={this.props.listAnimals} />
       </div>
     )
@@ -35,6 +37,8 @@ export default connect(
   }),
   dispatch => ({
     onGetAnimals: (link) => dispatch(getAnimals(link)),
-    showModal: (bool) => dispatch(modalAdopt(bool))
+    showModal: (bool) => dispatch(modalAdopt(bool)),
+    takeAnimal: (key, category, status) => dispatch(takeAnimal(key, category, status)),
+    signUp : (obj)=>dispatch(signUp(obj))
   })
 )(AnimalDetails)

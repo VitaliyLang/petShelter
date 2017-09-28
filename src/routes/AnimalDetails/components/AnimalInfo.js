@@ -18,8 +18,8 @@ export default class AnimalInfo extends Component {
       <p>size: {this.props.animal.size}</p>
       <p ref = {(el)=>this.modal=el}>color: {this.props.animal.color}</p>
       <p>vaccinations: {String(this.props.animal.vaccination)}</p>
-      <Button type="submit" className="get waves-effect waves-light" onClick={this.props.click}> Adopt it </Button>
-      <ModalBox show = {this.props.show} click = {this.props.click}/>
+      <Button type="submit" className="btn get waves-effect waves-light" onClick={this.props.click}> Adopt it </Button>
+      <ModalBox show = {this.props.show} click = {this.props.click} adopt = {this.props.adopt} signUp = {this.props.signUp}/>
     </aside>
     )
   }
