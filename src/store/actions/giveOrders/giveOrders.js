@@ -12,15 +12,15 @@ export function giveOrders(userKey) {
     }
   }
     
-  function getInviteRejectedAction() {
-    return {
-      type: 'REMOVE_OK'
-    }
-  }
-  
-  function getInviteFulfilledAction(error) {
+  function getInviteRejectedAction(error) {
     return {
       type: 'REMOVE_FALSE',
       error:error
+    }
+  }
+  
+  function getInviteFulfilledAction() {
+    return {
+      type: 'REMOVE_OK'
     };
   }
