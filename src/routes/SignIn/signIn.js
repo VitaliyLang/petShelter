@@ -6,6 +6,7 @@ import Button from 'modules/buttons/PrimaryButton';
 import { signPerson } from '../../components/fireBase';
 import login from '../../store/actions/login';
 import 'modules/buttons/buttons.scss';
+import 'modules/inputs/inputs.scss';
 import './style.scss';
 
 
