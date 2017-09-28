@@ -10,12 +10,12 @@ const app = express()
 app.use(compress())
 
 // ------------------------------------
-// Apply Webpack HMR Middleware
+// Apply Webpack Middleware
 // ------------------------------------
 if (project.env === 'development') {
   const compiler = webpack(webpackConfig)
 
-  logger.info('Enabling webpack development and HMR middleware')
+  logger.info('Enabling webpack development')
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath  : webpackConfig.output.publicPath,
     contentBase : path.resolve(project.basePath, project.srcDir),
@@ -24,9 +24,6 @@ if (project.env === 'development') {
     noInfo      : false,
     lazy        : false,
     stats       : 'normal',
-  }))
-  app.use(require('webpack-hot-middleware')(compiler, {
-    path: '/__webpack_hmr'
   }))
 
   // Serve static assets from ~/public since Webpack is unaware of
