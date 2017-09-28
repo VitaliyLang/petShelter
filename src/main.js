@@ -15,8 +15,8 @@ const MOUNT_NODE = document.getElementById('root')
 
 // Register SW and Manifest
 // ------------------------------------
-addManifest()
-registerSW()
+// addManifest()
+// registerSW()
 
 let render = () => {
   const App = require('./components/App').default
