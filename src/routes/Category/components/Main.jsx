@@ -46,7 +46,7 @@ class Main extends Component {
       })
     })
 
-    animals = filtered;
+    animals = filtered.filter((item)=>item.active == true);
     keys = Object.keys(animals);
 
     if (WIDTH > M) {
@@ -65,6 +65,7 @@ class Main extends Component {
       }
       this.props.changeHeight(WIDTH * ITEM_HEIGHT_L);
     }
+
     this.props.modifyList(arr);
   }
   componentWillMount() {
@@ -78,6 +79,7 @@ class Main extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDebounce);
     window.removeEventListener('submit', this.update);
+    this.props.modifyList(null);
   }
   onRowsRendered({ overscanStartIndex, overscanStopIndex, startIndex, stopIndex }) {
     this.props.changeTop(startIndex);
