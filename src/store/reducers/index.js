@@ -8,11 +8,14 @@ import messages from './messages';
 import signup from './signup';
 import signin from './signin';
 import login from './login';
+import logout from './logout';
 import giveOrders from './giveOrders';
 import addAnimal from './addAnimal';
 import takeAnimal from './takeAnimal';
+import uploadPhoto from './uploadPhoto';
+import updateAnimal from './updateAnimal';
+import removeAnimal from './removeAnimal';
 import modalAdopt from './modalAdopt';
-import uploadPhoto from './uploadPhoto'
 
 const makeRootReducer = combineReducers({
   people,
@@ -24,11 +27,15 @@ const makeRootReducer = combineReducers({
   signup,
   signin,
   login,
+  logout,
   giveOrders,
   addAnimal,
   takeAnimal,
+  uploadPhoto,
+  updateAnimal,
+  removeAnimal,
   modalAdopt,
-  uploadPhoto
+  
 })
 
 export default makeRootReducer;

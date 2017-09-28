@@ -1,7 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import Button from 'modules/buttons/PrimaryButton';
-import uploadPhoto from '../../../../../store/actions/uploadPhoto'
+import uploadPhoto from '../../../../../store/actions/uploadPhoto';
+import updateAnimal from '../../../../../store/actions/updateAnimal';
+import removeAnimal from '../../../../../store/actions/removeAnimal';
+import giveOrders from '../../../../../store/actions/giveOrders';
+import logout from '../../../../../store/actions/logout';
 import FileInput from 'react-file-input';
 import PetsTable from '../../layouts/PetsTable';
 
@@ -14,6 +18,13 @@ class Dashboard extends React.Component {
     handleChange(e){
         let photo = e.target.files[0];
         this.props.onUploadPhoto(photo,'dog','-KupDqW5nCMTBujGEZVh')
+    }
+
+    componentWillMount(){
+      //this.props.onUpdateAnimal('-KuoNRJ87ORaaFW7pcNS','fish',({age:'babby'}));
+      //this.props.onRemoveAnimal('fish','-KupQ9oUf_VJX_p5GA5y');
+      //this.props.onGiveOrders('S4wK8RM940OKEj0SPrBnq0YGiUN2');
+      this.props.onLogout();
     }
 
     render(){
@@ -35,7 +46,11 @@ let mapStateToProps = (state) => {
   
   let mapDispatchToProps = (dispatch) => {
     return {
-      onUploadPhoto: (file,category,id) => dispatch(uploadPhoto(file,category,id))
+      onUploadPhoto: (file,category,id) => dispatch(uploadPhoto(file,category,id)),
+      onUpdateAnimal: (key,category,obj) => dispatch(updateAnimal(key,category,obj)),
+      onRemoveAnimal: (category,animalKey) => dispatch(removeAnimal(category,animalKey)),
+      onGiveOrders: (userKey) => dispatch(giveOrders(userKey)),
+      onLogout: () => dispatch(logout())
     };
   }
   
