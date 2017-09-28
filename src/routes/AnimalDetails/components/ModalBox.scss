@@ -7,8 +7,6 @@
     height: 100vh;
     background-color: rgba(0,0,0,0.8);
     display: flex;
-    //animation-name: fadeIn;
-    //animation-duration: 0.4s
 }
 .modal_form{
     background-color: #383D40;
@@ -19,10 +17,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    border-radius: 2px;
     input{
         width: 200px;
     }
-    .filter{
-        width: 40%;
+    button{
+        width: 35%;
+        margin: 10px auto;
     }
 }

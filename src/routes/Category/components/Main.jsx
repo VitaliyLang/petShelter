@@ -120,9 +120,18 @@ class Main extends Component {
     )
   }
   render() {
+    if(!this.props.categoryStore.listModify){
+      return null
+    }
+    if(!this.props.categoryStore.listModify.length){
+      return <h1 className = 'bad_luck'>
+                Unfortunatly no animals matched your search. 
+                Try to pick less filter's parameters and probably you'll find your favourite one.
+             </h1>
+    }
     return (
       <List
-        className='ver-scroll pet-list'
+        className='ver-scroll'
         width={1200}
         height={400}
         rowCount={this.props.categoryStore.listModify.length}

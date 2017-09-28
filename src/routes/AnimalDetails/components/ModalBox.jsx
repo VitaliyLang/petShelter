@@ -22,8 +22,8 @@ export default class ModalBox extends Component {
                     <Input type="email" label="Email" validate = {true} required/>
                     <Input type = "tel" validate = {true} label="Phone: (0XX) XXX-XX-XX" required  pattern="\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}"/>
                     <div>
-                        <Button type = "submit" className="filter waves-effect waves-light primaryBtn"> Apply </Button>
-                        <Button type = "reset" onClick={this.props.click} className="filter waves-effect waves-light primaryBtn"> Cancel </Button>
+                        <Button type = "submit" className=" btn waves-effect waves-light"> Apply </Button>
+                        <Button type = "reset" onClick={this.props.click} className=" btn waves-effect waves-light"> Cancel </Button>
                     </div>
                 </form>
             </div>

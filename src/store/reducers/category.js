@@ -1,6 +1,5 @@
 const initialState = {
-    height: window.innerWidth * 0.18,
-    listModify: []
+    height: window.innerWidth * 0.18
 }
 
 export default (state = initialState, action)=>{

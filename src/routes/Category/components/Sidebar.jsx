@@ -89,8 +89,8 @@ class Sidebar extends Component {
                             </div>)
                     })
                     }
-                    <Button type="submit" className="filter waves-effect waves-light"> Apply </Button>
-                    <Button  className="filter waves-effect waves-light" onClick={this.reset}> Reset </Button>
+                    <Button type="submit" className="filter btn waves-effect waves-light"> Apply </Button>
+                    <Button  className="filter btn  waves-effect waves-light" onClick={this.reset}> Reset </Button>
                 </form>
             </aside>
         )
