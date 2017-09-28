@@ -8,7 +8,6 @@ const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
 
 const __DEV__ = project.env === 'development'
-const __TEST__ = project.env === 'test'
 const __PROD__ = project.env === 'production'
 
 const config = {
@@ -28,20 +27,26 @@ const config = {
       inProject(project.srcDir),
       'node_modules',
     ],
-    extensions: ['*', '.js', '.jsx', '.json'],
+    extensions: ['*', '.js', '.jsx', '.json']
   },
   externals: project.externals,
   module: {
     rules: [],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery',
+    }),
     new webpack.DefinePlugin(Object.assign({
       'process.env': { NODE_ENV: JSON.stringify(project.env) },
       __DEV__,
-      __TEST__,
       __PROD__,
     }, project.globals))
   ],
+
 }
 
 // JavaScript
@@ -88,9 +93,9 @@ config.module.rules.push({
 // Styles
 // ------------------------------------
 const extractStyles = new ExtractTextPlugin({
-  filename: 'styles/[name].[contenthash].css',
+  filename: 'styles/style-[name].css',
   allChunks: true,
-  disable: __DEV__,
+  disable: false
 })
 
 config.module.rules.push({
@@ -104,17 +109,8 @@ config.module.rules.push({
           sourceMap: project.sourcemaps,
           minimize: {
             autoprefixer: {
-              add: true,
-              remove: true,
               browsers: ['last 2 versions'],
             },
-            discardComments: {
-              removeAll : true,
-            },
-            discardUnused: false,
-            mergeIdents: false,
-            reduceIdents: false,
-            safe: true,
             sourcemap: project.sourcemaps,
           },
         },
@@ -124,7 +120,7 @@ config.module.rules.push({
         options: {
           sourceMap: project.sourcemaps,
           includePaths: [
-            inProjectSrc('styles'),
+            inProjectSrc('styles')
           ],
         },
       }
@@ -139,8 +135,8 @@ config.module.rules.push({
   test    : /\.(png|jpg|gif)$/,
   loader  : 'file-loader',
   options : {
-    outputPath: 'img/',
-  },
+    outputPath : 'img/'
+  }
 })
 
 // Fonts
@@ -191,15 +187,17 @@ if (__DEV__) {
 
 // Bundle Splitting
 // ------------------------------------
-if (!__TEST__) {
-  const bundles = ['main']
-
-  if (project.vendors && project.vendors.length) {
-    bundles.unshift('vendor')
-    config.entry.vendor = project.vendors
-  }
-  config.plugins.push(new webpack.optimize.CommonsChunkPlugin({ names: bundles }))
+if (project.vendors && project.vendors.length) {
+  config.entry.vendor = project.vendors
 }
+config.plugins.push(new webpack.optimize.CommonsChunkPlugin({
+  name: 'vendor',
+  filename: 'vendor.js',
+  minChunks (module, count) {
+    const context = module.context
+    return context && context.indexOf('node_modules') >= 0
+  },
+}))
 
 // Production Optimizations
 // ------------------------------------
