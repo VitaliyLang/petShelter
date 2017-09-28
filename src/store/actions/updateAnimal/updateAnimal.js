@@ -1,26 +1,28 @@
 import database from '../../firebaseConfig/firebase.js'
 
-export function giveOrders(userKey) {
+export function updateAnimal(animalKey,category,animalObj) {
     return dispatch => {
-      const updates ={};
-      updates['/users/' + userKey] = null;
+      let updates = {};
+      updates['/animals/'+category+'/'+animalKey] = animalObj;
       return database.ref().update(updates)
-      .then(() => dispatch(getInviteFulfilledAction()))
+      .then(() => { 
+        dispatch(getInviteFulfilledAction())
+      }) 
       .catch((error) => {
         dispatch(getInviteRejectedAction(error));
       });
     }
   }
-    
+  
   function getInviteRejectedAction(error) {
     return {
-      type: 'REMOVE_FALSE',
+      type: 'UPDATE_ANIMAL_FALSE',
       error:error
     }
   }
   
   function getInviteFulfilledAction() {
     return {
-      type: 'REMOVE_OK'
+      type: 'UPDATE_ANIMAL_OK'
     };
   }
