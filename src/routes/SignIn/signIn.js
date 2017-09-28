@@ -53,7 +53,7 @@ class signIn extends React.Component{
                 <Formsy.Form  className="form" onValidSubmit={this.logIn} onValid={this.enableButton} onInvalid={this.disableButton}>		
 					<MainInput name="email" type="email" validations="isEmail" placeholder="email" validations={{minLength: 7}} validationError="This is not a valid email" required/>
 					<MainInput name="password" type="password" placeholder="Password" required/>	
-					<button  type="submit" className='prim_btn' disabled={!this.state.canSubmit}>Sign In</button>
+					<Button disabled={!this.state.canSubmit}>Sign in</Button>
 				</Formsy.Form>
             </div>
         )
