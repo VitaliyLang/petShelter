@@ -9,3 +9,8 @@ input, select, textarea{
 textarea:focus, input:focus {
     color: $secondary-gray;
 }
+.input_box {
+	.form_input {
+	    background: red;
+	}
+}

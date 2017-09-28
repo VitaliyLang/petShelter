@@ -26,10 +26,11 @@
 }
 
 .main_section {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 80px);
     background: $primary-green;
     ul {
         padding: 0;
         margin: 0;
     }
 }
+
