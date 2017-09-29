@@ -3,7 +3,7 @@
 .container{
     li{
         list-style: none;
-        div{            
+        div{
             a{
                 text-decoration: none;
                 color: #fff;
@@ -26,10 +26,15 @@
 }
 
 .main_section {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 56px);
     background: $primary-green;
-    ul {
-        padding: 0;
-        margin: 0;
-    }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        @media only screen and (min-width: 601px){
+            height: calc(100vh - 64px);
+        }
 }
