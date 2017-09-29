@@ -3,17 +3,20 @@ import './AnimalPictures.scss'
 import {Carousel} from 'react-materialize'
 import { connect } from 'react-redux';
 import getAnimals from 'store/actions/animals';
+import debounce from 'modules/helpers/debounce';
 
 class AnimalPictures extends Component {
-
+  constructor(){
+    super();
+  }
   render() {
-    if(!this.props.listAnimals){
-      return null;
-    }
      return (
       <div className='pictures'>
-        <Carousel options={{ fullWidth: true, indicators: true }}>
-          <div style = {{backgroundImage: `url(${this.props.listAnimals.url})`}}/>
+        <Carousel>
+          <div className = 'img' style = {{backgroundImage: `url(${this.props.animal.url})`}}/>
+          <div className = 'img' style = {{backgroundImage: `url(${this.props.animal.url})`}}/>
+          <div className = 'img' style = {{backgroundImage: `url(${this.props.animal.url})`}}/>
+        
         </Carousel>
       </div>
     )
@@ -21,15 +24,11 @@ class AnimalPictures extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    listAnimals: state.listAnimals.animals
-  }),
-  dispatch => ({onGetAnimals: (link) => dispatch(getAnimals(link))})
-)(AnimalPictures)
+export default AnimalPictures
+
+//{this.props.animal.url.map((url)=><div key = {url} className = 'img' style = {{backgroundImage: `url(${url})`}}/>)}
+
+/*           */
+
 
 //
-//          
-//
-//<div style = {{backgroundImage: `url(${this.props.listAnimals})`}}/>
-        //<div style = {{backgroundImage: `url(${this.props.listAnimals})`}}/>

@@ -1,0 +1,47 @@
+@media (max-width: 960px){
+    .img-detail{
+        flex-direction: column-reverse;
+    }
+    .pictures{
+        flex-basis: 60%;
+        width: 90%;
+        margin: auto;
+    }
+    .details{
+        flex-basis: 40%;
+        p{
+            display: inline-block;
+            width: 45%;
+            padding-left: 15%; 
+        }
+    }
+}
+@media (max-width: 500px){
+    .pictures {
+        flex-basis: 50%;
+        div.img{
+            width: 250px;
+            height: 200px;
+        }
+        .carousel {
+            height: 200px;
+        }
+    }
+    .details{
+        padding: 10px;
+        flex-basis: 50%;
+        display: block;
+        p{
+            width: 45%;
+            margin: 5px;
+            padding-left: 10%; 
+        }
+        .get{
+            margin: 10px auto;
+        }
+    }
+    .modal_form{
+        width: 80%;
+        height: 60%;
+    }
+}

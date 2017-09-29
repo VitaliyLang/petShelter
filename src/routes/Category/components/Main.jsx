@@ -133,7 +133,7 @@ class Main extends Component {
     }
     return (
       <List
-        className='ver-scroll'
+        className='ver-scroll pet-list'
         width={1200}
         height={400}
         rowCount={this.props.categoryStore.listModify.length}
