@@ -1,23 +1,14 @@
 .pictures{
-    width: 60%;
-    margin-left: 10%;
+    flex-basis: 80%;
     background: #383D40;
-}
-.carousel.carousel-slider{
-    height: 95% !important;
-    div{
-        background-size: contain;
-        background-repeat: no-repeat; 
-        background-position: center;
+    display: flex;
+    &>div{
+        margin: auto;
     }
-}
-.carousel .indicators{
-    top: 0;
-    bottom: auto;
-}
-
-@media (min-width: 500px) and (max-width: 960px) {
-    .carousel.carousel-slider .carousel-item {
-        height: 50%;
+    div.img{
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        width: 500px;
     }
 }

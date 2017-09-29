@@ -10,20 +10,20 @@
 }
 .modal_form{
     background-color: #383D40;
-    width: 30%;
-    height: 70%;
+    width: 400px;
+    height: 450px;
     margin: auto;
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.8);
     border-radius: 2px;
-    input{
-        width: 200px;
+    div input{
+        width: 100px;
     }
     button{
         width: 35%;
         margin: 10px auto;
+        padding: 0;
     }
 }

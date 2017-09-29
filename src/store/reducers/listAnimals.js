@@ -1,5 +1,5 @@
 let initialState = {
-    animals: [],
+    animals: {},
     isLoading: true,
     error: false
 };
