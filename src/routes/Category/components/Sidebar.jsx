@@ -15,6 +15,13 @@ class Sidebar extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.reset = this.reset.bind(this);
         this.setQuery = this.setQuery.bind(this);
+
+        this.values = {
+            Sex: ['Any', 'Male', 'Female'],
+            Size: ['Any', 'Small', 'Medium', 'Large'],
+            Age: ['Any', 'Baby', 'Young', 'Adult', 'Senior']
+        }
+        this.keys = Object.keys(this.values);
     }
     setQuery(){
         let queryObj = this.props.filter;
@@ -34,7 +41,12 @@ class Sidebar extends Component {
     }
     componentWillMount(){
         let query = this.props.location.query;
-        this.props.setValues(query);
+        let cleanQuery={};
+        this.keys.forEach((key)=>{
+            let find = this.values[key].find((value)=>value.toLowerCase()==query[key.toLowerCase()]);
+            if(find) return cleanQuery[key.toLocaleLowerCase()] = query[key.toLocaleLowerCase()];
+        });
+        this.props.setValues(cleanQuery);
     }
     componentDidMount(){
         if(window.innerWidth<500){
@@ -51,21 +63,16 @@ class Sidebar extends Component {
         this.setQuery();
     }
     render() {
-        let values = {
-            Sex: ['Any', 'Male', 'Female'],
-            Size: ['Any', 'Small', 'Medium', 'Large'],
-            Age: ['Any', 'Baby', 'Young', 'Adult', 'Senior']
-        }
-        let keys = Object.keys(values);
+
         return (
             <aside className="aside_category" ref={(el)=>{this.aside=el}}>
                 <form onSubmit={this.handleSubmit}>
                     <h2> Filter </h2>
-                    {keys.map((key, index) => {
+                    {this.keys.map((key, index) => {
                         return (
                             <div key={index}>
                                 <p> {key} </p>
-                                {values[key].map((value, index) => {
+                                {this.values[key].map((value, index) => {
                                     let check = value.toLowerCase() == 'any' ? undefined : value.toLowerCase();
                                     return <Input
                                                 type='radio'
@@ -82,8 +89,8 @@ class Sidebar extends Component {
                             </div>)
                     })
                     }
-                    <Button type="submit" className="filter waves-effect waves-light primaryBtn"> Apply </Button>
-                    <Button  className="filter waves-effect waves-light primaryBtn" onClick={this.reset}> Reset </Button>
+                    <Button type="submit" className="filter btn waves-effect waves-light"> Apply </Button>
+                    <Button  className="filter btn  waves-effect waves-light" onClick={this.reset}> Reset </Button>
                 </form>
             </aside>
         )

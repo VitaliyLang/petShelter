@@ -4,10 +4,6 @@ import { Button, Modal } from 'react-materialize';
 import ModalBox from './ModalBox';
 
 export default class AnimalInfo extends Component {
-  constructor(props){
-    super(props);
-    this.className = 'modal_box_adopt';
-  }
   render() {
     return (
       <aside className="aside_category details">
@@ -17,9 +13,9 @@ export default class AnimalInfo extends Component {
       <p>age: {this.props.animal.age}</p>
       <p>size: {this.props.animal.size}</p>
       <p ref = {(el)=>this.modal=el}>color: {this.props.animal.color}</p>
-      <p>vaccinations: {String(this.props.animal.vaccination)}</p>
-      <Button type="submit" className="get waves-effect waves-light" onClick={this.props.click}> Adopt it </Button>
-      <ModalBox show = {this.props.show} click = {this.props.click}/>
+      <p>vaccinations: {new String(this.props.animal.vaccinations||"")}</p>
+      <Button type="submit" className="btn get waves-effect waves-light" onClick={this.props.click}> Adopt it </Button>
+      <ModalBox show = {this.props.show} click = {this.props.click} adopt = {this.props.adopt} signUp = {this.props.signUp}/>
     </aside>
     )
   }
