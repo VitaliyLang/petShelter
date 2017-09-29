@@ -467,6 +467,10 @@ template {
   display: none;
 }
 
+[data-reactroot] {
+    height: 100%;
+}
+
 .breadcrumbs {
   height: 30px;
   display: flex;
@@ -484,5 +488,3 @@ template {
     letter-spacing: 0px;
   }
 }
-
-
