@@ -15,8 +15,14 @@ class AnimalDetails extends Component {
     this.btnClick = this.btnClick.bind(this);
   }
   componentWillMount() {
-    let link = location.pathname.replace('categories', 'animals');
-    this.props.onGetAnimals(link).then(()=>{console.log(this.props.listAnimals.animals)});
+    let link0 = location.pathname.replace('categories', 'animals');
+    link0 = link0.split('/');
+    let link ='';
+    for(var i = 0; i+1 < link0.length; i++){
+      link+=link0[i].toLowerCase() + '/';
+    }
+    link+=link0[i];
+    this.props.onGetAnimals(link);
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.listAnimals.animals === null){
