@@ -1,50 +1,41 @@
-// $primary-red : #f44336;
 @import '_variables';
 
-.header {
-		background-color: $primary-green;
-		font-size: 18px;
-		margin: 0;
-		border-bottom: 2px solid #00a388;
-		height: 80px;
-		nav{
-				height: 100%;
-				background-color: $primary-green;
-		}
-		ul {
-				list-style-type: none;
-				margin: 0;
-				display: flex;
-				justify-content: flex-end;
-				align-items: center;
-				height: 100%;
-				li{
-						margin-right: 20px;
-				}
-				.logo {
-						margin-right: auto;
-						&:hover {
-							transition: all .3s;
-							transform: scale(1.1);
-							background:inherit;
-						}
-						img {
-								height: 10vh;
-						}
-				}
-
-				a {
-						display: flex;
-						align-items:center;
-						color: #fff;
-						text-decoration: none;
-						padding: 0px 30px 0 30px;
-						height: 12vh;
-				}
-		}
+.main-layout-header {
+	background-color: $primary-green;
+	border-bottom: 2px solid #00a388;
 
 		.active {
 				background-color: $primary-dark-green;
-				height: 80px;
+		}
+
+		.brand-logo {
+			margin-left: 10px;
+			img {
+				height: 54px;
+				@media only screen and (min-width: 601px){
+					height: 62px;
+				}
+				&:hover {
+						transition: all .3s;
+						transform: scale(1.1);
+						background:inherit;
+				}
+			}
+		}
+
+		.button-colapse {
+			margin-left: 10px;
+				@media only screen and (min-width: 993px){
+					display: none;
+			}
+		}
+
+		.sidenav-logo {
+			height: 54px;
+			&:hover {
+					transition: all .3s;
+					transform: scale(1.1);
+					background:inherit;
+			}
 		}
 }

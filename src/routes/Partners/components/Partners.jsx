@@ -10,7 +10,7 @@ import whiskas from '../assets/whiskas.png';
 class Partners extends React.Component{
     render() {
         return (
-            <div className='partners_wrapper'>
+            <div className='partners_wrapper main_section'>
                 <div className='partners_container'>
                     <h4>Our thanks</h4>
                     <div className="partners_brands">
