@@ -7,7 +7,7 @@ class PetRow extends React.Component {
 				super(props);
 				
 		}
-
+		
 		render(){
 				return(
 						<div className="pet_row">
@@ -16,9 +16,9 @@ class PetRow extends React.Component {
 								<div className="rowItem">{this.props.item.age}</div>
 								<div className="rowItem">{this.props.item.size}</div>
 								<div className="rowItem">{this.props.item.sex}</div>
-								<div className="rowItem ">{this.props.item.active}</div>
+								<div className="rowItem ">{String(this.props.item.active)}</div>
 								<div className="rowItem img">
-										<img className="img" src={this.props.item.url} alt=""/>
+										<img className="img" src= {this.props.item.url} alt=""/>
 								</div>
 								
 						</div>    
