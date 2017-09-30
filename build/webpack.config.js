@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = require('../project.config')
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 const inProject = path.resolve.bind(path, project.basePath)
 const inProjectSrc = (file) => inProject(project.srcDir, file)
@@ -210,7 +211,22 @@ if (__PROD__) {
         if_return: true,
         join_vars: true,
       },
-    })
+  }),
+  new SWPrecacheWebpackPlugin({
+     dontCacheBustUrlsMatching: /\.\w{8}\./,
+     filename: 'service-worker.js',
+     logger(message) {
+       if (message.indexOf('Total precache size is') === 0) {
+         return;
+       }
+       console.log(message);
+     },
+     minify: true,
+     maximumFileSizeToCacheInBytes: 10485760,
+     navigateFallback: 'index.html',
+     navigateFallbackWhitelist: [/^(?!\/__).*/], // Ignores URLs starting from /__ (useful for Firebase)
+     staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+   })
   )
 }
 
