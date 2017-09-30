@@ -30,7 +30,6 @@ class Dashboard extends React.Component {
     render(){
         return(
             <div>
-	            <p>There will be such information: how many messages are active</p>
 	            <PetsTable />
 	          </div>
         )

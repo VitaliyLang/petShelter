@@ -43,6 +43,8 @@ class signIn extends React.Component{
         })
         .catch(err => alert(err.message));
         return*/
+        console.log("you loged");
+        browserHistory.push('/admin/dashboard');
         this.props.onLogin(personInformation);
     }
 
