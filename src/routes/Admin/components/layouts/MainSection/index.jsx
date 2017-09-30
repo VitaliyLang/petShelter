@@ -10,7 +10,7 @@ class MainSection extends React.Component {
     render(){
         return(
             <main className="main background">
-                <div className="layer">
+                <div className="layer ver-scroll">
                     {this.props.children}
                 </div>
             </main>
