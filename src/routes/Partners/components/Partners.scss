@@ -2,19 +2,17 @@
     background-image: url('../assets/bg1.jpg');
     background-size: cover;
     background-repeat: none;
+}
+
+.partners_container {
     height: 100%;
+    background-color: rgba(60,143,87,.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        .partners_container {
-            height: 100%;
-            background-color: rgba(60,143,87,.9);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-                h4 {
-                    color: white;
-                    margin-bottom: 50px;
-                }
+        h4 {
+            color: white;
         }
 }
 

@@ -1,0 +1,22 @@
+.table{
+	display: flex;
+	flex-direction:column;
+	.pet_row {
+	display: flex;
+		.rowItem {
+			border: 1px solid black;
+			width: 10%;
+			text-transform: capitalize;
+			text-align: center;
+			.img {
+				height: 50px;
+				width: auto;
+				cursor: pointer;
+				&:hover {	
+					transition:all .8s;
+					transform:scale(3);
+				}
+			}
+		}
+	}
+}
