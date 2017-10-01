@@ -4,7 +4,7 @@ import CategoriesPanel from './CategoriesPanel'
 import PropTypes from 'prop-types'
 import getInvite from '../../../store/actions/categories'
 import getAnimals from '../../../store/actions/animals'
-import {ReadItem} from '../../../components/fireBase'
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './styles.scss'
 
 class Categories extends React.Component {
