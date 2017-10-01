@@ -2,8 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import './styles/main.scss'
-import { addManifest, registerSW } from './pwa/pwa'
+import { addManifest } from './pwa/pwa'
 import 'normalize'
+import registerServiceWorker from './registerServiceWorker'
 
 // Store Initialization
 // ------------------------------------
@@ -18,7 +19,6 @@ const MOUNT_NODE = document.getElementById('root')
 const project = require('../project.config');
 if (project.env === 'production') {
     addManifest();
-    registerSW();
 }
 
 
@@ -68,3 +68,4 @@ if (__DEV__) {
 // Let's Go!
 // ------------------------------------
 render()
+registerServiceWorker()
