@@ -15,7 +15,7 @@ import takeAnimal from './takeAnimal';
 import uploadPhoto from './uploadPhoto';
 import updateAnimal from './updateAnimal';
 import removeAnimal from './removeAnimal';
-import modalAdopt from './modalAdopt';
+import animalDetail from './animalDetail';
 
 const makeRootReducer = combineReducers({
   people,
@@ -34,7 +34,7 @@ const makeRootReducer = combineReducers({
   uploadPhoto,
   updateAnimal,
   removeAnimal,
-  modalAdopt,
+  animalDetail,
   
 })
 
