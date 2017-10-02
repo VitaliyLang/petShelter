@@ -14,9 +14,25 @@
         }
         .categories{
             .carousel{
-                height: calc(100vh - 75px);
+                height: calc(100vh - 85px);
                 .slider-wrapper{
                     overflow: unset;
+                    .slider{
+                        .slide{
+                            background: transparent;
+                            .legend{
+                                background: transparent;
+                                font-size: 5em;
+                                @media only screen and (max-height: 600px){
+                                    bottom: 70%
+                                }
+                                a{
+                                    color: $primary-green;
+                                    letter-spacing: 11px;
+                                }                            
+                            }
+                        }                        
+                    }
                 }
             }
         }

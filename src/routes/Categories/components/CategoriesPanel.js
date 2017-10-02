@@ -21,7 +21,8 @@ class CategoriesPanel extends React.Component {
             panelTamplate = <div/>
         }
         return(
-           <Carousel className='categories' showArrows={false} showStatus={false} showThumbs={false}>
+           <Carousel className='categories' showArrows={false} showStatus={false} 
+                    showThumbs={false} emulateTouch={true} useKeyboardArrows={true}>
                {panelTamplate}
            </Carousel>
         )

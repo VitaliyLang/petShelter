@@ -43,7 +43,7 @@ class Categories extends React.Component {
         )
       } else {
         return (
-         <CategoriesPanel categories={this.categoriesArr} onGetAnimals={onGetAnimals} listAnimals={listAnimals} />
+         <CategoriesPanel  categories={this.categoriesArr} onGetAnimals={onGetAnimals} listAnimals={listAnimals} />
         )
       }
   }

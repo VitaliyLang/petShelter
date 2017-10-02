@@ -4,22 +4,18 @@ import { Link } from 'react-router';
 class Category extends React.Component {
     constructor (props) {
         super(props)
-        this.state = { width:$(window).width() };
+        this.state = { width:$(window).width(), height:$(window).height() };
         this.key;
         this.updateWidth = this.updateWidth.bind(this);
       }
     
         updateWidth(){
-            this.setState({width: $(window).width()});
-            if(this.state.width >0 && this.state.width < 640){
-                this.key = 's'
-            }else if(this.state.width >= 640 && this.state.width < 720){
-                this.key = 'm'
-            }else if(this.state.width >= 720 && this.state.width < 1080){
-                this.key = 'xl'
-            }else if(this.state.width >= 1080){
-                this.key = 'l'
-            }
+            this.setState({width: $(window).width(),height:$(window).height()});
+            let width = this.state.width, 
+                height =  this.state.height;
+           
+            width < height ? this.key = 'm' : this.key = 'd';
+            
         }
     
         componentWillMount() {
@@ -44,7 +40,6 @@ class Category extends React.Component {
     render(){
         let data = this.props.category,
             categorClick = this.categorClick.bind(this);
-            console.log(this.key);
         return(
             <div className='category'>
                 <img src={data.url[this.key]} />
