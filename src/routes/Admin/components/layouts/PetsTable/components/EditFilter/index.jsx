@@ -10,6 +10,7 @@ class EditFilter extends React.Component {
 		
 		
 		render(){
+			// console.log(this.props.item);
 				return(
 				<div className="petEditor">
 					<div className="">{this.props.item.age}</div>

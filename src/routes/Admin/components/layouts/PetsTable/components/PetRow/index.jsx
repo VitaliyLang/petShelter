@@ -21,7 +21,7 @@ class PetRow extends React.Component {
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
 				// console.log( myArr[i]);
-				return this.props.returnPetToUpdate(myArr[i]);					
+				 return this.props.returnPetToUpdate(myArr[i]);					
 			}
 		} 
 

@@ -12,9 +12,20 @@ class PetsTable extends React.Component {
 				
 			// }
 		}
-		componentWillMount() {
+		
 
-		}
+		var returnedData = [];
+		function returnPetRow(dataFromPetRow)  {
+      	// sendPetToUpdate(dataFromPetRow);
+      	// console.log('data from row', dataFromPetRow);
+     //  	for (item in dataFromPetRow) {
+					// returnedData.push(dataFromPetRow[item]);
+     //  	}
+     returnedData.push(dataFromPetRow);
+      				
+    		console.log("ret",returnedData);
+    	// returnedData.map((item,i) => console.log(i, item.age) );
+    }
 
 		render(){
 			
@@ -51,12 +62,7 @@ class PetsTable extends React.Component {
 
 			
 			//RETURN PET ROW TO SET IN FILTER
-			var returnedData;
-			this.returnPetRow = (dataFromPetRow) => {
-      	// sendPetToUpdate(dataFromPetRow);
-      	// console.log('data from row', dataFromPetRow);
-      	returnedData = dataFromPetRow;			
-    	}	
+			
     	// console.log("ret",returnedData);
     	//END
 
@@ -94,8 +100,10 @@ class PetsTable extends React.Component {
 																									returnPetToUpdate={this.returnPetRow}
 																								/>)}
 						</div>
-						
-					</div>       
+							{returnedData.map((item,i) =><EditFilter item={item} key={i} /> )}
+
+					</div>
+
 				)
 		}
 }
@@ -115,4 +123,4 @@ export default connect(
 
 
 
-// {returnedData.map((item,i) => <EditFilter item={item} />)}
+//        
