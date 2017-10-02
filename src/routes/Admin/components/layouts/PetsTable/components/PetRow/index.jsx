@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
-
-
+import { connect } from 'react-redux';
+import findAnimal from 'store/actions/findAnimal';
 class PetRow extends React.Component {
 		constructor(props) {
 				super(props);
@@ -15,21 +15,27 @@ class PetRow extends React.Component {
 		}
 
 		findClickedObj(key) {
-		console.log(key);
-		console.log(this.props.petsArr);
+		// console.log(key);
+		// console.log(this.props.petsArr);
 		var myArr = this.props.petsArr;
-		console.log(myArr);
+		// console.log(myArr);
+		// var myPet ;
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
 				// console.log( myArr[i]);
-				 return this.props.returnPetToUpdate(myArr[i]);					
+				// myPet = myArr[i];
+				document.querySelector('.petEditor').style.display = 'block';
+				document.querySelector('[data-key]', key).style.display = 'none';
+				console.log("button key", key);
+				this.props.findAnimal(myArr[i]);
+				 // return this.props.returnPetToUpdate(myArr[i]);					
 			}
 		} 
-
+	}
 		
-		}
 
 		render(){
+			console.log("myStore",this.props.AnimalStore);
 				return(
 						<div className="pet_row">
 								<div className="rowItem">{this.props.item.category}</div>
@@ -50,5 +56,14 @@ class PetRow extends React.Component {
 		}
 }
 
-export default PetRow
+// export default PetRow
 
+
+export default connect(
+	state => ({
+		AnimalStore: state.oneAnimal,
+	}),
+	dispatch => ({
+		findAnimal: (animalObject) => dispatch(findAnimal(animalObject))
+	})
+)(PetRow)

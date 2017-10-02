@@ -14,18 +14,18 @@ class PetsTable extends React.Component {
 		}
 		
 
-		var returnedData = [];
-		function returnPetRow(dataFromPetRow)  {
-      	// sendPetToUpdate(dataFromPetRow);
-      	// console.log('data from row', dataFromPetRow);
-     //  	for (item in dataFromPetRow) {
-					// returnedData.push(dataFromPetRow[item]);
-     //  	}
-     returnedData.push(dataFromPetRow);
+		// var returnedData = [];
+		// function returnPetRow(dataFromPetRow)  {
+  //     	// sendPetToUpdate(dataFromPetRow);
+  //     	// console.log('data from row', dataFromPetRow);
+  //    //  	for (item in dataFromPetRow) {
+		// 			// returnedData.push(dataFromPetRow[item]);
+  //    //  	}
+  //    returnedData.push(dataFromPetRow);
       				
-    		console.log("ret",returnedData);
-    	// returnedData.map((item,i) => console.log(i, item.age) );
-    }
+  //   		console.log("ret",returnedData);
+  //   	returnedData.map((item,i) => console.log(i, item.age) );
+  //   }
 
 		render(){
 			
@@ -100,8 +100,7 @@ class PetsTable extends React.Component {
 																									returnPetToUpdate={this.returnPetRow}
 																								/>)}
 						</div>
-							{returnedData.map((item,i) =><EditFilter item={item} key={i} /> )}
-
+						<EditFilter />
 					</div>
 
 				)
@@ -117,10 +116,11 @@ export default connect(
 	}),
 	dispatch => ({
 		onGetAnimals: () => dispatch(getAnimals()),
-		updatePet: (animalKey,category,animalObj) => dispatch(updateAnimal(animalKey,category,animalObj))
+		updatePet: (animalKey,category,animalObj) => dispatch(updateAnimal(animalKey,category,animalObj)),
+		// oneAnimal: () => dispatch()
 	})
 )(PetsTable)
 
 
 
-//        
+//        {returnedData.map((item,i) =><EditFilter item={item} key={i} /> )}
