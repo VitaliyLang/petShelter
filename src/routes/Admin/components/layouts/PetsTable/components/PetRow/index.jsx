@@ -7,6 +7,7 @@ class PetRow extends React.Component {
 				super(props);
 				
 		}
+
 		getRow(e) {
 			var objKey = e.target.getAttribute('data-key');
 			// console.log(e.target.getAttribute('data-key'));
@@ -27,6 +28,7 @@ class PetRow extends React.Component {
 
 		
 		}
+
 		render(){
 				return(
 						<div className="pet_row">
@@ -37,7 +39,7 @@ class PetRow extends React.Component {
 								<div className="rowItem">{this.props.item.sex}</div>
 								<div className="rowItem ">{String(this.props.item.active)}</div>
 								<div className="rowItem img">
-										<img className="img" src={this.props.item.url} alt=""/>
+										<img className="img" src= {this.props.item.url} alt=""/>
 								</div>
 								<div className="rowItem ">
 									<button onClick={this.getRow.bind(this)} data-key={this.props.item.key}>Edit</button>

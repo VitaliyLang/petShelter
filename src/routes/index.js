@@ -42,7 +42,7 @@ export const createRoutes = (store) => ([
         }]
       }, {
         name: 'admin',
-        path: '/admin/:action',
+        path: '/admin(/:action)',
         component: Admin
       }, {
         name: 'goes shelter',
