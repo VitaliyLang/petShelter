@@ -1,7 +1,6 @@
-import React from 'react'
-import Category from './Category.js'
-import {Slider} from 'react-materialize'
-import {Slide} from 'react-materialize'
+import React from 'react';
+import Category from './Category.js';
+import { Carousel } from 'react-responsive-carousel';
 
 class CategoriesPanel extends React.Component {
     constructor(props) {
@@ -14,20 +13,18 @@ class CategoriesPanel extends React.Component {
         if(data.length > 0){
             panelTamplate = data.map((item,i) => {
                 return(
-                    <li className='categorLi ' key={i}>
-                        <Category category={item} onGetAnimals={this.props.onGetAnimals} listAnimals={this.props.listAnimals}/>
-                    </li>
+                    <Category category={item} onGetAnimals={this.props.onGetAnimals} 
+                    listAnimals={this.props.listAnimals} key={i}/>
                 )
             })
         }else{
             panelTamplate = <div/>
         }
         return(
-            <div className='main_section'>
-                <ul className='categorUl'>
-                    {panelTamplate}
-                </ul>
-            </div>
+           <Carousel className='categories' showArrows={false} showStatus={false} 
+                    showThumbs={false} emulateTouch={true} useKeyboardArrows={true}>
+               {panelTamplate}
+           </Carousel>
         )
     }
 }
