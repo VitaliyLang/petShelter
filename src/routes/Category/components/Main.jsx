@@ -123,9 +123,6 @@ class Main extends Component {
     )
   }
   render() {
-    /*if(!Object.keys(this.props.listAnimals).length){
-      return <NotFound/>
-    }*/
     if(!this.props.categoryStore.listModify){
       return null
     }
