@@ -24,7 +24,7 @@ class AnimalDetails extends Component {
     window.addEventListener('resize', this.start)
   }
   componentWillUnmount () {
-    window.addEventListener('resize', this.start)
+    window.removeEventListener('resize', this.start)
   }
   resize () {
     this.props.resize(false)
