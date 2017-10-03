@@ -1,3 +1,3 @@
-import {signin} from './signin'
+import { signin } from './signin'
 
-export default signin;
+export default signin

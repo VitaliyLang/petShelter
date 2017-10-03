@@ -46,8 +46,7 @@ const config = {
       __DEV__,
       __PROD__,
     }, project.globals))
-  ],
-
+  ]
 }
 
 // JavaScript
@@ -211,22 +210,22 @@ if (__PROD__) {
         if_return: true,
         join_vars: true,
       },
-  }),
+    }),
   new SWPrecacheWebpackPlugin({
-     dontCacheBustUrlsMatching: /\.\w{8}\./,
-     filename: 'service-worker.js',
-     logger(message) {
-       if (message.indexOf('Total precache size is') === 0) {
-         return;
-       }
-       console.log(message);
-     },
-     minify: true,
-     maximumFileSizeToCacheInBytes: 10485760,
-     navigateFallback: 'index.html',
-     navigateFallbackWhitelist: [/^(?!\/__).*/], // Ignores URLs starting from /__ (useful for Firebase)
-     staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
-   })
+    dontCacheBustUrlsMatching: /\.\w{8}\./,
+    filename: 'service-worker.js',
+    logger (message) {
+      if (message.indexOf('Total precache size is') === 0) {
+        return
+      }
+      console.log(message)
+    },
+    minify: true,
+    maximumFileSizeToCacheInBytes: 10485760,
+    navigateFallback: 'index.html',
+    navigateFallbackWhitelist: [/^(?!\/__).*/], // Ignores URLs starting from /__ (useful for Firebase)
+    staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+  })
   )
 }
 
