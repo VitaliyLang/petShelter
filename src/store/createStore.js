@@ -6,9 +6,9 @@ import thunk from 'redux-thunk'
 const createStore = (initialState = {}) => {
   const composeEnhancers = composeWithDevTools({})
   const store = createReduxStore(rootReducer,
-		initialState,
-		composeEnhancers(applyMiddleware(thunk))
-	  )
+    initialState,
+    composeEnhancers(applyMiddleware(thunk))
+  )
 
   return store
 }
