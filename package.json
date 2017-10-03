@@ -9,7 +9,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run compile",
     "start": "cross-env NODE_ENV=development node build/scripts/start",
     "start-prod": "cross-env NODE_ENV=production node build/scripts/start",
-    "lint": "eslint .",
+    "lint": "eslint . ",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "Pet Shelter team",

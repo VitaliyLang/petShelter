@@ -12,7 +12,7 @@ class App extends React.Component {
   render () {
     return (
       <Provider store={this.props.store}>
-          <Router history={browserHistory} children={this.props.routes} />
+        <Router history={browserHistory} children={this.props.routes} />
       </Provider>
     )
   }

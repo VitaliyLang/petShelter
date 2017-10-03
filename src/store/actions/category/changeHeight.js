@@ -1,6 +1,6 @@
-export default function(height){
-    return{
-        type: "CHANGE_HEIGHT",
-        payload: height
-    }
+export default function (height) {
+  return {
+    type: 'CHANGE_HEIGHT',
+    payload: height
+  }
 }

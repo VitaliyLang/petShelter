@@ -1,60 +1,58 @@
 
-function ReadItem(prop,onlyKey=false){
-    let resArr = [], resObjArr = [], resObj = {};
-    Object.keys(prop).map(
+function ReadItem (prop, onlyKey = false) {
+  let resArr = [], resObjArr = [], resObj = {}
+  Object.keys(prop).map(
         (key, id) => {
-            resArr[id]=prop[key];
-            resObj[key] = prop[key];
-            resObjArr[id] = {[key]:resObj[key]}
-        });
-    if(onlyKey){
-        return resObjArr;
-    }
-    return resArr;
+          resArr[id] = prop[key]
+          resObj[key] = prop[key]
+          resObjArr[id] = { [key]:resObj[key] }
+        })
+  if (onlyKey) {
+    return resObjArr
+  }
+  return resArr
 }
 
-/////////////////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////////////
 
-function signPerson(props,personInformation,link){
-   return  props.firebase.login({
-        email: personInformation.email,
-        password: personInformation.password
-    })
-    .then((res) => {   
-        return Promise.resolve(res);
+function signPerson (props, personInformation, link) {
+  return props.firebase.login({
+    email: personInformation.email,
+    password: personInformation.password
+  })
+    .then((res) => {
+      return Promise.resolve(res)
     })
     .catch((err) => Promise.reject(err))
 }
-///////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////
 
-function createNewUser(props,{ email, password=String(Math.random()).slice(-8), username, phoneNumber, active = false, animalId = '', type = 'give', role='user'}) {
-    let date = new Date().toLocaleString().split(',')[0];
-    props.firebase.createUser(
+function createNewUser (props, { email, password = String(Math.random()).slice(-8), username, phoneNumber, active = false, animalId = '', type = 'give', role = 'user' }) {
+  let date = new Date().toLocaleString().split(',')[0]
+  props.firebase.createUser(
       { email, password },
-      { username, email, phoneNumber, active, animalId, type, date, role}
+      { username, email, phoneNumber, active, animalId, type, date, role }
   )
   .then((res) => {
-      let userId = props.firebase.auth().currentUser.uid;
-      props.firebase.database().ref('/users/').once('value').then((snapshot) => {
-          let usersList = Object.keys(snapshot.val());
-          usersList.push(userId);                       
-          props.firebase.database().ref('/usersList/').set(usersList)
-          .then((res)=>{
-              //props.firebase.logout();                     
-              alert('Your request is sent successfully. Wait for our answer soon.');
-              return                     
+    let userId = props.firebase.auth().currentUser.uid
+    props.firebase.database().ref('/users/').once('value').then((snapshot) => {
+      let usersList = Object.keys(snapshot.val())
+      usersList.push(userId)
+      props.firebase.database().ref('/usersList/').set(usersList)
+          .then((res) => {
+              // props.firebase.logout();
+            alert('Your request is sent successfully. Wait for our answer soon.')
           })
-          .catch(err=>console.log(err));                    
-      })
-      /*var user = this.props.firebase.auth().currentUser;
+          .catch(err => console.log(err))
+    })
+      /* var user = this.props.firebase.auth().currentUser;
       let updates = {};
       updates['/users/'+user.uid+'/animalId'] = 123;
-      this.props.firebase.database().ref().update(updates);*/
+      this.props.firebase.database().ref().update(updates); */
   })
-  .catch((err) => console.log(err));
-  return
+  .catch((err) => console.log(err))
 }
 
-//////////////////////////////////////////////////////////////
+/// ///////////////////////////////////////////////////////////
 
-export {ReadItem,signPerson,createNewUser}
+export { ReadItem, signPerson, createNewUser }
