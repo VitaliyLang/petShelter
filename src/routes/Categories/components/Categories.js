@@ -4,7 +4,7 @@ import CategoriesPanel from './CategoriesPanel'
 import PropTypes from 'prop-types'
 import getInvite from '../../../store/actions/categories'
 import getAnimals from '../../../store/actions/animals'
-import {ReadItem} from '../../../components/fireBase'
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './styles.scss'
 
 class Categories extends React.Component {
@@ -24,12 +24,18 @@ class Categories extends React.Component {
   }
   
   render(){
-    let { categories, onGetInvite, listAnimals, onGetAnimals } = this.props;
+    let { categories, onGetInvite, listAnimals, onGetAnimals } = this.props,
+        value;
+
     if(categories.error || categories.isLoading){
       return null;
     }
 
-    this.categoriesArr = ReadItem(categories.categories);
+    const keys = Object.keys(categories.categories);
+    
+    this.categoriesArr = keys.map((item) => {
+      return categories.categories[item]
+    })
       
     if (this.props.children) {
         return (
@@ -37,7 +43,7 @@ class Categories extends React.Component {
         )
       } else {
         return (
-         <CategoriesPanel categories={this.categoriesArr} onGetAnimals={onGetAnimals} listAnimals={listAnimals} />
+         <CategoriesPanel  categories={this.categoriesArr} onGetAnimals={onGetAnimals} listAnimals={listAnimals} />
         )
       }
   }
