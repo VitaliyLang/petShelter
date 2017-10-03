@@ -10,12 +10,7 @@ class Category extends React.Component {
       }
     
         updateWidth(){
-            this.setState({width: $(window).width(),height:$(window).height()});
-            let width = this.state.width, 
-                height =  this.state.height;
-           
-            width < height ? this.key = 'm' : this.key = 'd';
-            
+            this.setState({width: $(window).width(),height:$(window).height()});            
         }
     
         componentWillMount() {
@@ -38,6 +33,11 @@ class Category extends React.Component {
         }
 
     render(){
+        let width = this.state.width, 
+            height =  this.state.height;
+   
+        width < height ? this.key = 'm' : this.key = 'd';
+
         let data = this.props.category,
             categorClick = this.categorClick.bind(this);
         return(
