@@ -1,6 +1,6 @@
-export default function(arr){
-    return{
-        type: "MODIFY_LIST",
-        payload: arr
-    }
+export default function (arr) {
+  return {
+    type: 'MODIFY_LIST',
+    payload: arr
+  }
 }

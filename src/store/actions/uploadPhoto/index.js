@@ -1,3 +1,3 @@
-import {uploadPhoto} from './uploadPhoto'
+import { uploadPhoto } from './uploadPhoto'
 
 export default uploadPhoto

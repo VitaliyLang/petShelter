@@ -1,12 +1,12 @@
-import firebase from 'firebase';
-import database from '../../firebaseConfig/firebase.js';
+import firebase from 'firebase'
+import database from '../../firebaseConfig/firebase.js'
 
-export function logout(){
-    return dispatch => {
-       return firebase.auth().signOut()
+export function logout () {
+  return dispatch => {
+    return firebase.auth().signOut()
        .then(() => {
-            dispatch({type:'LOGOUT_OK'})
+         dispatch({ type:'LOGOUT_OK' })
        })
-       .catch(error => dispatch({type:'LOGOUT_FALSE', error:error.message}))
-    }
+       .catch(error => dispatch({ type:'LOGOUT_FALSE', error:error.message }))
+  }
 }

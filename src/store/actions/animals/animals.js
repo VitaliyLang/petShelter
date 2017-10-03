@@ -1,34 +1,34 @@
 import database from '../../firebaseConfig/firebase.js'
 
-export function getAnimals(link) {
+export function getAnimals (link) {
   return dispatch => {
-    dispatch(getInviteRequestedAction());
+    dispatch(getInviteRequestedAction())
     return database.ref(link).once('value', snap => {
-      const animals = snap.val();
+      const animals = snap.val()
       dispatch(getInviteFulfilledAction(animals))
     })
       .catch((error) => {
-        console.log(error);
-        dispatch(getInviteRejectedAction());
-      });
+        console.log(error)
+        dispatch(getInviteRejectedAction())
+      })
   }
 }
 
-function getInviteRequestedAction() {
+function getInviteRequestedAction () {
   return {
     type: 'GetAnimalRequested'
-  };
+  }
 }
 
-function getInviteRejectedAction() {
+function getInviteRejectedAction () {
   return {
     type: 'GetAnimalRejected'
   }
 }
 
-function getInviteFulfilledAction(animals) {
+function getInviteFulfilledAction (animals) {
   return {
     type: 'GetAnimalFulfilled',
     animals
-  };
+  }
 }

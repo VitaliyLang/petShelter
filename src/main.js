@@ -16,11 +16,10 @@ const MOUNT_NODE = document.getElementById('root')
 
 // Register SW and Manifest
 // ------------------------------------
-const project = require('../project.config');
+const project = require('../project.config')
 if (project.env === 'production') {
-    addManifest();
+  addManifest()
 }
-
 
 let render = () => {
   const App = require('./components/App').default

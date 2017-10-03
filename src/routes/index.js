@@ -62,11 +62,7 @@ export const createRoutes = (store) => ([
         component: Partners
       }, {
         path: '/login',
-        component: SignIn,
-        onEnter: function (nextState, replaceState) {
-          console.log(store.getState())
-          // replaceState('/admin/dashboard')
-        }
+        component: SignIn
       }, {
         path: '/signup',
         component: Animal

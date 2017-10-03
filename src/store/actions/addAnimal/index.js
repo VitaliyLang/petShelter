@@ -1,3 +1,3 @@
-import {addAnimal} from './addAnimal'
+import { addAnimal } from './addAnimal'
 
 export default addAnimal

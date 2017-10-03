@@ -1,14 +1,13 @@
 import React from 'react'
 import './FormLayout.scss'
 
-
-function FormLayout(props) {
+function FormLayout (props) {
   return (
-  
-    <form className="form">
+
+    <form className='form'>
       {props.children}
-   </form>
-  
-  );
+    </form>
+
+  )
 }
 export default FormLayout

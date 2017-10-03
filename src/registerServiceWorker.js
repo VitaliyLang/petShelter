@@ -4,49 +4,47 @@ const isLocalhost = Boolean(
     window.location.hostname.match(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
-);
+)
 
-export default function register() {
+export default function register () {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    const publicUrl = new URL('/', window.location);
+    const publicUrl = new URL('/', window.location)
 
     window.addEventListener('load', () => {
-      const swUrl = `/service-worker.js`;
+      const swUrl = '/service-worker.js'
 
-       if (!isLocalhost) {
-        registerValidSW(swUrl);
-       } else {
-         checkValidServiceWorker(swUrl);
+      if (!isLocalhost) {
+        registerValidSW(swUrl)
+      } else {
+        checkValidServiceWorker(swUrl)
       }
-    });
+    })
   }
 }
 
-function registerValidSW(swUrl) {
+function registerValidSW (swUrl) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
       registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
+        const installingWorker = registration.installing
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
-
             if (navigator.serviceWorker.controller) {
-              console.log('New content is available; please refresh.');
+              console.log('New content is available; please refresh.')
             } else {
-              console.log('Content is cached for offline use.');
+              console.log('Content is cached for offline use.')
             }
           }
-        };
-      };
+        }
+      }
     })
     .catch(error => {
-      console.error('Error during service worker registration:', error);
-    });
+      console.error('Error during service worker registration:', error)
+    })
 }
 
-
-function checkValidServiceWorker(swUrl) {
+function checkValidServiceWorker (swUrl) {
   fetch(swUrl)
     .then(response => {
       if (
@@ -55,25 +53,24 @@ function checkValidServiceWorker(swUrl) {
       ) {
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
-            window.location.reload();
-          });
-        });
+            window.location.reload()
+          })
+        })
       } else {
-
-        registerValidSW(swUrl);
+        registerValidSW(swUrl)
       }
     })
     .catch(() => {
       console.log(
         'No internet connection found. App is running in offline mode.'
-      );
-    });
+      )
+    })
 }
 
-export function unregister() {
+export function unregister () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
+      registration.unregister()
+    })
   }
 }
