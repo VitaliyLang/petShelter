@@ -1,51 +1,44 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
+import cat from '../assets/cat-20480-1536.jpg';
+import dog from '../assets/dog-2048-1536.jpg';
+import other from '../assets/other-2048.jpg';
 
 class Category extends React.Component {
-  constructor (props) {
+  constructor(props){
     super(props)
-    this.state = { width:$(window).width(), height:$(window).height() }
-    this.key
-    this.updateWidth = this.updateWidth.bind(this)
-  }
-
-  updateWidth () {
-    this.setState({ width: $(window).width(), height:$(window).height() })
-  }
-
-  componentWillMount () {
-    this.updateWidth()
-  }
-
-  componentDidMount () {
-    window.addEventListener('resize', this.updateWidth)
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('resize', this.updateWidth)
+    this.categorClick = this.categorClick.bind(this)
   }
 
   categorClick (e) {
     e.preventDefault()
-    let link = '/animals/' + e.target.id, onlyKey = true, annArr = []
+    let link = '/animals/' + e.target.id;
     let { onGetAnimals } = this.props
     onGetAnimals(link)
   }
 
   render () {
-    let width = this.state.width,
-      height = this.state.height
 
-    width < height ? this.key = 'm' : this.key = 'd'
+    let data = this.props.category;
 
-    let data = this.props.category,
-      categorClick = this.categorClick.bind(this)
+    let objImg = {
+      cat : cat,
+      dog : dog,
+      other : other
+    } 
+    
+    let imgStyle = {
+      background: 'url('+objImg[data.toLowerCase()]+')',
+      backgroundSize :'cover',
+      height: '100vh'
+    };
+
     return (
       <div className='category'>
-        <img src={data.url[this.key]} />
-        <p className='legend' onClick={categorClick}>
-          <Link to={'/categories/' + data.category.toLowerCase()} id={data.category.toLowerCase()}>
-            {data.category}
+        <div className='category-img' style={imgStyle}></div>
+        <p className='legend' onClick={this.categorClick}>
+          <Link to={'/categories/' + data.toLowerCase()} id={data.toLowerCase()}>
+            {data}
           </Link>
         </p>
       </div>
