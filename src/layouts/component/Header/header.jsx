@@ -12,6 +12,17 @@ class Header extends React.Component{
     constructor(){
         super();
         this.onClick = this.onClick.bind(this);
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+    };
+    
+    forceUpdateHandler(){
+      this.forceUpdate();
+    }
+    componentDidMount () {
+        window.addEventListener('resize', this.forceUpdateHandler)
+      }
+    componentWillUnmount () {
+        window.removeEventListener('resize', this.forceUpdateHandler)
     }
     onClick(){
         this.props.showModal(true);

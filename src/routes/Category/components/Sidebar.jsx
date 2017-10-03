@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { browserHistory, Router } from 'react-router';
 import './Sidebar.scss';
 import { Input, Button } from 'react-materialize';
@@ -23,12 +23,22 @@ class Sidebar extends Component {
             Age: ['Any', 'Baby', 'Young', 'Adult', 'Senior']
         }
         this.keys = Object.keys(this.values);
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     }
-    setQuery(){
+    forceUpdateHandler() {
+        this.forceUpdate();
+    }
+    componentDidMount() {
+        window.addEventListener('resize', this.forceUpdateHandler)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.forceUpdateHandler)
+    }
+    setQuery() {
         let queryObj = this.props.filter;
         let keys = Object.keys(queryObj);
         let query = [];
-        keys.forEach((key)=>query.push(encodeURIComponent(key) +'='+ encodeURIComponent(queryObj[key])));
+        keys.forEach((key) => query.push(encodeURIComponent(key) + '=' + encodeURIComponent(queryObj[key])));
         query = query.join('&');
         let path = this.props.location.pathname;
         browserHistory.push(`${path}?${query}`);
@@ -38,12 +48,12 @@ class Sidebar extends Component {
         this.setQuery();
         this.props.showModal(false);
     }
-    componentWillMount(){
+    componentWillMount() {
         let query = this.props.location.query;
-        let cleanQuery={};
-        this.keys.forEach((key)=>{
-            let find = this.values[key].find((value)=>value.toLowerCase()==query[key.toLowerCase()]);
-            if(find) return cleanQuery[key.toLocaleLowerCase()] = query[key.toLocaleLowerCase()];
+        let cleanQuery = {};
+        this.keys.forEach((key) => {
+            let find = this.values[key].find((value) => value.toLowerCase() == query[key.toLowerCase()]);
+            if (find) return cleanQuery[key.toLocaleLowerCase()] = query[key.toLocaleLowerCase()];
         });
         this.props.setValues(cleanQuery);
     }
@@ -52,16 +62,16 @@ class Sidebar extends Component {
             ? this.props.deleteValue(e.target.name)
             : this.props.changeValue(e.target.name, e.target.value);
     }
-    reset(){
+    reset() {
         this.props.setValues({});
         this.setQuery();
     }
     render() {
-        if(!this.props.show && (window.innerWidth < 500)){
+        if (!this.props.show && (window.innerWidth < 500)) {
             return null
         }
         return (
-            <aside className="aside_category filter_block" ref={(el)=>{this.aside=el}}>
+            <aside className="aside_category filter_block" ref={(el) => { this.aside = el }}>
                 <form onSubmit={this.handleSubmit}>
                     <h2> Filter </h2>
                     {this.keys.map((key, index) => {
@@ -71,22 +81,22 @@ class Sidebar extends Component {
                                 {this.values[key].map((value, index) => {
                                     let check = value.toLowerCase() == 'any' ? undefined : value.toLowerCase();
                                     return <Input
-                                                type='radio'
-                                                name={key.toLowerCase()}
-                                                className='with-gap'
-                                                label={value}
-                                                value={value.toLowerCase()}
-                                                onChange={this.handleChange}
-                                                checked={this.props.filter[key.toLowerCase()] === check}
-                                                key={index}
-                                            />
-                                    })
+                                        type='radio'
+                                        name={key.toLowerCase()}
+                                        className='with-gap'
+                                        label={value}
+                                        value={value.toLowerCase()}
+                                        onChange={this.handleChange}
+                                        checked={this.props.filter[key.toLowerCase()] === check}
+                                        key={index}
+                                    />
+                                })
                                 }
                             </div>)
                     })
                     }
                     <Button type="submit" className="filter btn waves-effect waves-light"> Apply </Button>
-                    <Button  className="filter btn  waves-effect waves-light" onClick={this.reset}> Reset </Button>
+                    <Button className="filter btn  waves-effect waves-light" onClick={this.reset}> Reset </Button>
                 </form>
             </aside>
         )
