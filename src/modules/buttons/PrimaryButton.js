@@ -10,7 +10,8 @@ class PrimaryButton extends React.Component {
         waves='light'
         className='primaryBtn'
         disabled={false || this.props.disabled}
-	          >button</Button>
+      >{this.props.label || 'button'}
+      </Button>
     )
   }
 }
