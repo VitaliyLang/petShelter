@@ -60,10 +60,14 @@ export const createRoutes = (store) => ([
         name: 'partners',
         path: '/partners',
         component: Partners
-      },{
+      }, {
         path: '/login',
-        component: SignIn
-      },{
+        component: SignIn,
+        onEnter: function (nextState, replaceState) {
+          console.log(store.getState())
+          // replaceState('/admin/dashboard')
+        }
+      }, {
         path: '/signup',
         component: Animal
       }
