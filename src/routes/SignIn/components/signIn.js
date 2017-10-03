@@ -3,12 +3,12 @@ import Formsy from 'formsy-react'
 import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
 import Button from 'modules/buttons/PrimaryButton'
-import signin from '../../store/actions/signin'
-import { signPerson } from '../../components/fireBase'
-import login from '../../store/actions/login'
+import signin from '../../../store/actions/signin/index'
+import { signPerson } from '../../../components/fireBase'
+import login from '../../../store/actions/login/index'
 import 'modules/buttons/buttons.scss'
 import 'modules/inputs/inputs.scss'
-import './style.scss'
+import './signIn.scss'
 
 class signIn extends React.Component {
   constructor (props) {
@@ -57,15 +57,19 @@ class signIn extends React.Component {
       this.props.router.replace('/admin/dashboard')
     } else {
       return (
-        <div className='form_wrapper'>
-          <h2>Sign In</h2>
-          <Formsy.Form className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
-            onInvalid={this.disableButton}>
-            <MainInput name='email' type='email' validations='isEmail' placeholder='email'
-              validations={{ minLength: 7 }} validationError='This is not a valid email' required />
-            <MainInput name='password' type='password' placeholder='Password' required />
-            <Button disabled={!this.state.canSubmit}>Sign in</Button>
-          </Formsy.Form>
+        <div className='form_wrapper main_section'>
+          <div className='login_form'>
+            <div className='form_box'>
+              <h2>Sign In</h2>
+              <Formsy.Form className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
+                           onInvalid={this.disableButton}>
+                <MainInput name='email' type='email' validations='isEmail' placeholder='email'
+                           validations={{ minLength: 7 }} validationError='This is not a valid email' required />
+                <MainInput name='password' type='password' placeholder='Password' required />
+                <Button disabled={!this.state.canSubmit} label='Sign In' />
+              </Formsy.Form>
+            </div>
+          </div>
         </div>
       )
     }
