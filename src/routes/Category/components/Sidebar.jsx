@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import changeValue from 'store/actions/category/changeRadioValue';
 import deleteValue from 'store/actions/category/deleteRadioValue';
 import setValues from 'store/actions/category/setValues';
+import modalAdopt from 'store/actions/modalAdopt';
 
 
 class Sidebar extends Component {
@@ -33,11 +34,9 @@ class Sidebar extends Component {
         browserHistory.push(`${path}?${query}`);
     }
     handleSubmit(e) {
-        if(window.innerWidth<500){
-            this.aside.classList.remove('filter_block')
-        }
         e.preventDefault();
         this.setQuery();
+        this.props.showModal(false);
     }
     componentWillMount(){
         let query = this.props.location.query;
@@ -47,11 +46,6 @@ class Sidebar extends Component {
             if(find) return cleanQuery[key.toLocaleLowerCase()] = query[key.toLocaleLowerCase()];
         });
         this.props.setValues(cleanQuery);
-    }
-    componentDidMount(){
-        if(window.innerWidth<500){
-            this.aside.classList.add('filter_block')
-        }
     }
     handleChange(e) {
         e.target.value == 'any'
@@ -63,9 +57,11 @@ class Sidebar extends Component {
         this.setQuery();
     }
     render() {
-
+        if(!this.props.show && (window.innerWidth < 500)){
+            return null
+        }
         return (
-            <aside className="aside_category" ref={(el)=>{this.aside=el}}>
+            <aside className="aside_category filter_block" ref={(el)=>{this.aside=el}}>
                 <form onSubmit={this.handleSubmit}>
                     <h2> Filter </h2>
                     {this.keys.map((key, index) => {
@@ -98,11 +94,13 @@ class Sidebar extends Component {
 }
 export default connect(
     state => ({
-        filter: state.filterAnimals
+        filter: state.filterAnimals,
+        show: state.animalDetail.show
     }),
     dispatch => ({
         changeValue: (name, value) => dispatch(changeValue(name, value)),
         deleteValue: (name) => dispatch(deleteValue(name)),
-        setValues: (obj) => dispatch(setValues(obj))
+        setValues: (obj) => dispatch(setValues(obj)),
+        showModal: (bool) => dispatch(modalAdopt(bool))
     })
 )(Sidebar)

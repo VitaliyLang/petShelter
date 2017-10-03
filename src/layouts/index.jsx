@@ -9,7 +9,6 @@ class StaticLayout extends Component {
     super(props)
   }
   render () {
-
     let animalID = this.props.listAnimals && this.props.listAnimals.alias|| "";
     let params = {};
     if(this.props.params.animalID){
