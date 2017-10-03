@@ -29,7 +29,7 @@ class Categories extends React.Component {
     if (categories.error || categories.isLoading) {
       return null
     }
-
+    
     const keys = Object.keys(categories.categories)
 
     this.categoriesArr = keys.map((item) => {
