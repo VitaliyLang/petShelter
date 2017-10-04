@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import Message from './Message/'
-import { firebaseConnect, dataToJS } from 'react-redux-firebase'
-import {ReadItem} from 'components/fireBase'
 
 class Messages extends React.Component {
     constructor(props){
@@ -33,14 +31,4 @@ class Messages extends React.Component {
     }
 }
 
-//export default Messages
-
-const wrappedMessages = firebaseConnect([
-    '/'
-])(Messages)
-
-export default connect(
-  ({firebase}) => ({
-    users: dataToJS(firebase, 'users')
-  })
-)(wrappedMessages)
+export default Messages
