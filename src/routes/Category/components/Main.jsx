@@ -4,6 +4,7 @@ import { List } from 'react-virtualized';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import debounce from 'modules/helpers/debounce';
+import NotFound from '../../NotFound'
 import changeH from 'store/actions/category/changeHeight';
 import modifyL from 'store/actions/category/modifyList';
 import changeB from 'store/actions/category/changeBottom';
@@ -127,8 +128,7 @@ class Main extends Component {
     }
     if(!this.props.categoryStore.listModify.length){
       return <h1 className = 'bad_luck'>
-                Unfortunatly no animals matched your search. 
-                Try to pick less filter's parameters and probably you'll find your favourite one.
+                Unfortunatly no animals matched your search.
              </h1>
     }
     return (

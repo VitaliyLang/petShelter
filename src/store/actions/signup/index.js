@@ -1,3 +1,3 @@
-import {signup} from './signup.js';
+import { signup } from './signup.js'
 
 export default signup

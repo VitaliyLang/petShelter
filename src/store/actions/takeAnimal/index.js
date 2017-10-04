@@ -1,3 +1,3 @@
-import {takeAnimal} from './takeAnimal'
+import { takeAnimal } from './takeAnimal'
 
 export default takeAnimal

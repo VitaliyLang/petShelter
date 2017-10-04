@@ -1,0 +1,35 @@
+@import '_variables';
+
+.form_wrapper {
+	background-image: url('../assets/bg.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 88vh;
+}
+.login_form {
+	display: flex;
+	justify-content: center;
+	padding-top: 20px;
+	background-color: rgba(60,143,87,.9);
+	height: 88vh;
+}
+.form_header, .form_text {
+	color:white;
+}
+
+.form_box {
+	height: 500px;
+	width: 450px;
+	padding: 20px;
+	background: $form-gray;
+	border: 1px solid black;
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content: space-around;
+	.form {
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+	}
+}

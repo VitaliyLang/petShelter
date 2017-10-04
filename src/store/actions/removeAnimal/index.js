@@ -1,3 +1,3 @@
-import {removeAnimal} from './removeAnimal'
+import { removeAnimal } from './removeAnimal'
 
-export default removeAnimal;
+export default removeAnimal

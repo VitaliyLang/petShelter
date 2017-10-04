@@ -60,10 +60,12 @@ export const createRoutes = (store) => ([
         name: 'partners',
         path: '/partners',
         component: Partners
-      },{
+      }, {
+        name: 'login',
         path: '/login',
         component: SignIn
-      },{
+      }, {
+        name: 'signup',
         path: '/signup',
         component: Animal
       }

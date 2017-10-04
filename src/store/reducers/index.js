@@ -17,6 +17,8 @@ import updateAnimal from './updateAnimal';
 import removeAnimal from './removeAnimal';
 import modalAdopt from './modalAdopt';
 import oneAnimal from './oneAnimal';
+import animalDetail from './animalDetail'
+
 
 const makeRootReducer = combineReducers({
   people,
@@ -37,7 +39,8 @@ const makeRootReducer = combineReducers({
   removeAnimal,
   modalAdopt,
   oneAnimal,
-  
+  animalDetail,
+
 })
 
-export default makeRootReducer;
+export default makeRootReducer

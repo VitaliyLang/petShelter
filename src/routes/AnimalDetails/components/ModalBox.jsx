@@ -12,7 +12,7 @@ export default class ModalBox extends Component {
         let pathname= location.pathname.split('/');
         let key = pathname[pathname.length-1];
         let category = pathname[pathname.length-2];
-        this.props.adopt(key, category, false);
+        this.props.adopt(key, category.toLowerCase(), false);
         this.props.click();
         let user = {
             name: this.name.state.value,
