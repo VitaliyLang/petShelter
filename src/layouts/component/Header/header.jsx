@@ -14,7 +14,7 @@ class Header extends React.Component{
         this.onClick = this.onClick.bind(this);
         this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     };
-    
+
     forceUpdateHandler(){
       this.forceUpdate();
     }
@@ -35,6 +35,7 @@ class Header extends React.Component{
             Filter = null;
         }
         return (
+            <div className='navbar-fixed'>
                 <nav className = 'main-layout-header'>
                     <div className='nav-wrapper'>
                         <Link to='/' className='brand-logo'>
@@ -72,6 +73,7 @@ class Header extends React.Component{
                     </ul>
                     </div>
                 </nav>
+            </div>
         );
     }
 }
