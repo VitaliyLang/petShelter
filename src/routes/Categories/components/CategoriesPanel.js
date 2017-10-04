@@ -9,7 +9,7 @@ class CategoriesPanel extends React.Component {
 
   render () {
     let data = this.props.categories,
-      panelTamplate = []
+      panelTamplate = [];
     if (data.length > 0) {
       panelTamplate = data.map((item, i) => {
         return (

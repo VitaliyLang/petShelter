@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { addPerson } from '../../../store/actions'
 import signup from '../../../store/actions/signup'
 import Button from 'modules/buttons/PrimaryButton'
-import { createNewUser } from '../../../components/fireBase'
 // import 'modules/inputs/inputs.scss'
 
 const FormToAdmin = React.createClass({

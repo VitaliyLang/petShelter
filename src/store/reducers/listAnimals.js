@@ -1,8 +1,11 @@
-let initialState = {
+import {REHYDRATE} from 'redux-persist/constants';
+
+let resObj = {
   animals: {},
   isLoading: true,
   error: false
-}
+};
+let initialState =JSON.parse(localStorage.getItem('reduxPersist:listAnimals')) || resObj;
 
 export default (state = initialState, action) => {
   switch (action.type) {
