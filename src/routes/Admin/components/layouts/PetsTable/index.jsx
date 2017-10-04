@@ -12,9 +12,6 @@ class PetsTable extends React.Component {
 				
 			// }
 		}
-		componentWillMount() {
-
-		}
 
 		render(){
 			
@@ -51,27 +48,13 @@ class PetsTable extends React.Component {
 
 			
 			//RETURN PET ROW TO SET IN FILTER
-			var returnedData;
-			this.returnPetRow = (dataFromPetRow) => {
-      	// sendPetToUpdate(dataFromPetRow);
-      	// console.log('data from row', dataFromPetRow);
-      	returnedData = dataFromPetRow;			
-    	}	
+			
     	// console.log("ret",returnedData);
     	//END
 
 
 
-				// this.props.updatePet("-KuKJtcxmqqmfW-OCxw-","dog",{
-				// 	active: true,
- 			// 		age: "adult",
- 			// 		alias: "Jack",
- 			// 		category: "dog",
- 			// 		sex: "female",
- 			// 		size: "small",
- 			// 		url: "http://cdn3-www.dogtime.com/assets/uploads/gall...",
-				// 	vaccinations:true
-				// })
+				
 				return(
 					<div>
 						<div className="table">
@@ -94,8 +77,9 @@ class PetsTable extends React.Component {
 																									returnPetToUpdate={this.returnPetRow}
 																								/>)}
 						</div>
-						
-					</div>       
+						<EditFilter isVisible={ false } />
+					</div>
+
 				)
 		}
 }
@@ -109,10 +93,10 @@ export default connect(
 	}),
 	dispatch => ({
 		onGetAnimals: () => dispatch(getAnimals()),
-		updatePet: (animalKey,category,animalObj) => dispatch(updateAnimal(animalKey,category,animalObj))
+		// oneAnimal: () => dispatch()
 	})
 )(PetsTable)
 
 
 
-// {returnedData.map((item,i) => <EditFilter item={item} />)}
+//        {returnedData.map((item,i) =><EditFilter item={item} key={i} /> )}

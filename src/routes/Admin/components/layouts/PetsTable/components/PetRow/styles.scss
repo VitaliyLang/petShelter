@@ -9,8 +9,8 @@
 			text-transform: capitalize;
 			text-align: center;
 			.img {
-				height: 50px;
-				width: auto;
+				height: 100%;
+				width: 100%;
 				cursor: pointer;
 				&:hover {	
 					transition:all .8s;
