@@ -26,7 +26,7 @@ class PetRow extends React.Component {
 				// myPet = myArr[i];
 				document.querySelector('.petEditor').style.display = 'block';
 				document.querySelector('[data-key]', key).style.display = 'none';
-				console.log("button key", key);
+				// console.log("button key", key);
 				this.props.findAnimal(myArr[i]);
 				 // return this.props.returnPetToUpdate(myArr[i]);					
 			}

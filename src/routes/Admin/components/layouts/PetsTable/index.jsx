@@ -12,20 +12,6 @@ class PetsTable extends React.Component {
 				
 			// }
 		}
-		
-
-		// var returnedData = [];
-		// function returnPetRow(dataFromPetRow)  {
-  //     	// sendPetToUpdate(dataFromPetRow);
-  //     	// console.log('data from row', dataFromPetRow);
-  //    //  	for (item in dataFromPetRow) {
-		// 			// returnedData.push(dataFromPetRow[item]);
-  //    //  	}
-  //    returnedData.push(dataFromPetRow);
-      				
-  //   		console.log("ret",returnedData);
-  //   	returnedData.map((item,i) => console.log(i, item.age) );
-  //   }
 
 		render(){
 			
@@ -68,16 +54,7 @@ class PetsTable extends React.Component {
 
 
 
-				// this.props.updatePet("-KuKJtcxmqqmfW-OCxw-","dog",{
-				// 	active: true,
- 			// 		age: "adult",
- 			// 		alias: "Jack",
- 			// 		category: "dog",
- 			// 		sex: "female",
- 			// 		size: "small",
- 			// 		url: "http://cdn3-www.dogtime.com/assets/uploads/gall...",
-				// 	vaccinations:true
-				// })
+				
 				return(
 					<div>
 						<div className="table">
@@ -100,7 +77,7 @@ class PetsTable extends React.Component {
 																									returnPetToUpdate={this.returnPetRow}
 																								/>)}
 						</div>
-						<EditFilter />
+						<EditFilter isVisible={ false } />
 					</div>
 
 				)
@@ -116,7 +93,6 @@ export default connect(
 	}),
 	dispatch => ({
 		onGetAnimals: () => dispatch(getAnimals()),
-		updatePet: (animalKey,category,animalObj) => dispatch(updateAnimal(animalKey,category,animalObj)),
 		// oneAnimal: () => dispatch()
 	})
 )(PetsTable)
