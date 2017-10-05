@@ -23,7 +23,7 @@ class PetsTable extends React.Component {
 			//making pets from all categories set in one array
 
 			var animals = this.props.allAnimals.animals; //data from response
-			
+			// console.log(animals);
 			var unsortedAnimals =[];
 			// console.log("animals",animals);
 				

@@ -86,7 +86,7 @@ class EditFilter extends React.Component {
 							</label>
 							<label >
 								Nickname
-								<input type="text" value={this.state.nickname} onChange={this.handleChange.bind(this, "nickname")} key="2" />
+								<input type="text" value={this.state.nickname} onChange={this.handleChange.bind(this, "nickname")} key="2" required/>
 							</label>
 							<label >
 								Age:

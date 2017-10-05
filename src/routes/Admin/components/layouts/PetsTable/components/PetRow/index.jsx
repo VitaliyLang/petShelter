@@ -23,7 +23,6 @@ class PetRow extends React.Component {
 				// document.querySelector('[data-key]', key).style.display = 'none';
 
 				this.props.findAnimal(myArr[i]);
-					
 			}
 		} 
 	}
@@ -43,7 +42,7 @@ class PetRow extends React.Component {
 										<img className="img" src= {this.props.item.url} alt=""/>
 								</div>
 								<div className="rowItem ">
-									<button ref="foo" onClick={this.getRow.bind(this)} data-key={this.props.item.key}>Edit</button>
+									<button  onClick={this.getRow.bind(this)} data-key={this.props.item.key}>Edit</button>
 								</div>
 								
 						</div>    
