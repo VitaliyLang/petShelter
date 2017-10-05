@@ -127,7 +127,7 @@ class Main extends Component {
       return null
     }
     if(!this.props.categoryStore.listModify.length){
-      return <h1 className = 'bad_luck'>
+      return <h1 className = 'message1'>
                 Unfortunatly no animals matched your search.
              </h1>
     }

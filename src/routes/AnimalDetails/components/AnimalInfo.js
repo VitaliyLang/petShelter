@@ -1,29 +1,33 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './AnimalInfo.scss'
 import { Button, Modal } from 'react-materialize'
 import ModalBox from './ModalBox'
 
-export default function AnimalInfo (props) {
-  if(props.animal.active == undefined) return null;
+class AnimalInfo extends Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
   let Btn
-  if (!props.animal.active) {
+  if (!this.props.animal.active) {
     Btn = <p style={{ color:'red', textAlign:'center' }}>Adopted</p>
   } else {
-    Btn = <Button type='submit' className='btn get waves-effect waves-light' onClick={props.click}> Adopt it </Button>
+    Btn = <Button type='submit' className='btn get waves-effect waves-light' onClick={this.props.click}> Adopt it </Button>
   }
-  console.log(props.animal.active);
-  console.log(props.succeed)
   return (
     <aside className='aside_category details'>
       <h2> Details </h2>
-      <p>name: {props.animal.alias}</p>
-      <p>sex: {props.animal.sex}</p>
-      <p>age: {props.animal.age}</p>
-      <p>size: {props.animal.size}</p>
-      <p>color: {props.animal.color}</p>
-      <p>vaccinations: {String(props.animal.vaccinations || false)}</p>
+      <p>name: {this.props.animal.alias}</p>
+      <p>sex: {this.props.animal.sex}</p>
+      <p>age: {this.props.animal.age}</p>
+      <p>size: {this.props.animal.size}</p>
+      <p>color: {this.props.animal.color}</p>
+      <p>vaccinations: {String(this.props.animal.vaccinations || false)}</p>
       {Btn}
-      <ModalBox show={props.show} click={props.click} adopt={props.adopt} signUp={props.signUp} />
+      <ModalBox onGetAnimals = {this.props.onGetAnimals} params = {this.props.params} show={this.props.show} click={this.props.click} adopt={this.props.adopt} signUp={this.props.signUp} />
     </aside>
   )
 }
+}
+
+export default AnimalInfo;

@@ -72,7 +72,7 @@ class Header extends React.Component{
                         <li><Link activeClassName='active' to='/contacts'>Contacts</Link></li>
                         <li><Link activeClassName='active' to='/about'>About</Link></li>
                         <li><Link activeClassName='active' to='/partners'>Partners</Link></li>
-                        <li><Link activeClassName='active' to='/categories'>Categories</Link></li>
+                        <li><Link  to='/categories'>Categories</Link></li>
                     </ul>
                     </div>
                 </nav>
