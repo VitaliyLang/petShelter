@@ -31,19 +31,6 @@ class signIn extends React.Component {
   }
 
   logIn (personInformation) {
-        /* let props = this.props,
-            link = '/admin/dashboard/';
-        let uid = signPerson(props,personInformation,link);
-        uid.then(res => {
-            if(res){
-                this.props.router.push(link);
-                return;
-            }
-        })
-        .catch(err => alert(err.message));
-        return */
-    console.log('you loged')
-        // browserHistory.push('/admin/dashboard');
     this.props.onLogin(personInformation)
   }
 
@@ -51,25 +38,26 @@ class signIn extends React.Component {
     this.props.onSignin()
   }
 
-  componentWillUpdate () {
-    if (this.props.signin.isAdmin) {
+  componentWillUpdate (nextProps) {
+    if (nextProps.signin.isAdmin) {
       this.props.router.replace('/admin/dashboard')
+    }
+
+    if (nextProps.login.login === false && nextProps.login.error.length) {
+      this.refs.form.updateInputsWithError({
+        password: 'The password or email is incorrect',
+        // password: nextProps.login.error.substring
+      })
     }
   }
 
   render () {
-    if (this.props.login.login === false && this.props.login.error.length) {
-      return (
-        <div>{this.props.login.error}</div>
-      )
-    }
-
     return (
       <div className='form_wrapper main_section'>
         <div className='login_form'>
           <div className='form_box'>
             <h2>Sign In</h2>
-            <Formsy.Form className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
+            <Formsy.Form ref="form" className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
                          onInvalid={this.disableButton}>
               <MainInput name='email' type='email' validations='isEmail' placeholder='email'
                          validations={{ minLength: 7 }} validationError='This is not a valid email' required />
