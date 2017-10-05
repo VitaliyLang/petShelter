@@ -58,32 +58,36 @@ class signIn extends React.Component {
   }
 
   render () {
-    if (this.props.signin.isAdmin) {
-      //this.props.router.replace('/admin/dashboard')
-    } else {
+    if (this.props.login.login === false && this.props.login.error.length) {
       return (
-        <div className='form_wrapper main_section'>
-          <div className='login_form'>
-            <div className='form_box'>
-              <h2>Sign In</h2>
-              <Formsy.Form className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
-                           onInvalid={this.disableButton}>
-                <MainInput name='email' type='email' validations='isEmail' placeholder='email'
-                           validations={{ minLength: 7 }} validationError='This is not a valid email' required />
-                <MainInput name='password' type='password' placeholder='Password' required />
-                <Button disabled={!this.state.canSubmit} label='Sign In' />
-              </Formsy.Form>
-            </div>
-          </div>
-        </div>
+        <div>{this.props.login.error}</div>
       )
     }
+
+    return (
+      <div className='form_wrapper main_section'>
+        <div className='login_form'>
+          <div className='form_box'>
+            <h2>Sign In</h2>
+            <Formsy.Form className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
+                         onInvalid={this.disableButton}>
+              <MainInput name='email' type='email' validations='isEmail' placeholder='email'
+                         validations={{ minLength: 7 }} validationError='This is not a valid email' required />
+              <MainInput name='password' type='password' placeholder='Password' required />
+              <Button disabled={!this.state.canSubmit} label='Sign In' />
+            </Formsy.Form>
+          </div>
+        </div>
+      </div>
+    )
+
   }
 }
 
 let mapStateToProps = (state) => {
   return {
-    signin: state.signin
+    signin: state.signin,
+    login: state.login
   }
 }
 

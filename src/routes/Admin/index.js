@@ -27,7 +27,6 @@ class Admin extends React.Component {
   render () {
     return (
       <div className='wrapper'>
-
         <NavigationPanel />
         <MainSection>
           <Routing action={this.props.params.action} />

@@ -21,11 +21,8 @@ class Routing extends React.Component {
         return <Animals />
       case 'takeOrder':
         return <TakeOrder />
-      case undefined:
-        return <DashBoard />
-
       default:
-        return <NotFound />
+        return <DashBoard />
     }
   }
 }
