@@ -1,8 +1,9 @@
 import React from 'react'
 import Formsy from 'formsy-react'
-import MainInput from 'modules/inputs/MainInput'
+// import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
-import Button from 'modules/buttons/PrimaryButton'
+// import Button from 'modules/buttons/PrimaryButton'
+import { Button, Input } from 'react-materialize';
 import signin from '../../../store/actions/signin/index'
 import login from '../../../store/actions/login/index'
 import 'modules/buttons/buttons.scss'
@@ -53,22 +54,15 @@ class signIn extends React.Component {
 
   render () {
     return (
-      <div className='form_wrapper main_section'>
-        <div className='login_form'>
-          <div className='form_box'>
-            <h2>Sign In</h2>
-            <Formsy.Form ref="form" className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
-                         onInvalid={this.disableButton}>
-              <MainInput name='email' type='email' validations='isEmail' placeholder='email'
-                         validations={{ minLength: 7 }} validationError='This is not a valid email' required />
-              <MainInput name='password' type='password' placeholder='Password' required />
-              <Button disabled={!this.state.canSubmit} label='Sign In' />
-            </Formsy.Form>
-          </div>
-        </div>
+      <div className='login_form'>
+        <Formsy.Form ref='form' className='modal_form' onValidSubmit={this.logIn} onValid={this.enableButton} onInvalid={this.disableButton}>
+          <h1 className='message1'>Sign In</h1>
+          <Input name='email' validate={true} validations={{ minLength: 7 }} type='email' label='Email' required />
+          <Input name='password' type='password' validate={true} label='Password' required/>
+          <Button disabled={this.state.canSubmit}> Sign In </Button>
+        </Formsy.Form>
       </div>
     )
-
   }
 }
 
