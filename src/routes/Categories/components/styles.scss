@@ -13,6 +13,7 @@
             height: calc(100vh - 64px);
         }
         .categories{
+            background: url('../assets/Spinner.gif') no-repeat center;
             .carousel{
                 height: calc(100vh - 94px);
                 @media only screen and (max-width: 601px){
@@ -26,6 +27,7 @@
                             .legend{
                                 background: transparent;
                                 font-size: 5em;
+                                opacity: .7;
                                 @media only screen and (max-height: 600px){
                                     bottom: 70%
                                 }
@@ -35,6 +37,9 @@
                                 }                            
                             }
                         }                        
+                    }
+                    .slider:hover .legend{
+                        opacity: 1;
                     }
                 }
             }

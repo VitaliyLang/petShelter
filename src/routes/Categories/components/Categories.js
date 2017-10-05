@@ -4,6 +4,9 @@ import CategoriesPanel from './CategoriesPanel'
 import PropTypes from 'prop-types'
 import getInvite from '../../../store/actions/categories'
 import getAnimals from '../../../store/actions/animals'
+import cat from '../assets/cat-20480-1536.jpg';
+import dog from '../assets/dog-2048-1536.jpg';
+import other from '../assets/other-2048.jpg';
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css'
 import './styles.scss'
 
@@ -14,19 +17,18 @@ class Categories extends React.Component {
 
   constructor (props) {
     super(props)
-    this.categoriesArr = []
+    this.categoriesArr = ['Dog','Cat','Other'];
   }
 
-  componentWillMount () {
+  /*componentWillMount () {
     let { onGetInvite } = this.props
     onGetInvite('/categories')
-  }
+  }*/
 
   render () {
-    let { categories, onGetInvite, listAnimals, onGetAnimals } = this.props,
-      value
+    let { categories, onGetInvite, listAnimals, onGetAnimals } = this.props;
 
-    if (categories.error || categories.isLoading) {
+    /*if (categories.error || categories.isLoading) {
       return null
     }
     
@@ -34,7 +36,7 @@ class Categories extends React.Component {
 
     this.categoriesArr = keys.map((item) => {
       return categories.categories[item]
-    })
+    })*/
 
     if (this.props.children) {
       return (

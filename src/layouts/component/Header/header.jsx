@@ -37,6 +37,7 @@ class Header extends React.Component{
             Filter = null;
         }
         return (
+            <div className='navbar-fixed'>
                 <nav className = 'main-layout-header'>
                     <div className='nav-wrapper'>
                         <Link to='/' className='brand-logo'>
@@ -75,6 +76,7 @@ class Header extends React.Component{
                     </ul>
                     </div>
                 </nav>
+            </div>
         );
     }
 }
