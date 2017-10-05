@@ -18,8 +18,13 @@
     justify-content: space-around;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.8);
     border-radius: 2px;
-    div input{
-        width: 100px;
+    overflow: hidden;
+    .message1{
+        width: 100%;
+        padding: 10px;
+    }
+    div input.validate{
+        padding-left: 20px;
     }
     button{
         width: 35%;

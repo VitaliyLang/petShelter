@@ -1,82 +1,70 @@
-import React from 'react'
-import Formsy from 'formsy-react'
-import MainInput from 'modules/inputs/MainInput'
+import React, { Component } from 'react'
+import {browserHistory} from 'react-router'
 import './FormToAdmin.scss'
 import { connect } from 'react-redux'
-import { addPerson } from '../../../store/actions'
-import signup from '../../../store/actions/signup'
-import Button from 'modules/buttons/PrimaryButton'
-// import 'modules/inputs/inputs.scss'
+import signup from 'store/actions/signup'
+import { Button, Input } from 'react-materialize';
 
-const FormToAdmin = React.createClass({
-  getInitialState () {
-    return {
-      canSubmit: false
+class FormToAdmin extends Component {
+  constructor() {
+    super();
+    this.submit = this.submit.bind(this);
+    this.state ={
+      show: false
     }
-  },
-  enableButton () {
-    this.setState({
-      canSubmit: true
+  }
+  submit(e) {
+    e.preventDefault();
+    if(this.name){
+      let obj = {
+        name: this.name.state.value,
+        email: this.email.state.value,
+        tel: this.tel.state.value,
+        type: 'give'
+      }
+      this.props.signup(obj);
+    }
+    this.setState((prevState)=>({
+      show: !prevState.show
+    }))
+  }
+  render() {
+    let content;
+    if(this.props.sign.signUp && this.state.show){
+      content = <div className = "notification">
+                  <h1 className = 'message1'>Thanks a lot for trusting!
+                    Our manager will call you back soon.
+                  </h1>
+                  <Button type="submit" className=" btn waves-effect waves-light"> Okey </Button>
+                </div>
+    }else{
+      content =
+        <div>
+          <h1 className = 'message1'>Entrust your pet to us</h1>
+          <Input label="Name" validate={true} autoComplete = {false} required minLength='3' size="10" ref={(input) => this.name = input} />
+          <Input type="email" label="Email" autoComplete = {false} validate={true} required ref={(input) => this.email = input} />
+          <Input type="tel" validate={true} autoComplete = {false} label="Phone: (0XX)XXXXXXX" required pattern="(\()?[0-9]{3}(\))?[-\s]?[0-9]{3}[-\s]?[0-9]{2}[-\s]?[0-9]{2}" ref={(input) => this.tel = input} />
 
-    })
-  },
-  disableButton () {
-    this.setState({
-      canSubmit: false
-    })
-  },
-  submit (model) {
-    this.addPerson(model)
-  },
-
-  addPerson (personInformation) {
-    personInformation.password = String(Math.random()).slice(-8)
-    personInformation.active = false
-    personInformation.animalId = ''
-    personInformation.type = 'give'
-    personInformation.role = 'user'
-    this.props.onAuth(personInformation)
-			// this.props.onAddPerson(personInformation);
-			// createNewUser(this.props,personInformation);
-  },
-  render () {
-    return (
-      <div className='admin_form_wrapper main_section'>
-        <div className='admin_form'>
-          <div className='form_box'>
-            <h3>Form to admin</h3>
-            <Formsy.Form className='form' onValidSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton}>
-              <MainInput name='email' type='email' validations='isEmail' placeholder='email' validationError='This is not a valid email' required />
-              <MainInput name='username' type='text' placeholder='Name' validations={{ minLength: 6 }} validationError='Name should contain more than 6 letters' required />
-              <MainInput name='phoneNumber' type='number' placeholder='Phone number' validations={{ minLength: 10 }} validationError='Phone number should looks like: 0XX XXX XX XX' required />
-              <Button disabled={!this.state.canSubmit} label='Send'>Submit</Button>
-            </Formsy.Form>
-          </div>
+          <Button type="submit" className=" btn waves-effect waves-light"> Apply </Button>
         </div>
-      </div>
-    )
-  }
-})
-
-// it is only mapStateToProps example for us
-const mapStateToProps = state => {
-  return {
-    people: console.log(state.people)
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddPerson: personInformation => {
-      dispatch(addPerson(personInformation))
-    },
-    onAuth: personInformation => {
-      dispatch(signup(personInformation))
     }
+    return (
+      <div className="formTo">
+        <form className='modal_form' onSubmit={this.submit} onReset = {this.reset}>
+          {content} 
+        </form>
+      </div>
+    );
   }
 }
+
+
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  state=>({
+    sign: state.signup
+  }),
+  dispatch=>({
+    signup: (obj)=>dispatch(signup(obj))
+  })
 )(FormToAdmin)

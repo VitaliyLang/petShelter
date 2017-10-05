@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import people from './people';
 import category from './category';
 import filterAnimals from './filterAnimals';
 import categories from './categories';
@@ -20,7 +19,6 @@ import animalDetail from './animalDetail'
 
 
 const makeRootReducer = combineReducers({
-  people,
   category,
   filterAnimals,
   categories,
@@ -37,8 +35,7 @@ const makeRootReducer = combineReducers({
   updateAnimal,
   removeAnimal,
   oneAnimal,
-  animalDetail,
-
+  animalDetail
 })
 
 export default makeRootReducer

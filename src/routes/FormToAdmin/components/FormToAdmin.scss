@@ -1,37 +1,20 @@
-@import '_variables';
-
-.admin_form_wrapper {
-	background-image: url('../assets/bg1.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	height: 88vh;
-}
-.admin_form {
+.formTo {
+	background: #383D40;
+	height: calc(100% - 30px);
 	display: flex;
-	justify-content: center;
-	padding-top: 20px;
-	background-color: rgba(60,143,87,.9);
-	height: 88vh;
-}
-.form_header, .form_text {
-	color:white;
-}
-
-.form_box {
-	height: 500px;
-	width: 450px;
-	padding: 20px;
-	background: $form-gray;
-	border: 1px solid black;
-	display: flex;
-	flex-direction:column;
-	align-items: center;
-	justify-content: space-around;
-	color: $primary-green;
-	.form {
+	.message1{
+		padding:0;
+		margin: 0 auto;
+	}
+	button{
+		display: block;
+		background: #79bd8f;
+		color: #383d40;
+	}
+	.notification{
+		height: 100%;
 		display: flex;
+		justify-content: space-around;
 		flex-direction: column;
-		align-items:center;
 	}
 }
-

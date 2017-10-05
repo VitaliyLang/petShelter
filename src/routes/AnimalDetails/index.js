@@ -6,51 +6,53 @@ import { connect } from 'react-redux'
 import './style.scss'
 import debounce from 'modules/helpers/debounce'
 import getAnimals from 'store/actions/animals'
-import modalAdopt from 'store/actions/modalAdopt'
-import animalDetailResize from 'store/actions/animalDetailResize'
 import takeAnimal from 'store/actions/takeAnimal'
 import signUp from 'store/actions/signup'
 import NotFound from '../NotFound'
 
 class AnimalDetails extends Component {
   constructor (props) {
-    super(props)
-    this.btnClick = this.btnClick.bind(this)
-    this.resize = this.resize.bind(this)
-    this.debounceResize = debounce(this.resize, 100)
-    this.start = this.start.bind(this)
+    super(props);
+    this.btnClick = this.btnClick.bind(this);
+    this.resize = this.resize.bind(this);
+    this.debounceResize = debounce(this.resize, 100);
+    this.start = this.start.bind(this);
+    this.state = {
+      show : false,
+      isResizing: false
+    }
   }
   componentDidMount () {
     window.addEventListener('resize', this.start)
   }
   componentWillUnmount () {
-    window.removeEventListener('resize', this.start)
+    window.removeEventListener('resize', this.start);
   }
   resize () {
-    this.props.resize(false)
+    this.setState({
+      isResizing: false
+    })
   }
   start () {
-    if (!this.props.isResizing) {
-      this.props.resize(true)
+    if (!this.state.isResizing) {
+      this.setState({
+        isResizing: true
+      })
     }
     this.debounceResize()
   }
   componentWillMount () {
-    let link0 = location.pathname.replace('categories', 'animals')
-    link0 = link0.split('/')
-    let link = ''
-    for (var i = 0; i + 1 < link0.length; i++) {
-      link += link0[i].toLowerCase() + '/'
-    }
-    link += link0[i]
-    this.props.onGetAnimals(link)
+    let link = `/animals/${this.props.params.categID.toLowerCase()}/${this.props.params.animalID}`;
+    this.props.onGetAnimals(link);
   }
   btnClick () {
-    this.props.showModal(!this.props.show)
+    this.setState((prevState)=>({
+      show: !prevState.show
+    }))
   }
   render () {
     let Picture
-    if (this.props.isResizing) {
+    if (this.state.isResizing) {
       Picture = null
     } else {
       Picture = <AnimalPictures animal={this.props.listAnimals.animals} />
@@ -58,12 +60,12 @@ class AnimalDetails extends Component {
     if (this.props.listAnimals.animals === null) {
       return <NotFound />
     }
-    if (this.props.listAnimals.isLoading) {
+    if (this.props.listAnimals.isLoading || !this.props.listAnimals.animals.alias) {
       return null
     }
     return (
       <div className='flex-container img-detail'>
-        <AnimalInfo animal={this.props.listAnimals.animals} show={this.props.show} click={this.btnClick} adopt={this.props.takeAnimal} signUp={this.props.signUp} succeed={this.props.succeed} />
+        <AnimalInfo onGetAnimals = {this.props.onGetAnimals} params = {this.props.params} animal={this.props.listAnimals.animals} show={this.state.show} click={this.btnClick} adopt={this.props.takeAnimal} signUp={this.props.signUp} succeed={this.props.succeed} />
         {Picture}
       </div>
     )
@@ -73,14 +75,10 @@ class AnimalDetails extends Component {
 export default connect(
   state => ({
     listAnimals: state.listAnimals,
-    show: state.animalDetail.show,
-    isResizing: state.animalDetail.isResizing,
     succeed: state.takeAnimal.isTaking
   }),
   dispatch => ({
     onGetAnimals: (link) => dispatch(getAnimals(link)),
-    showModal: (bool) => dispatch(modalAdopt(bool)),
-    resize: (bool) => dispatch(animalDetailResize(bool)),
     takeAnimal: (key, category, status) => dispatch(takeAnimal(key, category, status)),
     signUp : (obj) => dispatch(signUp(obj))
   })

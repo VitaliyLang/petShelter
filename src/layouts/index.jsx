@@ -18,8 +18,8 @@ class StaticLayout extends Component {
     }
     return (
       <div>
-        <Header />
-        <div className="main_section">
+        <Header params = {this.props.params} />
+        <div className="main_section" >
           <Breadcrumbs className='breadcrumbs' routes={this.props.routes} params={params} />
           {this.props.children}
         </div>
