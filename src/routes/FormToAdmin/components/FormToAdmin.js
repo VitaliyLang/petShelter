@@ -49,7 +49,7 @@ const FormToAdmin = React.createClass({
               <MainInput name='email' type='email' validations='isEmail' placeholder='email' validationError='This is not a valid email' required />
               <MainInput name='username' type='text' placeholder='Name' validations={{ minLength: 6 }} validationError='Name should contain more than 6 letters' required />
               <MainInput name='phoneNumber' type='number' placeholder='Phone number' validations={{ minLength: 10 }} validationError='Phone number should looks like: 0XX XXX XX XX' required />
-              <Button disabled={!this.state.canSubmit}>Submit</Button>
+              <Button disabled={!this.state.canSubmit} label='Send'>Submit</Button>
             </Formsy.Form>
           </div>
         </div>

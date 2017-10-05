@@ -27,9 +27,11 @@
 	flex-direction:column;
 	align-items: center;
 	justify-content: space-around;
+	color: $primary-green;
 	.form {
 		display: flex;
 		flex-direction: column;
 		align-items:center;
 	}
 }
+
