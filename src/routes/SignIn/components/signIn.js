@@ -51,9 +51,15 @@ class signIn extends React.Component {
     this.props.onSignin()
   }
 
-  render () {
+  componentWillUpdate () {
     if (this.props.signin.isAdmin) {
       this.props.router.replace('/admin/dashboard')
+    }
+  }
+
+  render () {
+    if (this.props.signin.isAdmin) {
+      //this.props.router.replace('/admin/dashboard')
     } else {
       return (
         <div className='form_wrapper main_section'>

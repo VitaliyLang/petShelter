@@ -18,40 +18,7 @@ class PetsTable extends React.Component {
 			//ALL PETS IN ARRAY 
 			//making pets from all categories set in one array
 
-			var animals = this.props.allAnimals.animals; //data from response
-			
-			var unsortedAnimals =[];
-			console.log("animals",animals);
-				
-			for (var item in animals) { 
-				unsortedAnimals.push(animals[item]);
-			}
-		
-			console.log("unsort", unsortedAnimals);
-			var sortedAnimals = [];
-		
-			for (item in unsortedAnimals) { // pushing every animal to one array
-					
-					var thisValues = Object.values(unsortedAnimals[item]);
-					var thisKeys = Object.keys(unsortedAnimals[item]);
-					
-					for (var i = 0; i < thisValues.length; i++){
-				
-						var onePetObj = thisValues[i];
-						onePetObj.key = thisKeys[i];//adding key of this object to the array of values
-			
-						sortedAnimals.push(onePetObj);
-					}
-			}
-			console.log("sorted ", sortedAnimals);
-			// END - ALL PETS IN ARRAY  
-
-			
-			//RETURN PET ROW TO SET IN FILTER
-			
-    	// console.log("ret",returnedData);
-    	//END
-
+			var sortedAnimals = [this.props.allAnimals.animals]; //data from response
 
 
 				
