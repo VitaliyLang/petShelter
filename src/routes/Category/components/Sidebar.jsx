@@ -7,6 +7,7 @@ import changeValue from 'store/actions/category/changeRadioValue';
 import deleteValue from 'store/actions/category/deleteRadioValue';
 import setValues from 'store/actions/category/setValues';
 import modalAdopt from 'store/actions/modalAdopt';
+import debounce from 'modules/helpers/debounce'
 
 
 class Sidebar extends Component {
@@ -23,16 +24,18 @@ class Sidebar extends Component {
             Age: ['Any', 'Baby', 'Young', 'Adult', 'Senior']
         }
         this.keys = Object.keys(this.values);
-        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-    }
-    forceUpdateHandler() {
-        this.forceUpdate();
+        this.resize = this.resize.bind(this);
+        this.debounceResize = debounce(this.resize, 300);
     }
     componentDidMount() {
-        window.addEventListener('resize', this.forceUpdateHandler)
+        window.addEventListener('resize', this.debounceResize);
     }
     componentWillUnmount() {
-        window.removeEventListener('resize', this.forceUpdateHandler)
+        window.removeEventListener('resize', this.debounceResize);
+        this.props.showModal(false);
+    }
+    resize(){
+        this.forceUpdate();
     }
     setQuery() {
         let queryObj = this.props.filter;
@@ -67,11 +70,17 @@ class Sidebar extends Component {
         this.setQuery();
     }
     render() {
-        if (!this.props.show && (window.innerWidth < 500)) {
+        if (!this.props.show && window.innerWidth < 500){
             return null
         }
+        let asideClass;
+        if(window.innerWidth < 500){
+            asideClass ='aside_category filter_block'
+        }else{
+            asideClass ='aside_category'
+        }
         return (
-            <aside className="aside_category filter_block" ref={(el) => { this.aside = el }}>
+            <aside className={asideClass} ref={(el) => { this.aside = el }}>
                 <form onSubmit={this.handleSubmit}>
                     <h2> Filter </h2>
                     {this.keys.map((key, index) => {

@@ -70,7 +70,7 @@ class Main extends Component {
     this.props.modifyList(arr);
   }
   componentWillMount() {
-    let link = location.pathname.toLowerCase().replace('categories', 'animals');
+    let link = `/animals/${this.props.category.toLowerCase()}`;
     Promise.resolve(this.props.onGetAnimals(link)).then(()=>this.update());
   }
   componentDidMount() {

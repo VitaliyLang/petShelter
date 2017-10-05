@@ -7,30 +7,32 @@ import './header.scss';
 import { SideNav, SideNavItem } from 'react-materialize';
 import Logo from './petLogo.png';
 import modalAdopt from 'store/actions/modalAdopt';
+import debounce from 'modules/helpers/debounce'
 
 class Header extends React.Component{
     constructor(){
         super();
         this.onClick = this.onClick.bind(this);
-        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-    };
-    
-    forceUpdateHandler(){
+        this.resize = this.resize.bind(this);
+        this.debounceResize = debounce(this.resize, 300);
+    };   
+    resize(){
       this.forceUpdate();
     }
     componentDidMount () {
-        window.addEventListener('resize', this.forceUpdateHandler)
+        window.addEventListener('resize', this.debounceResize)
       }
     componentWillUnmount () {
-        window.removeEventListener('resize', this.forceUpdateHandler)
+        window.removeEventListener('resize', this.debounceResize)
     }
     onClick(){
         this.props.showModal(true);
     }
     render() {
+        let show = this.props.params.categID && Object.keys(this.props.params).length == 1;
         var Filter;
-        if(window.innerWidth < 500){
-            Filter = <li onClick = {this.onClick}><Link to = ''><img src = "http://icons.iconarchive.com/icons/icons8/ios7/256/Very-Basic-Filter-icon.png" width="15"/>Filter</Link></li>
+        if(window.innerWidth < 500 && show){
+            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = "http://icons.iconarchive.com/icons/icons8/ios7/256/Very-Basic-Filter-icon.png" width="15"/>Filter</Link></li>
         }else{
             Filter = null;
         }
@@ -40,6 +42,7 @@ class Header extends React.Component{
                         <Link to='/' className='brand-logo'>
                             <img src={Logo} alt='logo'/>
                         </Link>
+                        {Filter}
 
                         <SideNav
                     	trigger={
@@ -61,14 +64,14 @@ class Header extends React.Component{
                             <li><Link to='/contacts'>Contacts</Link></li>
                             <li><Link to='/about'>About</Link></li>
                             <li><Link to='/partners'>Partners</Link></li>
-                            {Filter}
+                            <li><Link to='/categories'>Categories</Link></li>
                         </SideNav>
 
                     <ul className='right hide-on-med-and-down'>
                         <li><Link activeClassName='active' to='/contacts'>Contacts</Link></li>
                         <li><Link activeClassName='active' to='/about'>About</Link></li>
                         <li><Link activeClassName='active' to='/partners'>Partners</Link></li>
-                        {Filter}
+                        <li><Link activeClassName='active' to='/categories'>Categories</Link></li>
                     </ul>
                     </div>
                 </nav>

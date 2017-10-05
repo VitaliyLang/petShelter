@@ -24,7 +24,8 @@ class AnimalDetails extends Component {
     window.addEventListener('resize', this.start)
   }
   componentWillUnmount () {
-    window.removeEventListener('resize', this.start)
+    window.removeEventListener('resize', this.start);
+    this.props.showModal(false);
   }
   resize () {
     this.props.resize(false)
@@ -36,13 +37,7 @@ class AnimalDetails extends Component {
     this.debounceResize()
   }
   componentWillMount () {
-    let link0 = location.pathname.replace('categories', 'animals')
-    link0 = link0.split('/')
-    let link = ''
-    for (var i = 0; i + 1 < link0.length; i++) {
-      link += link0[i].toLowerCase() + '/'
-    }
-    link += link0[i]
+    let link = `/animals/${this.props.params.categID.toLowerCase()}/${this.props.params.animalID}`;
     this.props.onGetAnimals(link)
   }
   btnClick () {
@@ -61,6 +56,7 @@ class AnimalDetails extends Component {
     if (this.props.listAnimals.isLoading) {
       return null
     }
+    console.log(this.props.listAnimals.animals)
     return (
       <div className='flex-container img-detail'>
         <AnimalInfo animal={this.props.listAnimals.animals} show={this.props.show} click={this.btnClick} adopt={this.props.takeAnimal} signUp={this.props.signUp} succeed={this.props.succeed} />
