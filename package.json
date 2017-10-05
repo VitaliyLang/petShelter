@@ -9,7 +9,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production npm run compile",
     "start": "cross-env NODE_ENV=development node build/scripts/start",
     "start-prod": "cross-env NODE_ENV=production node build/scripts/start",
-    "lint": "eslint .",
+    "lint": "eslint . ",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "Pet Shelter team",
@@ -37,6 +37,7 @@
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
+    "slider": "^1.0.4",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

@@ -1,3 +1,3 @@
-import {getInvite} from './categories.js';
+import { getInvite } from './categories.js'
 
 export default getInvite

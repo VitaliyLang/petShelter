@@ -1,3 +1,3 @@
-import {updateAnimal} from './updateAnimal'
+import { updateAnimal } from './updateAnimal'
 
 export default updateAnimal

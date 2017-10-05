@@ -1,3 +1,3 @@
-import {takeOrder} from './takeOrder';
+import { takeOrder } from './takeOrder'
 
-export default takeOrder;
+export default takeOrder

@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth != null",
+    "users": {
+      ".write": true
+    },
+    "animals": {
+      ".write": true
+    }
+  }
+}
