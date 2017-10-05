@@ -10,25 +10,20 @@ class PetRow extends React.Component {
 
 		getRow(e) {
 			var objKey = e.target.getAttribute('data-key');
-			// console.log(e.target.getAttribute('data-key'));
 			this.findClickedObj(objKey);
 		}
 
 		findClickedObj(key) {
-		// console.log(key);
-		// console.log(this.props.petsArr);
 		var myArr = this.props.petsArr;
-		// console.log(myArr);
-		// var myPet ;
+
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
-				// console.log( myArr[i]);
-				// myPet = myArr[i];
+
 				document.querySelector('.petEditor').style.display = 'block';
-				document.querySelector('[data-key]', key).style.display = 'none';
-				// console.log("button key", key);
+				// document.querySelector('[data-key]', key).style.display = 'none';
+
 				this.props.findAnimal(myArr[i]);
-				 // return this.props.returnPetToUpdate(myArr[i]);					
+					
 			}
 		} 
 	}
@@ -48,7 +43,7 @@ class PetRow extends React.Component {
 										<img className="img" src= {this.props.item.url} alt=""/>
 								</div>
 								<div className="rowItem ">
-									<button onClick={this.getRow.bind(this)} data-key={this.props.item.key}>Edit</button>
+									<button ref="foo" onClick={this.getRow.bind(this)} data-key={this.props.item.key}>Edit</button>
 								</div>
 								
 						</div>    

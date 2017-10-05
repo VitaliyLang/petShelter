@@ -3,6 +3,7 @@ import './styles.scss'
 import {connect} from "react-redux"
 import updateAnimal from 'store/actions/updateAnimal';
 
+
 class EditFilter extends React.Component {
 		constructor(props) {
 			super(props);
@@ -12,16 +13,12 @@ class EditFilter extends React.Component {
 				age: "",
 				sex: "",
 				size: "",
+				url: "",
+				key:"",
 				animalStore: {},
 			};	
 			this.handleChange = this.handleChange.bind(this);
     	this.handleSubmit = this.handleSubmit.bind(this);
-		}
-		
-		componentDidMount() {
-			if (this.props.animalStore) {
-			 // this.setState( {value : this.props.animalStore.animal.category } )
-			}
 		}
 
 		componentWillReceiveProps(nextState, nextProps) {
@@ -29,70 +26,60 @@ class EditFilter extends React.Component {
 			if (nextState.animalStore.animal && 
 					!this.state.animalStore.animal || this.state.animalStore.animal && 
 					nextState.animalStore.animal.key !== this.state.animalStore.animal.key ) {
-				console.log(nextState.animalStore.animal.category);
+				
 				this.setState( {
-												category: nextState.animalStore.animal.category,
-												nickname: nextState.animalStore.animal.alias,
-												age: nextState.animalStore.animal.age,
-												sex: nextState.animalStore.animal.sex,
-												size: nextState.animalStore.animal.size
-											 } )
+						category: nextState.animalStore.animal.category,
+						nickname: nextState.animalStore.animal.alias,
+						age: nextState.animalStore.animal.age,
+						sex: nextState.animalStore.animal.sex,
+						size: nextState.animalStore.animal.size,
+						url: nextState.animalStore.animal.url,
+						key: nextState.animalStore.animal.key
+					 } )
 			}
-			// if (nextState.animalStore.animal.category, this.state) {
-
-			// }
 		}
 		
 		handleChange(param, event) {
 	  	this.setState({
-	  									// [param]: event.target.alias
-	  									nickname: event.target.alias
-	  								});
-	  	console.log("now i am editing:", this.state);
+				[param]: event.target.value,
+			});
 	  }
 
  		handleSubmit(event) {
     		
-    	console.log("value after clicked submit",this.state);
+    	
     	event.preventDefault();
-    	// this.updatePet(this.props.animalStore.animal.key,this.state.category);
-    	// console.log("pet updated");
-    	this.props.updatePet('-KuKJtcxmqqmfW-OCxw-','dog',{
-      active:false,
-       age: "baby",
-       alias: "My Test1",
-       category: "dog",
-       sex: "female",
-       size: "big",
-       url: "http://cdn3-www.dogtime.com/assets/uploads/gall...",
-       vaccinations:true
-      });
-   		console.log('nickname',this.state.alias);
+    	   	
+    	this.updatePet(this.state.key,this.state.category);
+  console.log("value after clicked submit",this.state);
+   		// console.log('state in submit moment',this.state);
+   		// document.querySelector('.petEditor').style.display = 'none';
+			// document.querySelector('[data-key]').style.display = 'inline-block';
+			// console.log("findAnimal state after sent",this.props.findAnimal);
   	}
 
 
-		// updatePet(key,category) {
-		// 	this.props.updatePet(key,category,{
- 	// 				category: this.state.category,
- 	// 				alias: this.state.alias,
- 	// 				age: this.state.age,
- 	// 				size: this.state.size,
- 	// 				sex: this.state.sex,
-		// 			active: true,
- 	// 				url: "pornhub.com",
-		// 			vaccinations:true
-		// 	})
-		// }
+		updatePet(key,category) {
+			this.props.updatePet(key,category,{
+ 					category: this.state.category,
+ 					alias: this.state.nickname,
+ 					age: this.state.age,
+ 					size: this.state.size,
+ 					sex: this.state.sex,
+					active: true,
+ 					url: this.state.url,
+					vaccinations:true
+			})
+		}
 		
 		render(){
 			if (Object.keys(this.props.animalStore).length  == 0) {
 				return null; 
 			}
 			else {
-				 console.log("in edit", this.props.animalStore.animal.key);
-						return(
+					return(
 					<div className="petEditor">
-						<form onSubmit={this.handleSubmit}>
+						<form onSubmit={this.handleSubmit.bind(this)}>
 							<label>
 								Category:
 								<input type="text" value={this.state.category} onChange={this.handleChange.bind(this, "category")} key="1" />
@@ -113,17 +100,17 @@ class EditFilter extends React.Component {
 								Size:
 								<input type="text" value={this.state.size} onChange={this.handleChange.bind(this, "size")} key="5" />
 							</label>
-							<input type="submit" value="Submit" />
+							<label >
+								Image Url:
+								<input type="text" value={this.state.url} onChange={this.handleChange.bind(this, "url")} key="6" />
+							</label>
+							<input type="submit" value="Submit" className=''/>
 						</form>		
 					</div>
 				)
 		}
 	}
 }
-//{this.props.animalStore.age}		
-
-// export default EditFilter
-
 
 export default connect(
 	state => ({
@@ -131,6 +118,9 @@ export default connect(
 	}),
 	dispatch => ({
 		updatePet: (animalKey,category,animalObj) => dispatch(updateAnimal(animalKey,category,animalObj)),
+		// findAnimal: (animalObject) => dispatch(findAnimal(animalObject)),
 	})
 )(EditFilter)
 
+// className='btn btn get waves-effect waves-light'
+// onClick={this.props.onClick}

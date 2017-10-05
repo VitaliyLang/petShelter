@@ -4,15 +4,19 @@ import getAnimals from '../../../../../store/actions/animals';
 import updateAnimal from '../../../../../store/actions/updateAnimal';
 import PetRow from './components/PetRow';
 import EditFilter from './components/EditFilter';
+import './components/EditFilter/styles.scss';
 
 class PetsTable extends React.Component {
 		constructor(props) {
 		super(props);
-			// this.state = {
-				
-			// }
+			this.state = {
+				hide: false	
+			}
 		}
-
+		
+		 handleChildClick() {
+      this.setState({hide: true});
+    }
 		render(){
 			
 			//ALL PETS IN ARRAY 
@@ -21,13 +25,13 @@ class PetsTable extends React.Component {
 			var animals = this.props.allAnimals.animals; //data from response
 			
 			var unsortedAnimals =[];
-			console.log("animals",animals);
+			// console.log("animals",animals);
 				
 			for (var item in animals) { 
 				unsortedAnimals.push(animals[item]);
 			}
 		
-			console.log("unsort", unsortedAnimals);
+			// console.log("unsort", unsortedAnimals);
 			var sortedAnimals = [];
 		
 			for (item in unsortedAnimals) { // pushing every animal to one array
@@ -43,18 +47,11 @@ class PetsTable extends React.Component {
 						sortedAnimals.push(onePetObj);
 					}
 			}
-			console.log("sorted ", sortedAnimals);
+			// console.log("sorted ", sortedAnimals);
 			// END - ALL PETS IN ARRAY  
 
+			const {hide} = this.state;
 			
-			//RETURN PET ROW TO SET IN FILTER
-			
-    	// console.log("ret",returnedData);
-    	//END
-
-
-
-				
 				return(
 					<div>
 						<div className="table">
@@ -74,10 +71,10 @@ class PetsTable extends React.Component {
 																									petsArr={sortedAnimals}
 																									img={item.url}
 																									key={i}
-																									returnPetToUpdate={this.returnPetRow}
 																								/>)}
 						</div>
-						<EditFilter isVisible={ false } />
+						{ this.state.hide ? <EditFilter isVisible={ false } onClick={this.handleChildClick.bind(this)} /> : <EditFilter isVisible={ false } onClick={this.handleChildClick.bind(this)} className='hidden' /> }
+						
 					</div>
 
 				)
@@ -93,7 +90,6 @@ export default connect(
 	}),
 	dispatch => ({
 		onGetAnimals: () => dispatch(getAnimals()),
-		// oneAnimal: () => dispatch()
 	})
 )(PetsTable)
 
