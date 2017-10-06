@@ -3,14 +3,10 @@ import database from '../../firebaseConfig/firebase.js'
 export function getAnimals (link) {
   return dispatch => {
     dispatch(getInviteRequestedAction())
-    return database.ref(link).once('value', snap => {
+    return database.ref(link).on('value', snap => {
       const animals = snap.val()
       dispatch(getInviteFulfilledAction(animals))
     })
-      .catch((error) => {
-        console.log(error)
-        dispatch(getInviteRejectedAction())
-      })
   }
 }
 
