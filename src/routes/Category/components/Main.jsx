@@ -12,6 +12,7 @@ import changeT from 'store/actions/category/changeTop';
 import getAnimals from 'store/actions/animals';
 
 
+
 class Main extends Component {
   constructor(props) {
     super(props)
@@ -97,7 +98,7 @@ class Main extends Component {
       ? <div className='flex-container_img'>
         {Array.isArray(this.props.categoryStore.listModify[index])
           ? this.props.categoryStore.listModify[index].map((elem, index) => {
-              if (!elem) return <Link className='empty' />;
+              if (!elem) return <div key = {index}/>;
               return <Link to={`/categories/${this.props.category}/${elem.key}`} 
                           key={elem.key} 
                           style={{ backgroundImage: `url(${elem.url})` }} 
@@ -111,13 +112,13 @@ class Main extends Component {
       </div>
       : <div className='flex-container_img'>
         {Array.isArray(this.props.categoryStore.listModify[index])
-          ? this.props.categoryStore.listModify[index].map((elem, index) => <Link className='load'/>)
-          : <Link className='load' />
+          ? this.props.categoryStore.listModify[index].map((elem, index) => <Link className='load' key = {index}/>)
+          : <Link className='load' key = {index}/>
         }
       </div>
     style.top = style.height * index
     return (
-      <div key={key} style={style}>
+      <div key={index} style={style}>
         {content}
       </div>
     )
@@ -128,7 +129,7 @@ class Main extends Component {
     }
     if(!this.props.categoryStore.listModify.length){
       return <h1 className = 'message1'>
-                Unfortunatly no animals matched your search.
+                Unfortunately no animals matched your search.
              </h1>
     }
     return (
@@ -149,6 +150,9 @@ class Main extends Component {
     )
   }
 }
+
+
+
 export default connect(
   state => ({
     categoryStore: state.category,

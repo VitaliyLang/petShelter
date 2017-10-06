@@ -8,32 +8,32 @@ import debounce from 'modules/helpers/debounce'
 import getAnimals from 'store/actions/animals'
 import takeAnimal from 'store/actions/takeAnimal'
 import signUp from 'store/actions/signup'
-import NotFound from '../NotFound'
+import { PropTypes } from 'prop-types'
 
 class AnimalDetails extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.btnClick = this.btnClick.bind(this);
     this.resize = this.resize.bind(this);
     this.debounceResize = debounce(this.resize, 100);
     this.start = this.start.bind(this);
     this.state = {
-      show : false,
+      show: false,
       isResizing: false
     }
   }
-  componentDidMount () {
-    window.addEventListener('resize', this.start)
+  componentDidMount() {
+    window.addEventListener('resize', this.start);
   }
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.start);
   }
-  resize () {
+  resize() {
     this.setState({
       isResizing: false
     })
   }
-  start () {
+  start() {
     if (!this.state.isResizing) {
       this.setState({
         isResizing: true
@@ -41,16 +41,20 @@ class AnimalDetails extends Component {
     }
     this.debounceResize()
   }
-  componentWillMount () {
+  componentWillMount() {
     let link = `/animals/${this.props.params.categID.toLowerCase()}/${this.props.params.animalID}`;
-    this.props.onGetAnimals(link);
+    Promise.resolve(this.props.onGetAnimals(link)).then(() => {
+      if (this.props.listAnimals.animals === null) {
+        this.context.router.replace('/notFound');
+      }
+    });
   }
-  btnClick () {
-    this.setState((prevState)=>({
+  btnClick() {
+    this.setState((prevState) => ({
       show: !prevState.show
     }))
   }
-  render () {
+  render() {
     let Picture
     if (this.state.isResizing) {
       Picture = null
@@ -58,18 +62,22 @@ class AnimalDetails extends Component {
       Picture = <AnimalPictures animal={this.props.listAnimals.animals} />
     }
     if (this.props.listAnimals.animals === null) {
-      return <NotFound />
+      return null
     }
     if (this.props.listAnimals.isLoading || !this.props.listAnimals.animals.alias) {
       return null
     }
     return (
       <div className='flex-container img-detail'>
-        <AnimalInfo onGetAnimals = {this.props.onGetAnimals} params = {this.props.params} animal={this.props.listAnimals.animals} show={this.state.show} click={this.btnClick} adopt={this.props.takeAnimal} signUp={this.props.signUp} succeed={this.props.succeed} />
+        <AnimalInfo onGetAnimals={this.props.onGetAnimals} params={this.props.params} animal={this.props.listAnimals.animals} show={this.state.show} click={this.btnClick} adopt={this.props.takeAnimal} signUp={this.props.signUp} succeed={this.props.succeed} />
         {Picture}
       </div>
     )
   }
+}
+
+AnimalDetails.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 export default connect(
@@ -80,6 +88,6 @@ export default connect(
   dispatch => ({
     onGetAnimals: (link) => dispatch(getAnimals(link)),
     takeAnimal: (key, category, status) => dispatch(takeAnimal(key, category, status)),
-    signUp : (obj) => dispatch(signUp(obj))
+    signUp: (obj) => dispatch(signUp(obj))
   })
 )(AnimalDetails)

@@ -23,7 +23,8 @@ const Animal = React.createClass({
     })
   },
   submit (model) {
-    this.addAnimal(model)
+    this.addAnimal(model);
+    console.log(model)
   },
 
   addAnimal (animalInformation) {
