@@ -59,9 +59,8 @@ class PetRow extends React.Component {
 									</i>
 									<i className="material-icons table_btn"
 										data-key={this.props.item.key}
-										onClick={this.findPetToDel.bind(this)}>
-										
-									delete_forever
+										onClick={this.findPetToDel.bind(this)}>	
+										delete_forever
 									</i>
 								</div>
 								
