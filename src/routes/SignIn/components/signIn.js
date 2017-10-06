@@ -1,5 +1,4 @@
 import React from 'react'
-import Formsy from 'formsy-react'
 // import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
 // import Button from 'modules/buttons/PrimaryButton'
@@ -31,8 +30,13 @@ class signIn extends React.Component {
     })
   }
 
-  logIn (personInformation) {
-    this.props.onLogin(personInformation)
+  logIn (e) {
+    e.preventDefault()
+    console.log('this ', this)
+    this.props.onLogin({
+      email: this.email.state.value,
+      password: this.password.state.value
+    })
   }
 
   componentDidMount () {
@@ -41,6 +45,7 @@ class signIn extends React.Component {
 
   componentWillUpdate (nextProps) {
     if (nextProps.signin.isAdmin) {
+      console.log(this.props)
       this.props.router.replace('/admin/dashboard')
     }
 
@@ -55,12 +60,15 @@ class signIn extends React.Component {
   render () {
     return (
       <div className='login_form'>
-        <Formsy.Form ref='form' className='modal_form' onValidSubmit={this.logIn} onValid={this.enableButton} onInvalid={this.disableButton}>
-          <h1 className='message1'>Sign In</h1>
-          <Input name='email' validate={true} validations={{ minLength: 7 }} type='email' label='Email' required />
-          <Input name='password' type='password' validate={true} label='Password' required/>
-          <Button disabled={this.state.canSubmit}> Sign In </Button>
-        </Formsy.Form>
+        <form ref='form' className='modal_form' onSubmit={this.logIn} onInvalid={this.disableButton}>
+          <div>
+            <h1 className='message1'>Sign In</h1>
+            <Input ref={(input) => this.email = input} name='email' validate={true} type='email' label='Email' required />
+            <Input ref={(input) => this.password = input} name='password' type='password' validate={true} label='Password' required/>
+            <Button disabled={this.state.canSubmit}> Sign In </Button>
+          </div
+          >
+        </form>
       </div>
     )
   }
