@@ -10,28 +10,27 @@ class PetsTable extends React.Component {
 		constructor(props) {
 		super(props);
 			this.state = {
-				hide: false	
+				showToogle: false	
 			}
+			this.show = this.show.bind(this);
 		}
 		
-		 handleChildClick() {
-      this.setState({hide: true});
-    }
+		show() {
+			this.setState({showToogle : !this.state.showToogle});
+			// console.log("toogle",this.state.showToogle);
+		}
 		render(){
 			
 			//ALL PETS IN ARRAY 
 			//making pets from all categories set in one array
 
 			var animals = this.props.allAnimals.animals; //data from response
-			// console.log(animals);
 			var unsortedAnimals =[];
-			// console.log("animals",animals);
 				
 			for (var item in animals) { 
 				unsortedAnimals.push(animals[item]);
 			}
 		
-			// console.log("unsort", unsortedAnimals);
 			var sortedAnimals = [];
 		
 			for (item in unsortedAnimals) { // pushing every animal to one array
@@ -47,11 +46,10 @@ class PetsTable extends React.Component {
 						sortedAnimals.push(onePetObj);
 					}
 			}
-			// console.log("sorted ", sortedAnimals);
 			// END - ALL PETS IN ARRAY  
 
 			const {hide} = this.state;
-			
+			console.log("toogle",this.state.showToogle);
 				return(
 					<div>
 						<div className="table">
@@ -71,10 +69,10 @@ class PetsTable extends React.Component {
 																									petsArr={sortedAnimals}
 																									img={item.url}
 																									key={i}
+																									show={this.show}
 																								/>)}
 						</div>
-						{ this.state.hide ? <EditFilter isVisible={ false } onClick={this.handleChildClick.bind(this)} /> : <EditFilter isVisible={ false } onClick={this.handleChildClick.bind(this)} className='hidden' /> }
-						
+						{this.state.showToogle ?	<EditFilter isVisible={ false } show={this.show}/> : null}						
 					</div>
 
 				)

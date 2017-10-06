@@ -50,33 +50,35 @@ class EditFilter extends React.Component {
     	
     	event.preventDefault();
     	   	
-    	this.updatePet(this.state.key,this.state.category);
+    	// this.updatePet(this.state.key,this.state.category);
   console.log("value after clicked submit",this.state);
    		// console.log('state in submit moment',this.state);
    		// document.querySelector('.petEditor').style.display = 'none';
 			// document.querySelector('[data-key]').style.display = 'inline-block';
 			// console.log("findAnimal state after sent",this.props.findAnimal);
+			// this.props.show();
   	}
 
 
-		updatePet(key,category) {
-			this.props.updatePet(key,category,{
- 					category: this.state.category,
- 					alias: this.state.nickname,
- 					age: this.state.age,
- 					size: this.state.size,
- 					sex: this.state.sex,
-					active: true,
- 					url: this.state.url,
-					vaccinations:true
-			})
-		}
+		// updatePet(key,category) {
+		// 	this.props.updatePet(key,category,{
+ 	// 				category: this.state.category,
+ 	// 				alias: this.state.nickname,
+ 	// 				age: this.state.age,
+ 	// 				size: this.state.size,
+ 	// 				sex: this.state.sex,
+		// 			active: true,
+ 	// 				url: this.state.url,
+		// 			vaccinations:true
+		// 	})
+		// }
 		
 		render(){
 			if (Object.keys(this.props.animalStore).length  == 0) {
 				return null; 
 			}
 			else {
+
 					return(
 					<div className="petEditor">
 						<form onSubmit={this.handleSubmit.bind(this)}>
@@ -86,7 +88,7 @@ class EditFilter extends React.Component {
 							</label>
 							<label >
 								Nickname
-								<input type="text" value={this.state.nickname} onChange={this.handleChange.bind(this, "nickname")} key="2" required/>
+								<input type="text" value={this.state.nickname} onChange={this.handleChange.bind(this, "nickname")} key="2" />
 							</label>
 							<label >
 								Age:
@@ -102,7 +104,7 @@ class EditFilter extends React.Component {
 							</label>
 							<label >
 								Image Url:
-								<input type="text" value={this.state.url} onChange={this.handleChange.bind(this, "url")} key="6" />
+								<input type="text" value={this.state.url}  onChange={this.handleChange.bind(this, "url")} key="6" />
 							</label>
 							<input type="submit" value="Submit" className=''/>
 						</form>		

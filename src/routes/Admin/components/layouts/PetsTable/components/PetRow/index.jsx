@@ -11,7 +11,8 @@ class PetRow extends React.Component {
 		getRow(e) {
 			var objKey = e.target.getAttribute('data-key');
 			this.findClickedObj(objKey);
-		}
+			this.props.show();
+			}
 
 		findClickedObj(key) {
 		var myArr = this.props.petsArr;
@@ -19,7 +20,7 @@ class PetRow extends React.Component {
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
 
-				document.querySelector('.petEditor').style.display = 'block';
+				// document.querySelector('.petEditor').style.display = 'block';
 				// document.querySelector('[data-key]', key).style.display = 'none';
 
 				this.props.findAnimal(myArr[i]);
