@@ -2,7 +2,6 @@
 
 .main_section {
     height: calc(100% - 56px);
-    background: $primary-green;
 
         ul {
             padding: 0;
@@ -13,6 +12,7 @@
             height: calc(100vh - 64px);
         }
         .categories{
+            background: url('../assets/Spinner.gif') no-repeat center;
             .carousel{
                 height: calc(100vh - 94px);
                 @media only screen and (max-width: 601px){
@@ -26,15 +26,19 @@
                             .legend{
                                 background: transparent;
                                 font-size: 5em;
+                                opacity: .5;
                                 @media only screen and (max-height: 600px){
                                     bottom: 70%
                                 }
                                 a{
-                                    color: $primary-green;
+                                    color: #fff;//$primary-green;
                                     letter-spacing: 11px;
                                 }                            
                             }
                         }                        
+                    }
+                    .slider:hover .legend{
+                        opacity: .8;
                     }
                 }
             }

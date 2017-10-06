@@ -50,6 +50,7 @@ class PetsTable extends React.Component {
 
 			const {hide} = this.state;
 			console.log("toogle",this.state.showToogle);
+
 				return(
 					<div>
 						<div className="table">
@@ -93,4 +94,3 @@ export default connect(
 
 
 
-//        {returnedData.map((item,i) =><EditFilter item={item} key={i} /> )}

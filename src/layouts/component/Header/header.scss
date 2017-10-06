@@ -3,7 +3,11 @@
 .main-layout-header {
 	background-color: $primary-green;
 	border-bottom: 2px solid #00a388;
-
+		.filter_btn{
+			position: absolute;
+			right: 5px;
+			list-style: none;
+		}
 		.active {
 				background-color: $primary-dark-green;
 		}
@@ -42,4 +46,7 @@
 					background:inherit;
 			}
 		}
+}
+.navbar-fixed {
+    z-index: 999;
 }

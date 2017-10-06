@@ -16,18 +16,19 @@ class Admin extends React.Component {
     super(props)
   }
 
-  componentDidMount () {
-    this.props.onSignin()
-    this.props.onGetMessages('/users')
-    this.props.onGetAnimals('/animals')
-        // this.props.onTakeAnimal('-KupDqW5nCMTBujGEZVh', 'dog');
-        // this.props.onGiveOrders('GeBCjUmz9TNgddaAp1hiN9KbTGl2');
+  componentWillMount () {
+    this.props.onSignin();
+  }
+  
+  componentWillReceiveProps(nextProps){
+    if(!nextProps.signin.isAdmin && nextProps.signin.user.anonime){
+      this.props.router.replace('/login');
+    }
   }
 
   render () {
     return (
       <div className='wrapper'>
-
         <NavigationPanel />
         <MainSection>
           <Routing action={this.props.params.action} />
@@ -39,7 +40,7 @@ class Admin extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    messages: state.messages
+    signin: state.signin
   }
 }
 
