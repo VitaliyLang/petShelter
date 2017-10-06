@@ -17,6 +17,7 @@ class Admin extends React.Component {
   }
 
   componentWillMount () {
+    this.props.onGetAnimals('animals');
     this.props.onSignin();
   }
   

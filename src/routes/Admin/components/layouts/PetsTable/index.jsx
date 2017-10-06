@@ -26,6 +26,8 @@ class PetsTable extends React.Component {
 
 			var animals = this.props.allAnimals.animals; //data from response
 			var unsortedAnimals =[];
+
+			console.log('animals',animals);
 				
 			for (var item in animals) { 
 				unsortedAnimals.push(animals[item]);
