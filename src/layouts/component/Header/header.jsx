@@ -15,7 +15,7 @@ class Header extends React.Component{
         this.onClick = this.onClick.bind(this);
         this.resize = this.resize.bind(this);
         this.debounceResize = debounce(this.resize, 300);
-    };   
+    };
     resize(){
       this.forceUpdate();
     }
@@ -31,10 +31,18 @@ class Header extends React.Component{
     render() {
         let show = this.props.params.categID && Object.keys(this.props.params).length == 1;
         var Filter;
+        var Connection;
+
         if(window.innerWidth < 500 && show){
             Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = "http://icons.iconarchive.com/icons/icons8/ios7/256/Very-Basic-Filter-icon.png" width="15"/>Filter</Link></li>
         }else{
             Filter = null;
+        }
+
+        if (!navigator.onLine) {
+            Connection = <div className='right connection'><i className='material-icons'>signal_wifi_off</i></div>
+        } else {
+            Connection = null;
         }
         return (
             <div className='navbar-fixed'>
@@ -44,6 +52,7 @@ class Header extends React.Component{
                             <img src={Logo} alt='logo'/>
                         </Link>
                         {Filter}
+                        {Connection}
 
                         <SideNav
                     	trigger={

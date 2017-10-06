@@ -65,7 +65,7 @@ class AnimalDetails extends Component {
     }
     return (
       <div className='flex-container img-detail'>
-        <AnimalInfo onGetAnimals = {this.props.onGetAnimals} params = {this.props.params} animal={this.props.listAnimals.animals} show={this.state.show} click={this.btnClick} adopt={this.props.takeAnimal} signUp={this.props.signUp} succeed={this.props.succeed} />
+        <AnimalInfo onGetAnimals = {this.props.onGetAnimals} params = {this.props.params} animal={this.props.listAnimals.animals} show={this.state.show} click={this.btnClick} adopt={this.props.takeAnimal} signUp={this.props.signUp} succeed={this.props.succeed} isOffline={this.props.listAnimals.isOffline} />
         {Picture}
       </div>
     )

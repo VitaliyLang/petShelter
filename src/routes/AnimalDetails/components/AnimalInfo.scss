@@ -1,10 +1,13 @@
 .details{
-    padding-top: 30px; 
+    padding-top: 30px;
     p{
         margin: 15px;
     }
     .get{
-        margin: 50px auto; 
+        margin: 50px auto;
         max-width: 110px;
+    }
+    .disabled {
+        cursor: not-allowed;
     }
 }

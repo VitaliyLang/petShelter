@@ -11,6 +11,8 @@ class AnimalInfo extends Component{
   let Btn
   if (!this.props.animal.active) {
     Btn = <p style={{ color:'red', textAlign:'center' }}>Adopted</p>
+  } else if (this.props.isOffline) {
+    Btn = <Button type='submit' className='btn get waves-effect waves-light disabled' onClick={this.props.click}> Adopt it </Button>
   } else {
     Btn = <Button type='submit' className='btn get waves-effect waves-light' onClick={this.props.click}> Adopt it </Button>
   }
