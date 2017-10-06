@@ -7,10 +7,6 @@ export function getAnimals (link) {
       const animals = snap.val()
       dispatch(getInviteFulfilledAction(animals))
     })
-      .catch((error) => {
-        console.log(error)
-        dispatch(getInviteRejectedAction())
-      })
   }
 }
 
