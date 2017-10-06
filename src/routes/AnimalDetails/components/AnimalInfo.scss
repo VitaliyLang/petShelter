@@ -7,7 +7,18 @@
         margin: 50px auto;
         max-width: 110px;
     }
+
     .disabled {
         cursor: not-allowed;
     }
+  
+    .prohibited{
+        margin: 50px auto; 
+        background: red;
+        color: white;
+        max-width: 100px;
+        text-align: center;
+        cursor: auto;
+    }
 }
+

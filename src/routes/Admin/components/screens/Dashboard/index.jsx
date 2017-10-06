@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
       //this.props.onUpdateAnimal('-KuoNRJ87ORaaFW7pcNS','fish',({age:'babby'}));
       //this.props.onRemoveAnimal('fish','-KupQ9oUf_VJX_p5GA5y');
       //this.props.onGiveOrders('S4wK8RM940OKEj0SPrBnq0YGiUN2');
-      this.props.onLogout();
+      //this.props.onLogout();
     }
 
     render(){

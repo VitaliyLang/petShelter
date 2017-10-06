@@ -2,6 +2,9 @@
     
         width: 20%;
         background-color: #393b36;
+        display:flex;
+        justify-content: space-between;
+        flex-direction: column;
     
         .adminMenu, .adminSubmenu {
             list-style: none;
@@ -36,7 +39,14 @@
                 }
             }
         }
-    
+        .logoutWrapper{
+            color:#fff;
+            transform: rotate(180deg);
+            width: 45px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
         .adminSubmenu {
             overflow: hidden;
             max-height: 0;

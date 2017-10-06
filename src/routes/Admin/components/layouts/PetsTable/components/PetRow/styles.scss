@@ -5,9 +5,15 @@
 	display: flex;
 		.rowItem {
 			border: 1px solid black;
-			width: 10%;
+			width: 15%;
 			text-transform: capitalize;
 			text-align: center;
+			.table_btn {
+				cursor: pointer;
+				&:hover {
+					transform:scale(1.2);
+				}
+			}
 			.img {
 				height: 100%;
 				width: 100%;
