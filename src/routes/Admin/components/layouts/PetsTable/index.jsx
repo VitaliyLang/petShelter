@@ -72,7 +72,7 @@ class PetsTable extends React.Component {
 																									show={this.show}
 																								/>)}
 						</div>
-						{this.state.showToogle ?	<EditFilter isVisible={ false } show={this.show}/> : null}						
+						{this.state.showToogle ?	<EditFilter show={this.show}/> : null}						
 					</div>
 
 				)
