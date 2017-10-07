@@ -8,7 +8,7 @@ import { SideNav, SideNavItem } from 'react-materialize';
 import Logo from './petLogo.png';
 import modalAdopt from 'store/actions/modalAdopt';
 import debounce from 'modules/helpers/debounce';
-//import filter from './filter.png'
+import filter from './filter.png'
 
 class Header extends React.Component{
     constructor(){
@@ -35,7 +35,7 @@ class Header extends React.Component{
         var Connection;
 
         if(window.innerWidth < 500 && show){
-            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = "http://flaticons.net/icons/Data/Filter-Standard.png" width="15"/>Filters</Link></li>
+            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = {filter} width="15"/>Filters</Link></li>
         }else{
             Filter = null;
         }
