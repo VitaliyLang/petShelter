@@ -17,17 +17,18 @@ class Message extends React.Component {
     render(){
        
         if(!this.props.message.active && this.props.message.role != 'admin'){
+            let buttonName = 'Give';
             if(this.props.message.type){
-                const buttonName = this.props.message.type[0].toUpperCase()+this.props.message.type.slice(1);
+                buttonName = this.props.message.type[0].toUpperCase()+this.props.message.type.slice(1);
             }
-            buttonName = buttonName || 'Give';
+        
             return(
                 <article className="message">
                     <div>Name: {this.props.message.username}</div>
                     <div>Phone number: {this.props.message.phoneNumber}</div>
                     <div>Email: {this.props.message.email}</div>
                     <div>Date: {this.props.message.date}</div>
-                    <div className='btn'>
+                    <div className='btn-offer'>
                         <button><Link className='links' to={'/admin/takeOrder'} id={this.props.message.key}>{buttonName} Offer</Link></button>
                         <button><Link className='links' to={'#'}>Forbid Offer</Link></button>
                     </div>

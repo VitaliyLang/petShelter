@@ -11,7 +11,12 @@
     div{
         margin-bottom: 5px;
     }
-
+    .btn-offer{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 12px;
+    }
     .links {
         text-decoration: none;
         color: black;
