@@ -33,7 +33,10 @@ class PetRow extends React.Component {
 		for (var i = 0; i < allPets.length; i++){
 			if (allPets[i].key == myKey) {
 				console.log("this el",allPets[i].category);
-				// this.props.removeAnimal(allPets[i].category,allPets[i].key);
+				var petCategory = allPets[i].category;
+				var petKey = allPets[i].key;
+				this.props.onRemoveAnimal('dog','-456-');
+				console.log("arr after remove",this.props.petsArr);
 			}
 		}
 	}
@@ -78,6 +81,6 @@ export default connect(
 	}),
 	dispatch => ({
 		findAnimal: (animalObject) => dispatch(findAnimal(animalObject)),
-		removeAnimal : (category,animalKey) =>(removeAnimal(category,animalKey))
+		onRemoveAnimal: (category, animalKey) => dispatch(removeAnimal(category, animalKey))
 	})
 )(PetRow)
