@@ -1,5 +1,5 @@
 .flex-container{
     display: flex;
-    height: calc(100% - 30px);
+    min-height: calc(100% - 30px);
     background-color: #383D40;
 }

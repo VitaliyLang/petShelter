@@ -1,6 +1,6 @@
 .formTo {
 	background: #383D40;
-	height: calc(100% - 30px);
+	min-height: calc(100% - 30px);
 	display: flex;
 	.message1{
 		padding:0;
