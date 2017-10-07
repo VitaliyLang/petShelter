@@ -6,7 +6,7 @@ import cat_about from '../assets/cat_about.jpg';
 class About extends React.Component{
     render() {
         return (
-            <div className= 'about_wrapper'>
+            <div className= 'about_wrapper ver-scroll'>
                 <h1>What we do?</h1>
                 <h2>We give a home for homeless, and here you can find a new friend.</h2>
 

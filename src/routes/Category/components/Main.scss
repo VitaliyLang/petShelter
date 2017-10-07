@@ -9,10 +9,10 @@
     a{
         cursor: pointer;
         background-size: cover;
-        background-position: center; 
+        background-position: center;
         border-radius: 5px;
         box-shadow: 0 0 5px rgba(0,0,0,.7);
-        background-image: url(http://www.chancefurlife.org/wp-content/themes/petsitter/images/job-placeholder.gif)
+        background-image: url('./job-placeholder.gif')
     }
     .load{
         background: url('./Spinner.gif') no-repeat center;

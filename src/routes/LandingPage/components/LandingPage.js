@@ -2,10 +2,12 @@ import React from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 import './LandingPage.scss'
-import goesHome from '../assets/goes_home.jpg'
-import goesShelter from '../assets/goes_to_shelter.jpg'
 import { Slider } from 'react-materialize'
 import { Slide } from 'react-materialize'
+import Logo from '../../../layouts/component/Header/petLogo.png'
+import cat from '../assets/first_cat.jpg'
+import dog from '../assets/second_dog.jpg'
+import parrot from '../assets/third_parrot.jpg'
 
 export const LandingPage = () => (
 
@@ -16,7 +18,7 @@ export const LandingPage = () => (
             <h1 className='homeP' >Leave pet</h1>
       </Link>
       <Link to='/' className = "logo">
-        <img src={require('../../../layouts/component/Header/petLogo.png')} className='main_page_logo' alt='logo' />
+        <img src={Logo} className='main_page_logo' alt='logo' />
       </Link>
         <Link to='/categories' activeClassName='page-layout__nav-item--active'>
             <h1 className='homeP'>Adopt pet</h1>
@@ -25,20 +27,23 @@ export const LandingPage = () => (
 
     <Slider className='slider' fullscreen indicators={false} interval={3000} >
       <Slide className='slide'
-        src='http://www.ultrahdfreewallpapers.com/uploads/large/animals/cat-hd-wallpaper-0166.jpg'
+        src={cat}
         title='Pet Shelter welcome you!'
         placement='left'>
 
 		</Slide>
       <Slide className='slide'
+<<<<<<< HEAD
         src='https://daywallpaper.files.wordpress.com/2013/08/red-german-boxer-dog-portrait.jpg'
         title='Find your little friend.'
+=======
+        src={dog}
+>>>>>>> d2d13412c081768c03aedf3aefac9ef2227ac97f
         placement='right'>
 
 		</Slide>
       <Slide className='slide'
-        src='https://www.newhdwallpapers.in/wp-content/uploads/2015/11/Cool-Parrot-HD-Wallpaper.jpg'
-        title='We can accept your pet.'
+        src={parrot}
         placement='left'>
 		</Slide>
     </Slider>
