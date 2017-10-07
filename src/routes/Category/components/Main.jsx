@@ -101,11 +101,11 @@ class Main extends Component {
               if (!elem) return <div key = {index}/>;
               return <Link to={`/categories/${this.props.category}/${elem.key}`} 
                           key={elem.key} 
-                          style={{ backgroundImage: `url(${elem.url})` }} 
+                          style={{ backgroundImage: `url(${elem.url || 'http://www.chancefurlife.org/wp-content/themes/petsitter/images/job-placeholder.gif'})` }} 
                       />
           })
           :<Link to={`/categories/${this.props.category}/${this.props.categoryStore.listModify[index].key}`} 
-                 style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url})` }}
+                 style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url || 'http://www.chancefurlife.org/wp-content/themes/petsitter/images/job-placeholder.gif'})` }}
                  key={index} 
            />
         }
