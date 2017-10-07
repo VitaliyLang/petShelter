@@ -26,19 +26,31 @@
                             .legend{
                                 background: transparent;
                                 font-size: 5em;
-                                opacity: .5;
+                                opacity: .7;
+                                margin: 0 auto;
+                                width: auto;
+                                bottom: 20%;
+                                text-align: center;
                                 @media only screen and (max-height: 600px){
-                                    bottom: 70%
+                                    bottom: 45%
+                                }
+                                @media only screen and (max-height: 500px){
+                                    bottom: 55%
                                 }
                                 a{
                                     color: #fff;//$primary-green;
                                     letter-spacing: 11px;
-                                }
+                                    display: block;
+                                    border: 1px solid;
+                                    border-radius: 10px;
+                                    padding: 0 15px;
+                                    background: rgba(255,255,255,.2)
+                                }                            
                             }
                         }
                     }
                     .slider:hover .legend{
-                        opacity: .8;
+                        opacity: .9;
                     }
                 }
             }

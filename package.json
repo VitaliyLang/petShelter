@@ -29,6 +29,7 @@
     "react-dom": "^15.5.4",
     "react-file-input": "^0.2.5",
     "react-materialize": "^1.0.13",
+    "react-measure": "^2.0.2",
     "react-redux": "^5.0.4",
     "react-redux-firebase": "^1.4.7",
     "react-responsive-carousel": "^3.1.25",
