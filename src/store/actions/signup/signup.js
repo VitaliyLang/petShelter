@@ -6,7 +6,9 @@ export function signup (personObj) {
         // return firebase.auth().createUserWithEmailAndPassword(personObj.email, personObj.password)
         // const key = res.uid;
     const key = database.ref().child('users').push().key
-    let updates = {}
+    let updates = {};
+    personObj.key=key;
+    personObj.date = new Date().toLocaleString().split(',')[0];
     updates['/users/' + key] = personObj
     return database.ref().update(updates)
         .then(() => dispatch({ type:'SIGN_UP_FUL' }))

@@ -1,3 +1,6 @@
+#root {
+	overflow-y: hidden;
+}
 .hrz-scroll {
 	&::-webkit-scrollbar {
 	   height: 4px;
