@@ -12,7 +12,7 @@
             height: calc(100% - 64px);
         }
         .categories{
-            background: url('../../Category/components/Spinner.gif') no-repeat center;
+            background: url('../assets/Spinner.gif') no-repeat center;
             .carousel{
                 height: calc(100vh - 94px);
                 @media only screen and (max-width: 601px){
@@ -47,7 +47,7 @@
                                     background: rgba(255,255,255,.2)
                                 }                            
                             }
-                        }
+                        }                        
                     }
                     .slider:hover .legend{
                         opacity: .9;
@@ -56,3 +56,4 @@
             }
         }
 }
+
