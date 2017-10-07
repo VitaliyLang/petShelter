@@ -7,7 +7,8 @@ import './header.scss';
 import { SideNav, SideNavItem } from 'react-materialize';
 import Logo from './petLogo.png';
 import modalAdopt from 'store/actions/modalAdopt';
-import debounce from 'modules/helpers/debounce'
+import debounce from 'modules/helpers/debounce';
+import filter from './filter.png'
 
 class Header extends React.Component{
     constructor(){
@@ -34,7 +35,7 @@ class Header extends React.Component{
         var Connection;
 
         if(window.innerWidth < 500 && show){
-            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = "http://icons.iconarchive.com/icons/icons8/ios7/256/Very-Basic-Filter-icon.png" width="15"/>Filter</Link></li>
+            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = {filter} width="15"/>Filter</Link></li>
         }else{
             Filter = null;
         }
