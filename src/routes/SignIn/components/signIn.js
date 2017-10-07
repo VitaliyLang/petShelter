@@ -1,13 +1,12 @@
 import React from 'react'
-import Formsy from 'formsy-react'
-import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
-import Button from 'modules/buttons/PrimaryButton'
+import { Button, Input } from 'react-materialize';
 import signin from '../../../store/actions/signin/index'
 import login from '../../../store/actions/login/index'
 import 'modules/buttons/buttons.scss'
 import 'modules/inputs/inputs.scss'
 import './signIn.scss'
+import * as Materialize from 'materialize-css'
 
 class signIn extends React.Component {
   constructor (props) {
@@ -30,8 +29,12 @@ class signIn extends React.Component {
     })
   }
 
-  logIn (personInformation) {
-    this.props.onLogin(personInformation)
+  logIn (e) {
+    e.preventDefault()
+    this.props.onLogin({
+      email: this.email.state.value,
+      password: this.password.state.value
+    })
   }
 
   componentDidMount () {
@@ -40,35 +43,32 @@ class signIn extends React.Component {
 
   componentWillUpdate (nextProps) {
     if (nextProps.signin.isAdmin) {
-      this.props.router.replace('/admin/dashboard')
+      return this.props.router.replace('/admin/dashboard')
     }
 
     if (nextProps.login.login === false && nextProps.login.error.length) {
-      this.refs.form.updateInputsWithError({
-        password: 'The password or email is incorrect',
-        // password: nextProps.login.error.substring
-      })
+      Materialize.toast('The password or email is incorrect!', 2000)
     }
   }
 
   render () {
     return (
-      <div className='form_wrapper main_section'>
-        <div className='login_form'>
-          <div className='form_box'>
-            <h2>Sign In</h2>
-            <Formsy.Form ref="form" className='form' onValidSubmit={this.logIn} onValid={this.enableButton}
-                         onInvalid={this.disableButton}>
-              <MainInput name='email' type='email' validations='isEmail' placeholder='email'
-                         validations={{ minLength: 7 }} validationError='This is not a valid email' required />
-              <MainInput name='password' type='password' placeholder='Password' required />
-              <Button disabled={!this.state.canSubmit} label='Sign In' />
-            </Formsy.Form>
+      <div className='login_form'>
+        <form ref='form' className='modal_form' onSubmit={this.logIn} onInvalid={this.disableButton}>
+          <div>
+            <div className='profile'>
+              <i className='large material-icons' id='picture'>account_circle</i>
+              <h1 className='message1'>Login</h1>
+            </div>
+            <Input ref={(input) => this.email = input} autoComplete={false} name='email' validate={true} type='email'
+                   label='Email' required />
+            <Input ref={(input) => this.password = input} autoComplete={false} name='password' type='password'
+                   validate={true} label='Password' required />
+            <Button disabled={this.state.canSubmit}> Sign In </Button>
           </div>
-        </div>
+        </form>
       </div>
     )
-
   }
 }
 
