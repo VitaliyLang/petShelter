@@ -1,4 +1,7 @@
 .details{
+    div{
+        padding: 0;
+    }
     padding-top: 30px;
     p{
         margin: 15px;
@@ -13,12 +16,16 @@
     }
   
     .prohibited{
-        margin: 50px auto; 
-        background: red;
-        color: white;
-        max-width: 100px;
-        text-align: center;
-        cursor: auto;
+        margin: 50px auto;
+        border-radius: 2px;
+        height: 36px;
+        line-height: 36px;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        background: rgba(213, 56, 56, 0.9);
+        display: block;
+        border: none;
+        outline: none;
     }
 }
 

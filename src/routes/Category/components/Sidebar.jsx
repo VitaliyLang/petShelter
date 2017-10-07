@@ -26,6 +26,7 @@ class Sidebar extends Component {
         this.keys = Object.keys(this.values);
         this.resize = this.resize.bind(this);
         this.debounceResize = debounce(this.resize, 300);
+        this.close = this.close.bind(this);
     }
     componentDidMount() {
         window.addEventListener('resize', this.debounceResize);
@@ -49,6 +50,9 @@ class Sidebar extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.setQuery();
+        this.props.showModal(false);
+    }
+    close(){
         this.props.showModal(false);
     }
     componentWillMount() {
@@ -82,7 +86,7 @@ class Sidebar extends Component {
         return (
             <aside className={asideClass} ref={(el) => { this.aside = el }}>
                 <form onSubmit={this.handleSubmit}>
-                    <h2> Filter </h2>
+                    <h2> Filters </h2>
                     {this.keys.map((key, index) => {
                         return (
                             <div key={index}>
@@ -106,6 +110,7 @@ class Sidebar extends Component {
                     }
                     <Button type="submit" className="filter btn waves-effect waves-light"> Apply </Button>
                     <Button className="filter btn  waves-effect waves-light" onClick={this.reset}> Reset </Button>
+                    < div onClick = {this.close} className = "closer"/>
                 </form>
             </aside>
         )

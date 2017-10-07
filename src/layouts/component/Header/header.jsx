@@ -34,7 +34,7 @@ class Header extends React.Component{
         var Connection;
 
         if(window.innerWidth < 500 && show){
-            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = "http://icons.iconarchive.com/icons/icons8/ios7/256/Very-Basic-Filter-icon.png" width="15"/>Filter</Link></li>
+            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = "http://flaticons.net/icons/Data/Filter-Standard.png" width="15"/>Filters</Link></li>
         }else{
             Filter = null;
         }

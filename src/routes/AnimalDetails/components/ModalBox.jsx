@@ -51,7 +51,7 @@ export default class ModalBox extends Component {
         } else {
             content =
                 <form className='modal_form' onSubmit={this.submit}>
-                    <Input label="Name" validate={true} required minLength='3' size="10" ref={(input) => this.name = input} />
+                    <Input label="Name" validate={true} required minLength='3' ref={(input) => this.name = input} />
                     <Input type="email" label="Email" validate={true} required ref={(input) => this.email = input} />
                     <Input type="tel" validate={true} label="Phone: (0XX)XXXXXXX" required pattern="(\()?[0-9]{3}(\))?[-\s]?[0-9]{3}[-\s]?[0-9]{2}[-\s]?[0-9]{2}" ref={(input) => this.tel = input} />
                     <div>
