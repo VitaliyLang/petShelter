@@ -73,8 +73,12 @@ export const createRoutes = (store) => ([
     ]
   },
   {
-    path: '*',
+    path: '/notfound',
     component: NotFound
+  },
+  {
+    path: '*',
+    onEnter: (nextState, replace) => replace('/notfound')
   }
 ])
 

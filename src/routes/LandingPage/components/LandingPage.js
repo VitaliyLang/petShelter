@@ -14,23 +14,15 @@ export const LandingPage = () => (
   <div className='main_wrapper'>
 
     <div className='relocation_nav'>
-      <div className='goesShelter_box'>
-        <Link className='wrap' to='/goes-shelter' activeClassName='page-layout__nav-item--active'>
-          <div className='goesShelter' >
-            <h1 className='homeP' >Goes Shelter</h1>
-          </div>
-        </Link>
-      </div>
-      <Link to='/'>
+      <Link to='/goes-shelter' activeClassName='page-layout__nav-item--active'>
+            <h1 className='homeP' >Leave pet</h1>
+      </Link>
+      <Link to='/' className = "logo">
         <img src={Logo} className='main_page_logo' alt='logo' />
       </Link>
-      <div className='goes_home_box'>
-        <Link className='wrap' to='/categories' activeClassName='page-layout__nav-item--active'>
-          <div className='goesHome'>
-            <h1 className='homeP'>Goes Home</h1>
-          </div>
+        <Link to='/categories' activeClassName='page-layout__nav-item--active'>
+            <h1 className='homeP'>Adopt pet</h1>
         </Link>
-      </div>
     </div>
 
     <Slider className='slider' fullscreen indicators={false} interval={3000} >
@@ -38,17 +30,19 @@ export const LandingPage = () => (
         src={cat}
         title='Pet Shelter welcome you!'
         placement='left'>
-			Home for homeless , Place of new friendships.
+
 		</Slide>
       <Slide className='slide'
+        title='Find your little friend.'
         src={dog}
         placement='right'>
-			It waits you!
+
 		</Slide>
       <Slide className='slide'
         src={parrot}
-        placement='left'>
-			It will be in safe hands with us!
+        placement='left'
+        title = 'We can accept your pet.'>
+       
 		</Slide>
     </Slider>
 
@@ -56,3 +50,8 @@ export const LandingPage = () => (
 )
 
 export default LandingPage
+
+//			Home for homeless , Place of new friendships.
+//			It waits you!
+//      It will be in safe hands with us!
+
