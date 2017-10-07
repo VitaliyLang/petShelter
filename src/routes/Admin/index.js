@@ -9,6 +9,7 @@ import getAnimals from '../../store/actions/animals'
 import signin from '../../store/actions/signin'
 import giveOrders from '../../store/actions/giveOrders'
 import takeAnimal from '../../store/actions/takeAnimal'
+import removeAnimal from '../../store/actions/removeAnimal'
 import firebase from 'firebase'
 
 class Admin extends React.Component {
@@ -18,6 +19,9 @@ class Admin extends React.Component {
 
   componentWillMount () {
     this.props.onGetAnimals('animals');
+    this.props.onGetMessages('users');
+    //this.props.onRemoveAnimal('dog','-123-');
+
     this.props.onSignin();
   }
   
@@ -51,7 +55,8 @@ let mapDispatchToProps = (dispatch) => {
     onGetAnimals: (link) => dispatch(getAnimals(link)),
     onSignin: () => dispatch(signin()),
     onGiveOrders: (userKey) => dispatch(giveOrders(userKey)),
-    onTakeAnimal: (animalKey, category) => dispatch(takeAnimal(animalKey, category))
+    onTakeAnimal: (animalKey, category) => dispatch(takeAnimal(animalKey, category)),
+    onRemoveAnimal: (category, animalKey) => dispatch(removeAnimal(category, animalKey))
   }
 }
 

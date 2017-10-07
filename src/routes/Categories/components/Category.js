@@ -7,7 +7,8 @@ import other from '../assets/other-2048.jpg';
 class Category extends React.Component {
   constructor(props){
     super(props)
-    this.categorClick = this.categorClick.bind(this)
+    this.categorClick = this.categorClick.bind(this);
+    this.state = {width:null};
   }
 
   categorClick (e) {
@@ -15,6 +16,12 @@ class Category extends React.Component {
     let link = '/animals/' + e.target.id;
     let { onGetAnimals } = this.props
     onGetAnimals(link)
+  }
+
+
+  componentDidMount(){
+    const width = this.refs.legend.offsetWidth;
+    this.setState({width:width});
   }
 
   render () {
@@ -33,10 +40,13 @@ class Category extends React.Component {
       height: '100vh'
     };
 
+    let legendPos = {
+      left: 'calc(50% - '+this.state.width/2+'px)'
+    }
     return (
       <div className='category'>
         <div className='category-img' style={imgStyle}></div>
-        <p className='legend' onClick={this.categorClick}>
+        <p className='legend' onClick={this.categorClick} ref='legend' style={legendPos}>
           <Link to={'/categories/' + data.toLowerCase()} id={data.toLowerCase()}>
             {data}
           </Link>
