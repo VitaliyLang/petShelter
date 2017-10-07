@@ -10,6 +10,7 @@ import modifyL from 'store/actions/category/modifyList';
 import changeB from 'store/actions/category/changeBottom';
 import changeT from 'store/actions/category/changeTop';
 import getAnimals from 'store/actions/animals';
+import placeholder from './job-placeholder.gif';
 
 
 
@@ -101,11 +102,11 @@ class Main extends Component {
               if (!elem) return <div key = {index}/>;
               return <Link to={`/categories/${this.props.category}/${elem.key}`} 
                           key={elem.key} 
-                          style={{ backgroundImage: `url(${elem.url || 'http://www.chancefurlife.org/wp-content/themes/petsitter/images/job-placeholder.gif'})` }} 
+                          style={{ backgroundImage: `url(${elem.url || placeholder })` }} 
                       />
           })
           :<Link to={`/categories/${this.props.category}/${this.props.categoryStore.listModify[index].key}`} 
-                 style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url || 'http://www.chancefurlife.org/wp-content/themes/petsitter/images/job-placeholder.gif'})` }}
+                 style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url || placeholder})` }}
                  key={index} 
            />
         }
