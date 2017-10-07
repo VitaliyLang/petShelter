@@ -66,6 +66,7 @@ class EditFilter extends React.Component {
    		// document.querySelector('.petEditor').style.display = 'none';
 			// document.querySelector('[data-key]').style.display = 'inline-block';
 			// console.log("findAnimal state after sent",this.props.findAnimal);
+			console.log('OBJ TO SEND:', this.state);
 			this.props.show();
   	}
 
@@ -101,17 +102,29 @@ class EditFilter extends React.Component {
 								Nickname
 								<input type="text" value={this.state.nickname} onChange={this.handleChange.bind(this, "nickname")} key="2" />
 							</label>
-							<label >
+							<label className="have_select">
 								Age:
-								<input type="text" value={this.state.age} onChange={this.handleChange.bind(this, "age")} key="3" />
+								<select value={this.state.age} onChange={this.handleChange.bind(this, "age")} key="3">
+							    <option value='baby'>Baby</option>
+							    <option value='young'>Young</option>
+							    <option value='adult'>Adult</option>
+							    <option value='senior'>Senior</option>
+    						</select>
 							</label>
-							<label >
+							<label className="have_select">
 								Sex:
-								<input type="text" value={this.state.sex} onChange={this.handleChange.bind(this, "sex")} key="4" />
+								<select value={this.state.sex} onChange={this.handleChange.bind(this, "sex")} key="4">
+							    <option value='male'>Male</option>
+							    <option value='female'>Female</option>
+    						</select>
 							</label>
-							<label >
+							<label className="have_select">
 								Size:
-								<input type="text" value={this.state.size} onChange={this.handleChange.bind(this, "size")} key="5" />
+								<select value={this.state.size} onChange={this.handleChange.bind(this, "size")} key="5">
+							    <option value='small'>Small</option>
+							    <option value='medium'>Medium</option>
+							    <option value='large'>Large</option>
+    						</select>
 							</label>
 							<label >
 								Image Url:
@@ -122,12 +135,14 @@ class EditFilter extends React.Component {
 								<button className="cancel btn get waves-effect waves-light" onClick={this.props.show}>Cancel</button>
 							</div>
 						</form>		
+						
 					</div>
 				)
 		}
 	}
 }
 
+// <input type="text" value={this.state.sex} onChange={this.handleChange.bind(this, "sex")} key="4" />
 export default connect(
 	state => ({
 		animalStore: state.oneAnimal,
