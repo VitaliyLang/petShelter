@@ -33,18 +33,16 @@ export const LandingPage = () => (
 
 		</Slide>
       <Slide className='slide'
-<<<<<<< HEAD
-        src='https://daywallpaper.files.wordpress.com/2013/08/red-german-boxer-dog-portrait.jpg'
         title='Find your little friend.'
-=======
         src={dog}
->>>>>>> d2d13412c081768c03aedf3aefac9ef2227ac97f
         placement='right'>
 
 		</Slide>
       <Slide className='slide'
         src={parrot}
-        placement='left'>
+        placement='left'
+        title = 'We can accept your pet.'>
+       
 		</Slide>
     </Slider>
 
