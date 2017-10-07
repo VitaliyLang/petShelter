@@ -43,12 +43,11 @@ class signIn extends React.Component {
 
   componentWillUpdate (nextProps) {
     if (nextProps.signin.isAdmin) {
-      console.log(this.props)
-      this.props.router.replace('/admin/dashboard')
+      return this.props.router.replace('/admin/dashboard')
     }
 
     if (nextProps.login.login === false && nextProps.login.error.length) {
-      Materialize.toast('The password or email is incorrect!', 4000, 'success')
+      Materialize.toast('The password or email is incorrect!', 2000)
     }
   }
 
@@ -57,12 +56,16 @@ class signIn extends React.Component {
       <div className='login_form'>
         <form ref='form' className='modal_form' onSubmit={this.logIn} onInvalid={this.disableButton}>
           <div>
-            <h1 className='message1'>Sign In</h1>
-            <Input ref={(input) => this.email = input} name='email' validate={true} type='email' label='Email' required />
-            <Input ref={(input) => this.password = input} name='password' type='password' validate={true} label='Password' required/>
+            <div className='profile'>
+              <i className='large material-icons' id='picture'>account_circle</i>
+              <h1 className='message1'>Login</h1>
+            </div>
+            <Input ref={(input) => this.email = input} autoComplete={false} name='email' validate={true} type='email'
+                   label='Email' required />
+            <Input ref={(input) => this.password = input} autoComplete={false} name='password' type='password'
+                   validate={true} label='Password' required />
             <Button disabled={this.state.canSubmit}> Sign In </Button>
-          </div
-          >
+          </div>
         </form>
       </div>
     )
