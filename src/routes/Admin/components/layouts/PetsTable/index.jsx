@@ -55,8 +55,8 @@ class PetsTable extends React.Component {
 
 				return(
 					<div>
+						<h5>Shelter Pets</h5>
 						<div className="table">
-							<h5>Shelter Pets</h5>
 								<div className="pet_row header_row">
 									<div className="rowItem head_row">Category</div>
 									<div className="rowItem head_row">Nickname</div>

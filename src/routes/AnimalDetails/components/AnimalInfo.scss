@@ -1,10 +1,31 @@
 .details{
-    padding-top: 30px; 
+    div{
+        padding: 0;
+    }
+    padding-top: 30px;
     p{
         margin: 15px;
     }
     .get{
-        margin: 50px auto; 
+        margin: 50px auto;
         max-width: 110px;
     }
+
+    .disabled {
+        cursor: not-allowed;
+    }
+  
+    .prohibited{
+        margin: 50px auto;
+        border-radius: 2px;
+        height: 36px;
+        line-height: 36px;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        background: rgba(213, 56, 56, 0.9);
+        display: block;
+        border: none;
+        outline: none;
+    }
 }
+
