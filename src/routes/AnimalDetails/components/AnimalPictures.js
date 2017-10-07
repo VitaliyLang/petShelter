@@ -3,7 +3,8 @@ import './AnimalPictures.scss'
 import { Carousel } from 'react-materialize'
 import { connect } from 'react-redux'
 import getAnimals from 'store/actions/animals'
-import debounce from 'modules/helpers/debounce'
+import debounce from 'modules/helpers/debounce';
+import placeholder from './job-placeholder.gif';
 
 export default function AnimalPictures (props) {
   var arr = [1,2];
@@ -11,7 +12,7 @@ export default function AnimalPictures (props) {
   ? props.animal.url.map((url)=><div key = {url} className = 'img' style = {{backgroundImage: `url(${url})`}}/>)
   : props.animal.url 
     ?<div className='img' style={{ backgroundImage: `url(${props.animal.url})` }} />
-    :<div className='img' style={{ backgroundImage: `url(http://www.chancefurlife.org/wp-content/themes/petsitter/images/job-placeholder.gif)` }} />;
+    :<div className='img' style={{ backgroundImage: `url(${placeholder})` }} />;
   console.log(imgs)
   return (
     <div className='pictures'>
