@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.scss'
 import { connect } from 'react-redux';
 import findAnimal from 'store/actions/findAnimal';
+import removeAnimal from 'store/actions/removeAnimal';
 class PetRow extends React.Component {
 		constructor(props) {
 				super(props);
@@ -10,29 +11,35 @@ class PetRow extends React.Component {
 
 		getRow(e) {
 			var objKey = e.target.getAttribute('data-key');
-			// console.log(e.target.getAttribute('data-key'));
 			this.findClickedObj(objKey);
-		}
+			this.props.show();
+			}
 
 		findClickedObj(key) {
-		// console.log(key);
-		// console.log(this.props.petsArr);
 		var myArr = this.props.petsArr;
-		// console.log(myArr);
-		// var myPet ;
+
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
-				// console.log( myArr[i]);
-				// myPet = myArr[i];
-				document.querySelector('.petEditor').style.display = 'block';
-				document.querySelector('[data-key]', key).style.display = 'none';
-				// console.log("button key", key);
 				this.props.findAnimal(myArr[i]);
-				 // return this.props.returnPetToUpdate(myArr[i]);					
 			}
 		} 
 	}
-		
+	
+	findPetToDel(e){
+		console.log(e.target.getAttribute('data-key'));
+		var myKey = e.target.getAttribute('data-key');
+		console.log(this.props.petsArr);
+		var allPets = this.props.petsArr;
+		for (var i = 0; i < allPets.length; i++){
+			if (allPets[i].key == myKey) {
+				console.log("this el",allPets[i].category);
+				var petCategory = allPets[i].category;
+				var petKey = allPets[i].key;
+				this.props.onRemoveAnimal('dog','-456-');
+				console.log("arr after remove",this.props.petsArr);
+			}
+		}
+	}
 
 		render(){
 			console.log("myStore",this.props.AnimalStore);
@@ -47,8 +54,17 @@ class PetRow extends React.Component {
 								<div className="rowItem img">
 										<img className="img" src= {this.props.item.url} alt=""/>
 								</div>
-								<div className="rowItem ">
-									<button onClick={this.getRow.bind(this)} data-key={this.props.item.key}>Edit</button>
+								<div className="rowItem ">								
+									<i className="material-icons table_btn"
+										data-key={this.props.item.key}
+										onClick={this.getRow.bind(this)}>
+										edit
+									</i>
+									<i className="material-icons table_btn"
+										data-key={this.props.item.key}
+										onClick={this.findPetToDel.bind(this)}>	
+										delete_forever
+									</i>
 								</div>
 								
 						</div>    
@@ -64,6 +80,7 @@ export default connect(
 		AnimalStore: state.oneAnimal,
 	}),
 	dispatch => ({
-		findAnimal: (animalObject) => dispatch(findAnimal(animalObject))
+		findAnimal: (animalObject) => dispatch(findAnimal(animalObject)),
+		onRemoveAnimal: (category, animalKey) => dispatch(removeAnimal(category, animalKey))
 	})
 )(PetRow)

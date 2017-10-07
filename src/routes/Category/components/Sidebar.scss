@@ -6,6 +6,9 @@
     height: 100%;
     overflow: hidden;
     color: #9e9e9e;
+    div{
+        padding-left: 10px;
+    }
     .btn{
         display: block;
         background: #79bd8f;
@@ -36,6 +39,6 @@
         position: absolute;
         top: 0;
         width: 250px;
-        z-index: 100;
+        z-index: 999;
     }
 }

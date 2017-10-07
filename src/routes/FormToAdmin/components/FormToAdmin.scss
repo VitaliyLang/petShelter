@@ -17,4 +17,9 @@
 		justify-content: space-around;
 		flex-direction: column;
 	}
+	@media (max-width: 500px){
+		.modal_form{
+			height: 80%;
+		}
+	}
 }
