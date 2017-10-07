@@ -91,6 +91,7 @@ class EditFilter extends React.Component {
 
 					return(
 					<div className="petEditor">
+						<h6 className="header">Pet Editor</h6>
 						<form onSubmit={this.handleSubmit.bind(this)}>
 							<label>
 								Category:
@@ -116,7 +117,10 @@ class EditFilter extends React.Component {
 								Image Url:
 								<input type="text" value={this.state.url}  onChange={this.handleChange.bind(this, "url")} key="6" />
 							</label>
-							<input type="submit" value="Submit" className=''/>
+							<div className="buttons_block">
+								<input type="submit" value="Submit" className='submit btn get waves-effect waves-light'/>
+								<button className="cancel btn get waves-effect waves-light" onClick={this.props.show}>Cancel</button>
+							</div>
 						</form>		
 					</div>
 				)

@@ -1,13 +1,23 @@
 .table{
 	display: flex;
 	flex-direction:column;
+	border: 1px solid black;
 	.pet_row {
-	display: flex;
+		display: flex;
+		border-bottom: 1px solid black;
+		&:last-child {
+			border-bottom: 0;
+		}
 		.rowItem {
-			border: 1px solid black;
 			width: 15%;
 			text-transform: capitalize;
-			text-align: center;
+	    border-right: 1px solid black;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  &:last-child {
+		  	border-right: 0;
+		  }
 			.table_btn {
 				cursor: pointer;
 				&:hover {
@@ -20,7 +30,7 @@
 				cursor: pointer;
 				&:hover {	
 					transition:all .8s;
-					transform:scale(3);
+					transform:scale(2.5);
 				}
 			}
 		}
