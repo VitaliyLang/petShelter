@@ -1,13 +1,12 @@
 import React from 'react'
-// import MainInput from 'modules/inputs/MainInput'
 import { connect } from 'react-redux'
-// import Button from 'modules/buttons/PrimaryButton'
 import { Button, Input } from 'react-materialize';
 import signin from '../../../store/actions/signin/index'
 import login from '../../../store/actions/login/index'
 import 'modules/buttons/buttons.scss'
 import 'modules/inputs/inputs.scss'
 import './signIn.scss'
+import * as Materialize from 'materialize-css'
 
 class signIn extends React.Component {
   constructor (props) {
@@ -32,7 +31,6 @@ class signIn extends React.Component {
 
   logIn (e) {
     e.preventDefault()
-    console.log('this ', this)
     this.props.onLogin({
       email: this.email.state.value,
       password: this.password.state.value
@@ -50,10 +48,7 @@ class signIn extends React.Component {
     }
 
     if (nextProps.login.login === false && nextProps.login.error.length) {
-      this.refs.form.updateInputsWithError({
-        password: 'The password or email is incorrect',
-        // password: nextProps.login.error.substring
-      })
+      Materialize.toast('The password or email is incorrect!', 4000, 'success')
     }
   }
 
