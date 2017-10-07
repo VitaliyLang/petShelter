@@ -15,20 +15,27 @@ class Message extends React.Component {
     }
 
     render(){
-        const key = Object.keys(this.props.message)[0];
-        if(!this.props.message[key].active && this.props.message[key].role != 'admin'){
+       
+        if(!this.props.message.active && this.props.message.role != 'admin'){
+            if(this.props.message.type){
+                const buttonName = this.props.message.type[0].toUpperCase()+this.props.message.type.slice(1);
+            }
+            buttonName = buttonName || 'Give';
             return(
                 <article className="message">
-                    <div>Name: {this.props.message[key].username}</div>
-                    <div>Phone number: {this.props.message[key].phoneNumber}</div>
-                    <div>Email: {this.props.message[key].email}</div>
-                    <div>Date: {this.props.message[key].date}</div>
-                    <button><Link className='links' to={'/admin/takeOrder'} id={key}>Take Order</Link></button>
+                    <div>Name: {this.props.message.username}</div>
+                    <div>Phone number: {this.props.message.phoneNumber}</div>
+                    <div>Email: {this.props.message.email}</div>
+                    <div>Date: {this.props.message.date}</div>
+                    <div className='btn'>
+                        <button><Link className='links' to={'/admin/takeOrder'} id={this.props.message.key}>{buttonName} Offer</Link></button>
+                        <button><Link className='links' to={'#'}>Forbid Offer</Link></button>
+                    </div>
                 </article>
             )
         }
         return null
     }
 }
-
+ 
 export default Message
