@@ -22,7 +22,7 @@ export function getAnimals (link) {
 
   return dispatch => {
     dispatch(getInviteRequestedAction())
-    return database.ref(link).once('value', snap => {
+    return database.ref(link).on('value', snap => {
       animals = snap.val()
       dispatch(getInviteFulfilledAction(animals))
     })
