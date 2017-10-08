@@ -7,6 +7,9 @@ export function signup (personObj) {
         // const key = res.uid;
     const key = database.ref().child('users').push().key
     let updates = {};
+    if(!personObj.animalId){
+      personObj.animalId = '';
+    }
     personObj.key=key;
     personObj.date = new Date().toLocaleString().split(',')[0];
     updates['/users/' + key] = personObj
