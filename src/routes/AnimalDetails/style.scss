@@ -1,6 +1,9 @@
-@media (max-width: 1050px){
+@media (max-width: 950px){
     .img-detail{
         flex-direction: column-reverse;
+        overflow: auto;
+        min-height: calc(100% - 30px);
+        height: auto;
     }
     .pictures{
         flex-basis: 60%;

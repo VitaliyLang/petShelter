@@ -7,8 +7,8 @@ import phone from '../assets/phone.svg';
 class Contacts extends React.Component{
     render() {
         return (
-            <div className='contacts_wrapper main_section'>
-                <div className="contacts_container">
+            <div className='contacts_wrapper'>
+                <div className="contacts_container ver-scroll">
                     <h4>FIND US</h4>
                     <div className="contacts_info">
                         <h5>PET SHELTER</h5>

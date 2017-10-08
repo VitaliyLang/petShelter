@@ -1,4 +1,5 @@
 .contacts_wrapper {
+    height: calc(100% - 30px);
     background-image: url('../../Partners/assets/bg1.jpg');
     background-size: cover;
     background-repeat: none;
@@ -12,9 +13,10 @@
 }
 
 .contacts_container {
+    height: 100%;
+    overflow-y: auto;
     background-color: rgba(60,143,87,.9);
     align-items: center;
-    background-color: rgba(60,143,87,.9);
     padding: 0 40px;
 }
 
@@ -52,9 +54,9 @@
 }
 
 .contacts_map {
+    height: 225px;
     position: relative;
-    padding-bottom: 75%; // This is the aspect ratio
-    height: 0;
+    background-color: white;
     overflow: hidden;
     margin-bottom: 10px;
     iframe {

@@ -34,14 +34,14 @@ class Main extends Component {
     const ITEM_HEIGHT_M = 0.4;
     const ITEM_HEIGHT_S = 0.2;
     const M = 960;
-    const S = 500;
+    const S = 600;
 
     const arr = [];
     const temporary = [];
 
 
     for (let i = 0; i < keys.length; i++) {
-      temporary[i] = Object.assign(animals[keys[i]], {'key': keys[i]});
+      temporary[i] = Object.assign(animals[keys[i]], { 'key': keys[i] });
     }
     let filtered = temporary.filter((animal) => {
       return filterKeys.every((key) => {
@@ -49,7 +49,7 @@ class Main extends Component {
       })
     })
 
-    animals = filtered.filter((item)=>item.active == true);
+    animals = filtered.filter((item) => item.active == true);
     keys = Object.keys(animals);
 
     if (WIDTH > M) {
@@ -73,7 +73,7 @@ class Main extends Component {
   }
   componentWillMount() {
     let link = `/animals/${this.props.category.toLowerCase()}`;
-    Promise.resolve(this.props.onGetAnimals(link)).then(()=>this.update());
+    Promise.resolve(this.props.onGetAnimals(link)).then(() => this.update());
   }
   componentDidMount() {
     window.addEventListener('resize', this.updateDebounce);
@@ -99,22 +99,25 @@ class Main extends Component {
       ? <div className='flex-container_img'>
         {Array.isArray(this.props.categoryStore.listModify[index])
           ? this.props.categoryStore.listModify[index].map((elem, index) => {
-              if (!elem) return <div key = {index}/>;
-              return <Link to={`/categories/${this.props.category}/${elem.key}`} 
-                          key={elem.key} 
-                          style={{ backgroundImage: `url(${elem.url || placeholder })` }} 
-                      />
+            if (!elem) return <div key={index} />;
+
+              
+              return <Link to={`/categories/${this.props.category}/${elem.key}`}
+                key={elem.key}
+                style={{ backgroundImage: `url(${elem.url || placeholder})` }}
+              />
+              
           })
-          :<Link to={`/categories/${this.props.category}/${this.props.categoryStore.listModify[index].key}`} 
-                 style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url || placeholder})` }}
-                 key={index} 
-           />
+          : <Link to={`/categories/${this.props.category}/${this.props.categoryStore.listModify[index].key}`}
+            style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url || placeholder})` }}
+            key={index}
+          />
         }
       </div>
       : <div className='flex-container_img'>
         {Array.isArray(this.props.categoryStore.listModify[index])
-          ? this.props.categoryStore.listModify[index].map((elem, index) => <Link className='load' key = {index}/>)
-          : <Link className='load' key = {index}/>
+          ? this.props.categoryStore.listModify[index].map((elem, index) => <Link className='load' key={index} />)
+          : <Link className='load' key={index} />
         }
       </div>
     style.top = style.height * index
@@ -125,19 +128,19 @@ class Main extends Component {
     )
   }
   render() {
-    if(!this.props.categoryStore.listModify){
+    if (!this.props.categoryStore.listModify) {
       return null
     }
-    if(!this.props.categoryStore.listModify.length){
-      return <h1 className = 'message1'>
-                Unfortunately no animals matched your search.
+    if (!this.props.categoryStore.listModify.length) {
+      return <h1 className='message1'>
+        Unfortunately no animals matched your search.
              </h1>
     }
     return (
       <List
         className='ver-scroll pet-list'
         width={1200}
-        height={400}
+        height={650}
         rowCount={this.props.categoryStore.listModify.length}
         rowHeight={this.props.categoryStore.height}
         rowRenderer={this.rowRenderer}

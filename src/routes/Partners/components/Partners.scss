@@ -1,4 +1,5 @@
 .partners_wrapper {
+    height: calc(100% - 30px);
     background-image: url('../assets/bg1.jpg');
     background-size: cover;
     background-repeat: none;
@@ -6,6 +7,7 @@
 
 .partners_container {
     height: 100%;
+    overflow-y: auto;
     background-color: rgba(60,143,87,.9);
     display: flex;
     flex-direction: column;

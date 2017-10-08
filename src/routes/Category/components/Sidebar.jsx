@@ -26,7 +26,6 @@ class Sidebar extends Component {
         this.keys = Object.keys(this.values);
         this.resize = this.resize.bind(this);
         this.debounceResize = debounce(this.resize, 300);
-        this.close = this.close.bind(this);
     }
     componentDidMount() {
         window.addEventListener('resize', this.debounceResize);
@@ -52,9 +51,6 @@ class Sidebar extends Component {
         this.setQuery();
         this.props.showModal(false);
     }
-    close(){
-        this.props.showModal(false);
-    }
     componentWillMount() {
         let query = this.props.location.query;
         let cleanQuery = {};
@@ -74,11 +70,11 @@ class Sidebar extends Component {
         this.setQuery();
     }
     render() {
-        if (!this.props.show && window.innerWidth < 500){
+        if (!this.props.show && window.innerWidth < 600){
             return null
         }
         let asideClass;
-        if(window.innerWidth < 500){
+        if(window.innerWidth < 600){
             asideClass ='aside_category filter_block'
         }else{
             asideClass ='aside_category'
@@ -110,7 +106,6 @@ class Sidebar extends Component {
                     }
                     <Button type="submit" className="filter btn waves-effect waves-light"> Apply </Button>
                     <Button className="filter btn  waves-effect waves-light" onClick={this.reset}> Reset </Button>
-                    < div onClick = {this.close} className = "closer"/>
                 </form>
             </aside>
         )
