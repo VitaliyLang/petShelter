@@ -7,14 +7,11 @@
 		padding: 0;
 		margin: 0 auto;
 		text-align: center;
-		h1 {
-			margin: 0;
-		}
 		#picture {
 			color: #79bd8f;
 		}
 	}
-	button{
+	button {
 		display: block;
 		background: #79bd8f;
 		color: #383d40;
@@ -24,6 +21,11 @@
 		display: flex;
 		justify-content: space-around;
 		flex-direction: column;
+	}
+	@media (max-width: 500px){
+		.modal_form{
+			height: 80%;
+		}
 	}
 }
 
