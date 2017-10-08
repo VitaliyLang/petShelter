@@ -13,7 +13,6 @@ export default function AnimalPictures (props) {
   : props.animal.url 
     ?<div className='img' style={{ backgroundImage: `url(${props.animal.url})` }} />
     :<div className='img' style={{ backgroundImage: `url(${placeholder})` }} />;
-  console.log(imgs)
   return (
     <div className='pictures'>
       <Carousel>

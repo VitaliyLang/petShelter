@@ -1,5 +1,19 @@
 .flex-container{
     display: flex;
-    min-height: calc(100% - 30px);
+    height: calc(100% - 30px);
     background-color: #383D40;
+    .closer{
+        display: none;
+    }
+}
+@media (max-width: 600px) {
+    .flex-container .closer{
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        z-index: 999;
+    }
 }
