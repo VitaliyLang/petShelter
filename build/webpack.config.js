@@ -17,7 +17,7 @@ const config = {
       inProjectSrc(project.main),
     ],
   },
-  devtool: project.sourcemaps ? 'source-map' : false,
+  devtool: __DEV__ ? 'source-map' : false,
   output: {
     path: inProject(project.outDir),
     filename: __DEV__ ? '[name].js' : '[name].[chunkhash].js',
