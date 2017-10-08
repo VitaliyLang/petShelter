@@ -61,10 +61,21 @@
 
 		.sidenav-logo {
 			height: 54px;
-			&:hover {
-					transition: all .3s;
-					transform: scale(1.1);
-					background:inherit;
+		}
+		.side-nav {
+			background-color: $primary-green;
+			a {
+				color: #fff;
+				font-weight: 900;
+				font-size: 1.5em;
+			}
+			.small-logo {
+				width: 230px;
+				opacity: .5;
+				margin: 25px 10px;
+			}
+			.divider {
+				height: 3px;
 			}
 		}
 }
