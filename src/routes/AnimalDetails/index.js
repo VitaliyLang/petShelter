@@ -45,7 +45,7 @@ class AnimalDetails extends Component {
     let link = `/animals/${this.props.params.categID.toLowerCase()}/${this.props.params.animalID}`;
     Promise.resolve(this.props.onGetAnimals(link)).then(() => {
       if (this.props.listAnimals.animals === null) {
-        this.context.router.replace('/notFound');
+        this.context.router.replace('/notfound');
       }
     });
   }

@@ -6,7 +6,19 @@
     margin:5px;
     box-sizing: border-box;
     width: 250px;
-    border-radius: 10px;    
+    border-radius: 10px;
+
+    @media (min-width : 320px){
+        width: 100%;
+    }   
+    
+    @media (min-width : 720px){
+        width: 200px;
+    } 
+
+    @media (min-width : 940px){
+        width: 250px;
+    } 
 
     div{
         margin-bottom: 5px;
@@ -16,9 +28,17 @@
         justify-content: space-around;
         flex-wrap: wrap;
         margin-top: 12px;
-    }
-    .links {
-        text-decoration: none;
-        color: black;
+        button{
+            @media (min-width : 720px){
+                &:first-child{
+                    margin-bottom: 5px;
+                }                
+            }
+            @media (min-width : 940px){
+                &:first-child{
+                    margin-bottom: 0;
+                } 
+            } 
+        }
     }
 }

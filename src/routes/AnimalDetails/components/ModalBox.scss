@@ -7,6 +7,9 @@
     height: 100vh;
     background-color: rgba(0,0,0,0.8);
     display: flex;
+    div{
+        padding: 0;
+    }
 }
 .modal_form{
     background-color: #383D40;
@@ -18,13 +21,14 @@
     justify-content: space-around;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.8);
     border-radius: 2px;
-    overflow: hidden;
     .message1{
         width: 100%;
         padding: 10px;
     }
     div input.validate{
-        padding-left: 20px;
+        padding: 0 10px;
+        box-sizing: border-box;
+
     }
     button{
         width: 35%;

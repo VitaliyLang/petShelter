@@ -26,17 +26,17 @@ class PetRow extends React.Component {
 	}
 	
 	findPetToDel(e){
-		console.log(e.target.getAttribute('data-key'));
+		// console.log(e.target.getAttribute('data-key'));
 		var myKey = e.target.getAttribute('data-key');
-		console.log(this.props.petsArr);
+		// console.log(this.props.petsArr);
 		var allPets = this.props.petsArr;
 		for (var i = 0; i < allPets.length; i++){
 			if (allPets[i].key == myKey) {
-				console.log("this el",allPets[i].category);
+				// console.log("this el",allPets[i].category);
 				var petCategory = allPets[i].category;
 				var petKey = allPets[i].key;
-				this.props.onRemoveAnimal('dog','-456-');
-				console.log("arr after remove",this.props.petsArr);
+				this.props.onRemoveAnimal(petCategory,petKey);
+				// console.log("arr after remove",this.props.petsArr);
 			}
 		}
 	}

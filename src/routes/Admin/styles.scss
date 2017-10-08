@@ -1,4 +1,8 @@
 .wrapper {
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    height: calc(100% - 30px);
+    @media (max-width: 768px) {
+				flex-direction: column;
+    }
 }

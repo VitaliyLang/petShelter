@@ -6,8 +6,10 @@ import '../../../styles/main.scss';
 import './header.scss';
 import { SideNav, SideNavItem } from 'react-materialize';
 import Logo from './petLogo.png';
+import LogoSm from './petLogo_sm.png';
 import modalAdopt from 'store/actions/modalAdopt';
-import debounce from 'modules/helpers/debounce'
+import debounce from 'modules/helpers/debounce';
+import filter from './filter.png'
 
 class Header extends React.Component{
     constructor(){
@@ -34,7 +36,7 @@ class Header extends React.Component{
         var Connection;
 
         if(window.innerWidth < 500 && show){
-            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = "http://icons.iconarchive.com/icons/icons8/ios7/256/Very-Basic-Filter-icon.png" width="15"/>Filter</Link></li>
+            Filter = <li className = "filter_btn" onClick = {this.onClick}><Link to = ''><img src = {filter} width="15"/>Filters</Link></li>
         }else{
             Filter = null;
         }
@@ -70,11 +72,12 @@ class Header extends React.Component{
                                     <img className='sidenav-logo' src={Logo} alt='logo'/>
                                 </Link>
                             </li>
-                            <SideNavItem divider />
+                            <SideNavItem className='divider' divider />
                             <li><Link to='/contacts'>Contacts</Link></li>
                             <li><Link to='/about'>About</Link></li>
                             <li><Link to='/partners'>Partners</Link></li>
                             <li><Link to='/categories'>Categories</Link></li>
+                          <li><img className='small-logo' src={LogoSm} alt='logo' /></li>
                         </SideNav>
 
                     <ul className='right hide-on-med-and-down'>
