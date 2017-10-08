@@ -3,15 +3,22 @@ import {connect} from 'react-redux'
 import Message from './Message/'
 import './styles.scss'
 import giveOrders from 'store/actions/giveOrders'
+import addAnimal from 'store/actions/addAnimal'
 
 class Messages extends React.Component {
     constructor(props){
         super(props)
-        this.state = {messages:this.props.messages}
+        this.state = {
+            messages: this.props.messages,
+            addAnimal: this.props.addAnimal
+        }
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({messages:nextProps.messages})
+        this.setState({
+            messages:nextProps.messages,
+            addAnimal: nextProps.addAnimal
+        });
     }
 
     render(){
@@ -27,7 +34,10 @@ class Messages extends React.Component {
         
        tamplate = messagesArr.map((item,i) => {
                      return(                    
-                        <Message key={i} message={item} onGiveOrders={this.props.onGiveOrders}/>
+                        <Message key={i} message={item} 
+                        onGiveOrders={this.props.onGiveOrders}
+                        onAddAnimal={this.props.onAddAnimal}
+                        addAnimal={this.state.addAnimal}/>
                     )
                 })
         return(
@@ -39,8 +49,12 @@ class Messages extends React.Component {
 }
 
 export default connect(
-    state => ({messages:state.messages.messages}),
+    state => ({
+        messages:state.messages.messages,
+        addAnimal:state.addAnimal
+    }),
     dispatch => ({
-        onGiveOrders : (userkey) => dispatch(giveOrders(userkey))
+        onGiveOrders : (userkey) => dispatch(giveOrders(userkey)),
+        onAddAnimal: (userKey, animalObj) => dispatch(addAnimal(userKey, animalObj))
     })
 )(Messages)

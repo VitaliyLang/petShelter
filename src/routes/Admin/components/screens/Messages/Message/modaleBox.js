@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'react-materialize';
+import Dropzone from 'react-dropzone'
 
 export default class ModalBox extends Component {
     constructor(props) {
@@ -7,35 +8,54 @@ export default class ModalBox extends Component {
         this.submit = this.submit.bind(this);
         this.clickOk = this.clickOk.bind(this);
         this.state = {
-            show:true
+            showPhotoUploader:false,
+            animalResp: null,
+            files: []
         };
     }
     submit(e) {
         e.preventDefault();
-        let key = this.props.params.animalID;
-        let category = this.props.params.categID.toLowerCase();
-        this.props.adopt(key, category, false);
-        let user = {
-            name: this.name.state.value,
-            email: this.email.state.value,
-            tel: this.tel.state.value,
-            animalID: key,
-            category,
-            type: 'give'
+        let userKey = this.props.userKey;
+        let animal = {
+            category: this.category.state.value,
+            age: this.age.state.value,
+            size: this.size.state.value,
+            sex: this.sex.state.value,
+            alias: this.nickname.state.value,
+            vaccinations: this.vaccinations.state.value
         };
-        this.props.signUp(user);
+        this.props.onAddAnimal(userKey,animal);
+
         this.setState({
-            showNotification: true
+            showPhotoUploader: true
         })
     }
-    clickOk(){
+
+    clickOk(e){
+        let check = e.target.getAttribute('data-key');
         this.props.showChange();
-        this.props.onGiveOrders(
-            this.props.userKey
-        );
+        if(check == 'yes'){
+            this.props.onGiveOrders(
+                this.props.userKey
+            );
+        }
+    }
+
+    onDrop(files) {
+        this.setState({
+          files
+        });
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            animalResp: nextProps.addAnimal
+        })
+        console.log('nextProps.addAnimal',nextProps.addAnimal);
     }
 
     render() {
+        console.log('showPhotoUploader',this.state.showPhotoUploader);
         if (!this.props.show) {
             return null;
         }
@@ -44,19 +64,48 @@ export default class ModalBox extends Component {
             content = <div className='modal_form'>
                         <h1 className = 'message1'>The order will be removed!
                     Are you sure?</h1>
-                        <Button onClick = {this.clickOk} className=" btn waves-effect waves-light"> Okey </Button>
+                    <div>
+                        <Button onClick = {this.clickOk} className=" btn waves-effect waves-light" data-key='yes'> Yes </Button>
+                        <Button onClick = {this.clickOk} className=" btn waves-effect waves-light" data-key='no'> No </Button>
                     </div>
-        //} else if(this.state.showNotification){
-
+                    </div>
+        }else if(this.state.showPhotoUploader){
+            console.log('drop');
+            content = 
+                <div className="modal_form">
+                    <Dropzone onDrop={this.onDrop.bind(this)}>
+                        <p>Try dropping some files here, or click to select files to upload.</p>
+                    </Dropzone>
+                </div>
         }else{
             content =
-                <form className='modal_form' onSubmit={this.submit}>
-                    <Input label="Name" validate={true} required minLength='3' size="10" ref={(input) => this.name = input} />
-                    <Input type="email" label="Email" validate={true} required ref={(input) => this.email = input} />
-                    <Input type="tel" validate={true} label="Phone: (0XX)XXXXXXX" required pattern="(\()?[0-9]{3}(\))?[-\s]?[0-9]{3}[-\s]?[0-9]{2}[-\s]?[0-9]{2}" ref={(input) => this.tel = input} />
+                <form className='modal_form' onSubmit={this.submit} style={{height:'600px', paddingTop:'50px'}}>
+                    <Input type='select' s={12} defaultValue='dog' label="Category" ref={(input) => this.category = input}>
+		                <option value='dog'>Dogs</option>
+		                <option value='cat'>Cats</option>
+		                <option value='other'>Other</option>
+	                </Input>
+                    <Input type='select' s={12} defaultValue='baby' label="Age"  ref={(input) => this.age = input}>
+                        <option value='baby'>Baby</option>
+                        <option value='young'>Young</option>
+                        <option value='adult'>Adult</option>
+                        <option value='senior'>Senior</option>
+	                </Input>
+                    <Input type='select' s={12} defaultValue='small' label="Size" ref={(input) => this.size = input}>
+                        <option value='small'>Small</option>
+                        <option value='medium'>Medium</option>
+                        <option value='large'>Large</option>
+	                </Input>
+                    <Input type='select' s={12} defaultValue='male' label="Sex" ref={(input) => this.sex = input}>
+                        <option value='male'>Male</option>
+                        <option value='female'>Female</option>
+	                </Input>
+                    <Input label="Nickname"  ref={(input) => this.nickname = input} />
+                    <Input label="Vaccinations" ref={(input) => this.vaccinations = input} />
+                                   
                     <div>
                         <Button type="submit" className=" btn waves-effect waves-light"> Apply </Button>
-                        <Button onClick={this.props.click} className=" btn waves-effect waves-light"> Cancel </Button>
+                        <Button onClick={this.clickOk} className=" btn waves-effect waves-light"> Cancel </Button>
                     </div>
                 </form>
 

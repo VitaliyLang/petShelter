@@ -24,6 +24,8 @@ class Message extends React.Component {
         });
         if(id == 'forbid'){
             this.setState({showWarn : true})
+        }else{
+            this.setState({showWarn : false})
         }
     }
 
@@ -38,8 +40,8 @@ class Message extends React.Component {
             return(
                 <article className="message">
                     <div>Type: {this.props.message.type}</div>
-                    <div>Name: {this.props.message.username}</div>
-                    <div>Phone number: {this.props.message.phoneNumber}</div>
+                    <div>Name: {this.props.message.name}</div>
+                    <div>Phone number: {this.props.message.tel}</div>
                     <div>Email: {this.props.message.email}</div>                    
                     <div>Date: {this.props.message.date}</div>
                     <div className='btn-offer'>
@@ -48,7 +50,9 @@ class Message extends React.Component {
                     </div>
                     <ModalBox show={this.state.show} showWarn={this.state.showWarn} 
                         userKey={this.state.userKey} showChange = {this.showChange} 
-                        onGiveOrders={this.props.onGiveOrders}/>
+                        onGiveOrders={this.props.onGiveOrders}
+                        onAddAnimal={this.props.onAddAnimal}
+                        addAnimal={this.props.addAnimal}/>
                 </article>
             )
         }
