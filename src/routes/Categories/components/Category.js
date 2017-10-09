@@ -33,11 +33,11 @@ class Category extends React.Component {
       dogs : dog,
       other : other
     } 
+    let classes = Object.keys(objImg);
+
     
     let imgStyle = {
-      background: 'url('+objImg[data.toLowerCase()]+')',
-      backgroundSize :'cover',
-      height: '100vh'
+      background: 'url('+objImg[data.toLowerCase()]+')'
     };
 
     let legendPos = {
@@ -45,7 +45,7 @@ class Category extends React.Component {
     }
     return (
       <div className='category'>
-        <div className='category-img' style={imgStyle}></div>
+        <div className='category-img' style={imgStyle} id={data.toLowerCase()}></div>
         <p className='legend' onClick={this.categorClick} ref='legend' style={legendPos}>
           <Link to={'/categories/' + data.toLowerCase()} id={data.toLowerCase()}>
             {data}
