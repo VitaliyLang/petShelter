@@ -62,10 +62,13 @@ export default class ModalBox extends Component {
     }
 
     takeAnimal(){
+        let userKey = this.props.userKey;
+        console.log('userKey modal',userKey);
         this.props.onTakeAnimal(
             this.props.message.animalID,
             this.props.message.category,
-            true
+            true,
+            userKey
         )
         this.props.showChange();
     }
@@ -75,7 +78,6 @@ export default class ModalBox extends Component {
           files
         });
     }
-
 
     componentWillReceiveProps(nextProps){
         this.setState({

@@ -4,13 +4,16 @@ export function takeOrder (userKey) {
   return dispatch => {
     return database.ref('/users/' + userKey).once('value')
       .then((snap) => {
-        const animalId = snap.val().animalId,
+        console.log(snap.val());
+        const animalId = snap.val().animalID,
           category = snap.val().category,
-          linkToAnimal = '/animals/' + category + '/' + animalId
+          linkToAnimal = '/animals/' + category + '/' + animalId,
           delRef = storage.ref().child('/animals/' + category+ '/' + animalId);
         const updates = {}
         updates['/users/' + userKey] = null
         updates[linkToAnimal] = null
+        console.log('user','/users/' + userKey);
+        console.log('link',linkToAnimal);
         return database.ref().update(updates)
       })
       .then(() => {

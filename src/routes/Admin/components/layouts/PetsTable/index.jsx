@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import getAnimals from '../../../../../store/actions/animals';
+import getAnimalsv from '../../../../../store/actions/animalsv';
 import updateAnimal from '../../../../../store/actions/updateAnimal';
 import PetRow from './components/PetRow';
 import EditFilter from './components/EditFilter';
@@ -87,10 +87,10 @@ class PetsTable extends React.Component {
 
 export default connect(
 	state => ({
-		allAnimals:state.listAnimals,
+		allAnimals:state.listAnimalsv,
 	}),
 	dispatch => ({
-		onGetAnimals: () => dispatch(getAnimals()),
+		onGetAnimals: () => dispatch(getAnimalsv()),
 	})
 )(PetsTable)
 
