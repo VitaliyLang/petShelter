@@ -69,7 +69,8 @@ class Message extends React.Component {
                         onTakeOrder={this.props.onTakeOrder}
                         onTakeAnimal={this.props.onTakeAnimal}
                         onGetAnimals={this.props.onGetAnimals}
-                        takenAnimal={this.props.takenAnimal}/>
+                        takenAnimal={this.props.takenAnimal}
+                        linkToPet={linkToPet}/>
                 </article>
             )
         }

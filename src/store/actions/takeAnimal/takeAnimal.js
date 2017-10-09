@@ -7,7 +7,7 @@ export function takeAnimal (animalKey, category, status) {
         let userUid = snap.val().userUid
         let updates = {}
         updates['/animals/' + category + '/' + animalKey + '/active'] = status
-           // updates['/users/'+userUid+'/active'] = false;
+           updates['/users/'+userUid+'/active'] = !status;
            // updates['/users/'+userUid+'/type'] = 'take';
         return database.ref().update(updates)
             .then(() => {

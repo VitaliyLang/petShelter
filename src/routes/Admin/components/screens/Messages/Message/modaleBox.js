@@ -9,6 +9,7 @@ export default class ModalBox extends Component {
         this.click = this.click.bind(this);
         this.addAnimal = this.addAnimal.bind(this);
         this.takeAccept = this.takeAccept.bind(this);
+        this.takeAnimal = this.takeAnimal.bind(this);
         this.state = {
             showPhotoUploader:false,
             animalResp: {},
@@ -37,14 +38,7 @@ export default class ModalBox extends Component {
     click(e){
         let check = e.target.getAttribute('data-key');
         this.props.showChange();
-        if(check == 'no' && this.props.message.type == 'get'){
-            this.props.onTakeAnimal(
-                this.props.message.animalID,
-                this.props.message.category,
-                true
-            )
-        }
-        else if(check == 'yes'){
+        if(check == 'yes'){
             this.props.onGiveOrders(
                 this.props.userKey
             );
@@ -64,6 +58,16 @@ export default class ModalBox extends Component {
     takeAccept(){
         let userKey = this.props.userKey;
         this.props.onTakeOrder(userKey);
+        this.props.showChange();
+    }
+
+    takeAnimal(){
+        this.props.onTakeAnimal(
+            this.props.message.animalID,
+            this.props.message.category,
+            true
+        )
+        this.props.showChange();
     }
 
     onDrop(files) {
@@ -113,11 +117,12 @@ export default class ModalBox extends Component {
           </div>
         }else  if (this.props.message.type == 'get') {
             content = <div className='modal_form'>
-                        <h1 className = 'message1'>The pett was chosen.</h1>
-                        {JSON.stringify(this.state.takenAnimal)}
+                        <h1 className = 'message1'>The pet was chosen.</h1>
+                        <p> Link to pet {this.props.linkToPet} </p>  
+                        <p> You can accept the order (Accept) or sent pet back to list (Decline)</p>                       
                     <div>
                         <Button onClick = {this.takeAccept} className=" btn waves-effect waves-light" data-key='yes'> Accept </Button>
-                        <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='no'> Decline </Button>
+                        <Button onClick = {this.takeAnimal} className=" btn waves-effect waves-light" data-key='no'> Decline </Button>
                     </div>
                     </div>
         }else{
