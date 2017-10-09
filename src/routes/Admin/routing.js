@@ -10,7 +10,6 @@ class Routing extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps)
     if(!['messages', 'dashboard', 'animals', 'takeOrder'].includes(nextProps.action)){
       this.props.router.replace('/admin/dashboard');
     }
