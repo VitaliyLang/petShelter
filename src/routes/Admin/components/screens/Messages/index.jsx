@@ -68,7 +68,7 @@ export default connect(
         onGiveOrders : (userkey) => dispatch(giveOrders(userkey)),
         onAddAnimal: (userKey, animalObj, photo) => dispatch(addAnimal(userKey, animalObj, photo)),
         onTakeOrder: (userKey) => dispatch(takeOrder (userKey)),
-        onTakeAnimal: (animalKey, category, status) => dispatch(takeAnimal(animalKey, category, status)),
+        onTakeAnimal: (animalKey, category, status, userKey) => dispatch(takeAnimal(animalKey, category, status, userKey)),
         onGetAnimals: (link) => dispatch(getAnimals(link))
     })
 )(Messages)
