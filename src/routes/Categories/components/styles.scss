@@ -46,7 +46,15 @@
                   background-position: 80% !important;
                 }
               }
+              @media (max-width: 414px) {
+                &#dogs,&#cats,&#other {
+                  background-size: cover !important;
+                }
+              }
               @media (max-width: 375px) {
+                &#dogs,&#cats,&#other {
+                  background-size: cover !important;
+                }
                 &#dogs{
                   background-position: 25% !important;  
                 }
