@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import placeholder from './job-placeholder.gif';
+import spinner from './Spinner.gif'
 
 
 class Picture extends Component{
     constructor(){
         super();
         this.state = {
-            url : placeholder
-        }
-        this.update = this.update.bind(this);
+            url : spinner,
+            backgroundSize : '50%'
+        };
+        this.url;
         this.getImage = this.getImage.bind(this);
     }
     getImage(url){
@@ -25,22 +27,18 @@ class Picture extends Component{
         })
     }
     componentWillMount(){
-        this.getImage(this.props.url).then(this.update)
-    }
-    update(){
-        let url;
         if(Array.isArray(this.props.url)){
-            url = this.props.url[0]
+            this.url = this.props.url[0];
         }else{
-            url = this.props.url
+            this.url = this.props.url
         }
-        this.setState({
-            url
-        })
+        this.getImage(this.url)
+            .then(()=>this.setState({url: this.url, backgroundSize: 'cover'}))
+            .catch(()=>this.setState({url: placeholder, backgroundSize: 'cover'}))
     }
     render(){
         return <Link to={this.props.to}
-        style={{ backgroundImage: `url(${this.state.url || placeholder})` }}
+        style={{ backgroundImage: `url(${this.state.url || placeholder})`, backgroundSize : this.state.backgroundSize }}
       />
     }
 }
