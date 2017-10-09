@@ -29,8 +29,8 @@ class Category extends React.Component {
     let data = this.props.category;
 
     let objImg = {
-      cat : cat,
-      dog : dog,
+      cats : cat,
+      dogs : dog,
       other : other
     } 
     

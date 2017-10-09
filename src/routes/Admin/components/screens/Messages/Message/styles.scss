@@ -22,6 +22,9 @@
 
     div{
         margin-bottom: 5px;
+        span{
+            font-weight: bold;
+        }
     }
     .btn-offer{
         display: flex;
@@ -29,6 +32,8 @@
         flex-wrap: wrap;
         margin-top: 12px;
         button{
+            background: transparent;
+            border: none;
             @media (min-width : 720px){
                 &:first-child{
                     margin-bottom: 5px;
@@ -40,5 +45,15 @@
                 } 
             } 
         }
+    }
+    .modal_form{
+        height: 600px;
+        padding-top: 50px;
+        input{
+            padding-left: 12px;
+        }
+    }
+    .drop div:first-child{
+        margin:0 auto;
     }
 }

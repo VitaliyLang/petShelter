@@ -17,7 +17,7 @@ class Categories extends React.Component {
 
   constructor (props) {
     super(props)
-    this.categoriesArr = ['Dog','Cat','Other'];
+    this.categoriesArr = ['Dogs','Cats','Other'];
   }
 
   /*componentWillMount () {
