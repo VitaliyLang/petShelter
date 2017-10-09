@@ -14,11 +14,13 @@
 		flex-direction: column;
 		max-width: 350px;
 		width: 350px;
+		@media (max-width: 375px) {
+			width: 100%;
+		}
 		&.have_select {
 			padding-bottom: 15px;
 		}
 		input[type=text] {
-			// border: 1px solid black;
 			color: black;
 			border-bottom: 1px solid black;
 		}
@@ -38,5 +40,21 @@
 		width: 350px;
     display: flex;
     justify-content: space-around;
+	}
+	.url_box {
+		display: flex;
+		@media (max-width: 375px) {
+			width: 100%;
+		}
+		.images{
+			display: flex;
+			flex-direction: column;
+			.img {
+				width: auto;
+				height: 50px;
+				margin-bottom: 20px;
+				margin-left: 20px;
+				}
+		}
 	}
 }

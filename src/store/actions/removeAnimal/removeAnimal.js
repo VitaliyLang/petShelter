@@ -1,9 +1,12 @@
-import database from '../../firebaseConfig/firebase.js'
+import database from '../../firebaseConfig/firebase.js';
 
-export function removeAnimal (category, animalKey) {
+export function removeAnimal (category, animalKey, userKey) {
   return dispatch => {
-    const updates = {}
-    updates['/animals/' + category + '/' + animalKey] = null
+    const updates = {};
+    updates['/animals/' + category + '/' + animalKey] = null;
+    updates['/users/' + userKey] = null;
+    console.log('animal', '/animals/' + category + '/' + animalKey);
+    console.log('user','/users/' + userKey);
     return database.ref().update(updates)
       .then(() => dispatch(getInviteFulfilledAction()))
       .catch((error) => {

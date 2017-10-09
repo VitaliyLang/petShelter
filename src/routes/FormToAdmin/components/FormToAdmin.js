@@ -29,7 +29,17 @@ class FormToAdmin extends Component {
     }))
   }
   render() {
-    let content;
+    let content, Btn, message;
+    if (!navigator.onLine) {
+        Btn = <Button type="submit" className=" btn waves-effect waves-light disabled"> Apply </Button>
+        message = <p className = 'red-text text-darken-3'>
+            Please connect to the internet
+        </p>
+    } else {
+        Btn = <Button type="submit" className=" btn waves-effect waves-light"> Apply </Button>
+        message = null;
+    }
+
     if(this.props.sign.signUp && this.state.show){
       content = <div className = "notification">
                   <h1 className = 'message1'>Thanks a lot for trusting!
@@ -45,13 +55,14 @@ class FormToAdmin extends Component {
           <Input type="email" label="Email" autoComplete = {false} validate={true} required ref={(input) => this.email = input} />
           <Input type="tel" validate={true} autoComplete = {false} label="Phone: (0XX)XXXXXXX" required pattern="(\()?[0-9]{3}(\))?[-\s]?[0-9]{3}[-\s]?[0-9]{2}[-\s]?[0-9]{2}" ref={(input) => this.tel = input} />
 
-          <Button type="submit" className=" btn waves-effect waves-light"> Apply </Button>
+          {Btn}
+          {message}
         </div>
     }
     return (
       <div className="formTo">
         <form className='modal_form' onSubmit={this.submit} onReset = {this.reset}>
-          {content} 
+          {content}
         </form>
       </div>
     );
