@@ -30,34 +30,45 @@ class AnimalPictures extends Component {
     if (Array.isArray(this.props.animal.url)) {
       this.props.animal.url.forEach((url) => {
         this.getImage(url)
-          .then(() => { this.setState((prevState) => ({ url: [...prevState.url, url] })) })
-          .catch(() => this.setState({ url: placeholder }))
+          .then(() => this.setState((prevState) => ({ url: [...prevState.url, url] })))
+          .catch(() => this.setState((prevState) => ({ url: [...prevState.url, placeholder] })))
       })
     } else {
       this.setState({ url: this.props.animal.url });
       this.getImage(this.props.animal.url)
-        .then(() => this.setState({ url: this.props.animal.url}))
+        .then(() => this.setState({ url: this.props.animal.url }))
         .catch(() => this.setState({ url: placeholder }))
     }
   }
   render() {
-    if (this.state.url.length !== this.count) {
-      this.imgs = Array.isArray(this.state.url)
-        ? this.state.url.map((url, index) => <div key={index} className='img' style={{ backgroundImage: `url(${url})`}} />)
-        : <div />;
-      this.count = this.state.url.length;
-    }
-    if(!this.state.url.length || this.state.url.length < this.props.animal.url.length){
-      return null
-    }
-    return (
+    if (Array.isArray(this.props.animal.url)) {
+      if (this.state.url.length !== this.count) {
+        this.imgs = Array.isArray(this.state.url)
+          ? this.state.url.map((url, index) => <div key={index} className='img' style={{ backgroundImage: `url(${url})` }} />)
+          : <div />;
+        this.count = this.state.url.length;
+      }
+      if (!this.state.url.length || this.state.url.length < this.props.animal.url.length) {
+        return null
+      }
+      console.log(this.imgs)
+      return (
         <div className='pictures'>
           <Carousel>
             {this.imgs}
           </Carousel>
         </div>
       )
-
+    } else {
+      if (!this.state.url.length) {
+        return null
+      }
+      return (
+        <div className='pictures'>
+          <div className='img' style={{ backgroundImage: `url(${this.state.url})` }} />
+        </div>
+      )
+    }
   }
 }
 export default AnimalPictures;
