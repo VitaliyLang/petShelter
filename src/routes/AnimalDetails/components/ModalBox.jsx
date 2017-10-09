@@ -53,7 +53,7 @@ export default class ModalBox extends Component {
                 <form className='modal_form' onSubmit={this.submit}>
                     <Input label="Name" validate={true} required minLength='3' ref={(input) => this.name = input} />
                     <Input type="email" label="Email" validate={true} required ref={(input) => this.email = input} />
-                    <Input type="tel" validate={true} label="Phone: (0XX)XXXXXXX" required pattern="(\()?[0-9]{3}(\))?[-\s]?[0-9]{3}[-\s]?[0-9]{2}[-\s]?[0-9]{2}" ref={(input) => this.tel = input} />
+                    <Input type="tel" maxLength = '10' validate={true} label="Phone: (0XX)XXXXXXX" required pattern="(\()?[0-9]{3}(\))?[-\s]?[0-9]{3}[-\s]?[0-9]{2}[-\s]?[0-9]{2}" ref={(input) => this.tel = input} />
                     <div>
                         <Button type="submit" className=" btn waves-effect waves-light"> Apply </Button>
                         <Button onClick={this.props.click} className=" btn waves-effect waves-light"> Cancel </Button>

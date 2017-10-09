@@ -23,7 +23,7 @@ class AnimalInfo extends Component{
   return (
     <aside className='aside_category details'>
       <h2> Details </h2>
-      {this.props.animal.name? <p>name: {this.props.animal.alias}</p> : null}
+      {this.props.animal.alias? <p>name: {this.props.animal.alias}</p> : null}
       {this.props.animal.sex? <p>sex: {this.props.animal.sex}</p> : null}
       {this.props.animal.age? <p>age: {this.props.animal.age}</p> : null}
       {this.props.animal.size? <p>size: {this.props.animal.size}</p> : null}
