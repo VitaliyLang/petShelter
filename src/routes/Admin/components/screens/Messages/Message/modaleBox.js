@@ -6,16 +6,18 @@ export default class ModalBox extends Component {
     constructor(props) {
         super(props);
         this.submit = this.submit.bind(this);
-        this.clickOk = this.clickOk.bind(this);
+        this.click = this.click.bind(this);
+        this.addAnimal = this.addAnimal.bind(this);
         this.state = {
             showPhotoUploader:false,
-            animalResp: null,
+            animalResp: {},
+            animal: {},
             files: []
         };
     }
     submit(e) {
         e.preventDefault();
-        let userKey = this.props.userKey;
+        //let userKey = this.props.userKey;
         let animal = {
             category: this.category.state.value,
             age: this.age.state.value,
@@ -24,14 +26,17 @@ export default class ModalBox extends Component {
             alias: this.nickname.state.value,
             vaccinations: this.vaccinations.state.value
         };
-        this.props.onAddAnimal(userKey,animal);
+        this.setState({
+            animal:animal
+        })
+        //this.props.onAddAnimal(userKey,animal);
 
         this.setState({
             showPhotoUploader: true
         })
     }
 
-    clickOk(e){
+    click(e){
         let check = e.target.getAttribute('data-key');
         this.props.showChange();
         if(check == 'yes'){
@@ -39,6 +44,13 @@ export default class ModalBox extends Component {
                 this.props.userKey
             );
         }
+    }
+
+    addAnimal(){
+        let userKey = this.props.userKey,
+            animalObj = this.state.animal,
+            photo = this.state.files;
+        this.props.onAddAnimal(userKey,animalObj,photo);
     }
 
     onDrop(files) {
@@ -51,12 +63,12 @@ export default class ModalBox extends Component {
         this.setState({
             animalResp: nextProps.addAnimal
         })
-        console.log('nextProps.addAnimal',nextProps.addAnimal);
     }
 
     render() {
-        console.log('showPhotoUploader',this.state.showPhotoUploader);
+        console.log('this.state.animalResp.isAdding',this.state.animalResp.isAdding);
         if (!this.props.show) {
+            console.log('abort');
             return null;
         }
         let content;
@@ -65,24 +77,34 @@ export default class ModalBox extends Component {
                         <h1 className = 'message1'>The order will be removed!
                     Are you sure?</h1>
                     <div>
-                        <Button onClick = {this.clickOk} className=" btn waves-effect waves-light" data-key='yes'> Yes </Button>
-                        <Button onClick = {this.clickOk} className=" btn waves-effect waves-light" data-key='no'> No </Button>
+                        <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='yes'> Yes </Button>
+                        <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='no'> No </Button>
                     </div>
                     </div>
         }else if(this.state.showPhotoUploader){
             console.log('drop');
             content = 
-                <div className="modal_form">
+                <div className='modal_form drop'>
                     <Dropzone onDrop={this.onDrop.bind(this)}>
-                        <p>Try dropping some files here, or click to select files to upload.</p>
+                        <p>Try dropping photos of pet here, or click to select photos to upload.</p>
                     </Dropzone>
-                </div>
+                    <h3>Dropped photos</h3>
+                    <ul>
+                         {
+                            this.state.files.map(f => <li key={f.name}>{f.name}</li>)
+                        }
+                    </ul>
+                    <div>
+                        <Button onClick = {this.addAnimal} className=" btn waves-effect waves-light" data-key='yes'> Save </Button>
+                        <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='no'> Cancel </Button>
+                    </div>
+          </div>
         }else{
             content =
-                <form className='modal_form' onSubmit={this.submit} style={{height:'600px', paddingTop:'50px'}}>
-                    <Input type='select' s={12} defaultValue='dog' label="Category" ref={(input) => this.category = input}>
-		                <option value='dog'>Dogs</option>
-		                <option value='cat'>Cats</option>
+                <form className='modal_form' onSubmit={this.submit} /*style={{height:'600px', paddingTop:'50px'}}*/>
+                    <Input type='select' s={12} defaultValue='dogs' label="Category" ref={(input) => this.category = input}>
+		                <option value='dogs'>Dogs</option>
+		                <option value='cats'>Cats</option>
 		                <option value='other'>Other</option>
 	                </Input>
                     <Input type='select' s={12} defaultValue='baby' label="Age"  ref={(input) => this.age = input}>
@@ -100,15 +122,17 @@ export default class ModalBox extends Component {
                         <option value='male'>Male</option>
                         <option value='female'>Female</option>
 	                </Input>
-                    <Input label="Nickname"  ref={(input) => this.nickname = input} />
-                    <Input label="Vaccinations" ref={(input) => this.vaccinations = input} />
+                    <Input type='select' s={12} defaultValue='true' label="Vaccinations" ref={(input) => this.vaccinations = input}>
+                        <option value='true'>Vaccinated</option>
+                        <option value='false'>Not Vaccinated</option>
+	                </Input>
+                    <Input label="Nickname"  ref={(input) => this.nickname = input} validate={true}/>
                                    
                     <div>
                         <Button type="submit" className=" btn waves-effect waves-light"> Apply </Button>
-                        <Button onClick={this.clickOk} className=" btn waves-effect waves-light"> Cancel </Button>
+                        <Button onClick={this.click} className=" btn waves-effect waves-light"> Cancel </Button>
                     </div>
                 </form>
-
         }
         return (
             <div className='modal_box_adopt'>

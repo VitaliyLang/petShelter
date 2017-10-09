@@ -55,6 +55,6 @@ export default connect(
     }),
     dispatch => ({
         onGiveOrders : (userkey) => dispatch(giveOrders(userkey)),
-        onAddAnimal: (userKey, animalObj) => dispatch(addAnimal(userKey, animalObj))
+        onAddAnimal: (userKey, animalObj, photo) => dispatch(addAnimal(userKey, animalObj, photo))
     })
 )(Messages)
