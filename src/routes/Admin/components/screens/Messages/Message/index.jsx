@@ -48,7 +48,7 @@ class Message extends React.Component {
                 <article className="message">
                     <div><span>Type:</span> {this.props.message.type}</div>
                     <div><span>Name:</span> {this.props.message.name}</div>
-                    <div><span>Phone number:</span> {this.props.message.tel}</div>
+                    <div><span>Phone number:</span><span> {this.props.message.tel}</span></div>
                     <div><span>Email:</span> {this.props.message.email}</div>                    
                     <div><span>Date:</span> {this.props.message.date}</div>
                     <div><span>Link to pet:</span> {linkToPet}</div>
