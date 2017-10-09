@@ -7,7 +7,6 @@ import debounce from 'modules/helpers/debounce';
 import placeholder from './job-placeholder.gif';
 
 export default function AnimalPictures (props) {
-  var arr = [1,2];
   var imgs = Array.isArray(props.animal.url)
   ? props.animal.url.map((url)=><div key = {url} className = 'img' style = {{backgroundImage: `url(${url})`}}/>)
   : props.animal.url 
