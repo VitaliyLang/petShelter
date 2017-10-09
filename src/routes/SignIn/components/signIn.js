@@ -52,23 +52,28 @@ class signIn extends React.Component {
   }
 
   render () {
-    return (
-      <div className='login_form'>
-        <form ref='form' className='modal_form' onSubmit={this.logIn} onInvalid={this.disableButton}>
-          <div>
-            <div className='profile'>
-              <i className='large material-icons' id='picture'>account_circle</i>
-              <h1 className='message1'>Login</h1>
+    if (this.props.login.inProgress) {
+      return <div className='load'></div>
+    } else {
+      return (
+        <div className='login_form'>
+          <form ref='form' className='modal_form' onSubmit={this.logIn} onInvalid={this.disableButton}>
+            <div>
+              <div className='profile'>
+                <i className='large material-icons' id='picture'>account_circle</i>
+                <h1 className='message1'>Login</h1>
+              </div>
+              {spinner}
+              <Input ref={(input) => this.email = input} autoComplete={false} name='email' validate={true} type='email'
+                     label='Email' required/>
+              <Input ref={(input) => this.password = input} autoComplete={false} name='password' type='password'
+                     validate={true} label='Password' required/>
+              <Button disabled={this.state.canSubmit}> Sign In </Button>
             </div>
-            <Input ref={(input) => this.email = input} autoComplete={false} name='email' validate={true} type='email'
-                   label='Email' required />
-            <Input ref={(input) => this.password = input} autoComplete={false} name='password' type='password'
-                   validate={true} label='Password' required />
-            <Button disabled={this.state.canSubmit}> Sign In </Button>
-          </div>
-        </form>
-      </div>
-    )
+          </form>
+        </div>
+      )
+    }
   }
 }
 
