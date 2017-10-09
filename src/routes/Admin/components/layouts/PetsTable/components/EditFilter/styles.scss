@@ -7,6 +7,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items:flex-start;
+		// margin-bottom: 20px;
 	}
 	label {
 		color: black;
@@ -14,6 +15,9 @@
 		flex-direction: column;
 		max-width: 350px;
 		width: 350px;
+		@media (max-width: 375px) {
+			width: 100%;
+		}
 		&.have_select {
 			padding-bottom: 15px;
 		}
@@ -38,5 +42,21 @@
 		width: 350px;
     display: flex;
     justify-content: space-around;
+	}
+	.url_box {
+		display: flex;
+		@media (max-width: 375px) {
+			width: 100%;
+		}
+		.images{
+			display: flex;
+			flex-direction: column;
+			.img {
+				width: auto;
+				height: 50px;
+				margin-bottom: 20px;
+				margin-left: 20px;
+				}
+		}
 	}
 }
