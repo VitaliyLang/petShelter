@@ -49,7 +49,11 @@ class AnimalPictures extends Component {
         this.count = this.state.url.length;
       }
       if (!this.state.url.length || this.state.url.length < this.props.animal.url.length) {
-        return null
+        return (
+          <div className='pictures'>
+            <div className = 'img' style={{ backgroundImage: `url(${spinner})` }}/>
+          </div>
+        )
       }
       return (
         <div className='pictures'>
