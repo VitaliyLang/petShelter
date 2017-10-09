@@ -36,7 +36,6 @@ class EditFilter extends React.Component {
 	  	this.setState({
 				[param]: event.target.value,
 			});
-			console.log("EDIT",this.state.url);
 	  }
 
  		handleSubmit(event) {	
@@ -111,7 +110,7 @@ class EditFilter extends React.Component {
 								</label>
 								<div className="images">
 									{this.state.url.map((number,index) => 
-										<img className="img" src= {this.state.url[index]} alt=""/>
+										<img className="img" src= {this.state.url[index]} alt="" key={index} />
 								)}
 								</div>
 							</div>
