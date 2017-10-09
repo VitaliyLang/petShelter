@@ -1,5 +1,5 @@
 .message {
-    display: inline-block;
+    // display: inline-block;
     text-align: center;
     border: 1px solid black;
     padding: 10px;
@@ -7,13 +7,16 @@
     box-sizing: border-box;
     width: 250px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-    @media (min-width : 320px){
-        width: 100%;
+    @media (min-width : 375px){
+        width: 75%;
     }   
     
     @media (min-width : 720px){
-        width: 200px;
+        width: 210px;
     } 
 
     @media (min-width : 940px){
@@ -31,9 +34,15 @@
         justify-content: space-around;
         flex-wrap: wrap;
         margin-top: 12px;
+        width: 100%;
         button{
             background: transparent;
             border: none;
+            &:hover{
+                i {
+                    transform: scale(1.2);
+                }
+            }
             @media (min-width : 720px){
                 &:first-child{
                     margin-bottom: 5px;
@@ -50,7 +59,7 @@
         height: 600px;
         padding-top: 50px;
         input{
-            padding-left: 12px;
+            //padding-left: 12px;
         }
     }
     .drop div:first-child{

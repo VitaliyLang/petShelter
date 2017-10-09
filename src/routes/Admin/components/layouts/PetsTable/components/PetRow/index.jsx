@@ -27,16 +27,16 @@ class PetRow extends React.Component {
 	}
 	
 	findPetToDel(e){
-		// console.log(e.target.getAttribute('data-key'));
 		var myKey = e.target.getAttribute('data-key');
-		// console.log(this.props.petsArr);
 		var allPets = this.props.petsArr;
+
 		for (var i = 0; i < allPets.length; i++){
 			if (allPets[i].key == myKey) {
-				// console.log("this el",allPets[i].category);
+				
 				var petCategory = allPets[i].category;
 				var petKey = allPets[i].key;
-				this.props.onRemoveAnimal(petCategory,petKey);
+				var userKey = allPets[i].userUid;
+				this.props.onRemoveAnimal(petCategory,petKey,userKey);
 				// console.log("arr after remove",this.props.petsArr);
 			}
 		}
@@ -73,15 +73,12 @@ class PetRow extends React.Component {
 		}
 }
 
-// export default PetRow
-
-
 export default connect(
 	state => ({
 		AnimalStore: state.oneAnimal,
 	}),
 	dispatch => ({
 		findAnimal: (animalObject) => dispatch(findAnimal(animalObject)),
-		onRemoveAnimal: (category, animalKey) => dispatch(removeAnimal(category, animalKey))
+		onRemoveAnimal: (category, animalKey, userKey) => dispatch(removeAnimal(category, animalKey, userKey))
 	})
 )(PetRow)
