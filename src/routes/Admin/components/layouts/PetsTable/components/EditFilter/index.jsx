@@ -7,16 +7,7 @@ import updateAnimal from 'store/actions/updateAnimal';
 class EditFilter extends React.Component {
 		constructor(props) {
 			super(props);
-			// this.state = {
-			// 	category : "",
-			// 	nickname: "",
-			// 	age: "",
-			// 	sex: "",
-			// 	size: "",
-			// 	url: "",
-			// 	key:"",
-			// 	animalStore: {},
-			// };	
+
 			this.state = {
 				category : this.props.animalStore.animal.category,
 				nickname : this.props.animalStore.animal.alias,
@@ -126,7 +117,6 @@ class EditFilter extends React.Component {
 	}
 }
 
-// <input type="text" value={this.state.url}  onChange={this.handleChange.bind(this, "url")} key="6" />
 export default connect(
 	state => ({
 		animalStore: state.oneAnimal,
