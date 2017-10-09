@@ -51,7 +51,6 @@ class AnimalPictures extends Component {
       if (!this.state.url.length || this.state.url.length < this.props.animal.url.length) {
         return null
       }
-      console.log(this.imgs)
       return (
         <div className='pictures'>
           <Carousel>
