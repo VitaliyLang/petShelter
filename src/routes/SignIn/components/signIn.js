@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Input } from 'react-materialize';
+import { Button, Input } from 'react-materialize'
 import signin from '../../../store/actions/signin/index'
 import login from '../../../store/actions/login/index'
 import 'modules/buttons/buttons.scss'
@@ -15,6 +15,7 @@ class signIn extends React.Component {
     this.enableButton = this.enableButton.bind(this)
     this.disableButton = this.disableButton.bind(this)
     this.logIn = this.logIn.bind(this)
+    this.message = ''
   }
 
   enableButton () {
@@ -39,41 +40,45 @@ class signIn extends React.Component {
 
   componentDidMount () {
     this.props.onSignin()
+    if (this.props.signin.isAdmin) {
+      return this.props.router.replace('/admin/dashboard')
+    }
   }
 
   componentWillUpdate (nextProps) {
-    if (nextProps.signin.isAdmin) {
+    if (this.props.signin.isAdmin || nextProps.signin.isAdmin) {
       return this.props.router.replace('/admin/dashboard')
     }
 
     if (nextProps.login.login === false && nextProps.login.error.length) {
-      Materialize.toast('The password or email is incorrect!', 2000)
+      this.message = 'The password or email is incorrect!'
     }
   }
 
   render () {
+    let spinStyle = { display: 'none'}
     if (this.props.login.inProgress) {
-      return <div className='load'></div>
-    } else {
-      return (
-        <div className='login_form'>
-          <form ref='form' className='modal_form' onSubmit={this.logIn} onInvalid={this.disableButton}>
-            <div>
-              <div className='profile'>
-                <i className='large material-icons' id='picture'>account_circle</i>
-                <h1 className='message1'>Login</h1>
-              </div>
-              {spinner}
-              <Input ref={(input) => this.email = input} autoComplete={false} name='email' validate={true} type='email'
-                     label='Email' required/>
-              <Input ref={(input) => this.password = input} autoComplete={false} name='password' type='password'
-                     validate={true} label='Password' required/>
-              <Button disabled={this.state.canSubmit}> Sign In </Button>
-            </div>
-          </form>
-        </div>
-      )
+      spinStyle.display = 'inline-block'
     }
+    return (
+      <div className='login_form'>
+        <form className='modal_form' onSubmit={this.logIn} onInvalid={this.disableButton}>
+          <div>
+            <div className='profile'>
+              <i className='large material-icons' id='picture'>account_circle</i>
+              <h1 className='message1'>Login</h1>
+            </div>
+            <Input ref={(input) => this.email = input} autoComplete={false} name='email' validate={true} type='email'
+                   label='Email' required/>
+              <div className='spinner' style={spinStyle}></div>
+            <Input ref={(input) => this.password = input} autoComplete={false} name='password' type='password'
+                   validate={true} label='Password' required/>
+            <div className='msg'>{this.message}</div>
+            <Button disabled={this.state.canSubmit}> Sign In </Button>
+          </div>
+        </form>
+      </div>
+    )
   }
 }
 

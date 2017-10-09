@@ -1,6 +1,7 @@
 .login_form {
 	background: #383D40;
 	height: calc(100% - 30px);
+	min-height: 370px;
 	display: flex;
 
 	.profile {
@@ -16,6 +17,24 @@
 		background: #79bd8f;
 		color: #383d40;
 	}
+	.msg {
+		height: 1em;
+		color: red;
+		text-align: center;
+		margin: 0 0 20px;
+	}
+	.spinner {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #383D40 url('../../Category/components/Spinner.gif') no-repeat center;
+		z-index: 999;
+	}
+	input[name="password"]{
+		margin: 0 0 5px;
+	}
 	.notification{
 		height: 100%;
 		display: flex;
@@ -25,16 +44,7 @@
 	@media (max-width: 500px){
 		.modal_form{
 			height: 80%;
+			min-height: 350px;
 		}
 	}
-}
-
-.toast {
-	color: yellow;
-}
-
-.load {
-	background: red;
-	//background: url('../../Category/components/Spinner.gif') no-repeat center;
-	//background-size: 50%;
 }
