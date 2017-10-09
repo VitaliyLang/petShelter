@@ -7,14 +7,16 @@
         margin: 15px;
     }
     .get{
-        margin: 50px auto;
+        margin: 0 auto;
+        margin-top: 50px;
+        margin-bottom: 15px;
         max-width: 110px;
     }
 
     .disabled {
         cursor: not-allowed;
     }
-  
+
     .prohibited{
         margin: 50px auto;
         border-radius: 2px;
@@ -27,5 +29,12 @@
         border: none;
         outline: none;
     }
-}
 
+    .alert {
+        font-size: 14px;
+        padding: 0;
+        margin: 0 0 50px 0;
+		text-align: center;
+        width: 100%;
+    }
+}
