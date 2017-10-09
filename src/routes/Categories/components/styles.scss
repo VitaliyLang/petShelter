@@ -1,58 +1,99 @@
 @import '_variables';
 
 .main_section {
-    height: calc(100% - 56px);
+  height: calc(100% - 56px);
 
-        ul {
-            padding: 0;
-            margin: 0;
-        }
+  ul {
+    padding: 0;
+    margin: 0;
+  }
 
-        @media only screen and (min-width: 601px){
-            height: calc(100% - 64px);
-        }
-        .categories{
-            background: url('../../Category/components/Spinner.gif') no-repeat center;
-            .carousel{
-                height: calc(100vh - 94px);
-                @media only screen and (max-width: 601px){
-                    height: calc(100vh - 86px);
+  @media only screen and (min-width: 601px){
+    height: calc(100% - 64px);
+  }
+  .categories{
+    background: url('../../Category/components/Spinner.gif') no-repeat center;
+    .carousel{
+      height: calc(100vh - 94px);
+      @media only screen and (max-width: 601px){
+        height: calc(100vh - 86px);
+      }
+      .slider-wrapper{
+        overflow: unset;
+        .slider{
+          .slide{
+            background: transparent;
+            .category-img {
+              background-size: cover;
+              height: 100vh;
+              &#dogs{
+                  background-position-y: 40% !important;  
                 }
-                .slider-wrapper{
-                    overflow: unset;
-                    .slider{
-                        .slide{
-                            background: transparent;
-                            .legend{
-                                background: transparent;
-                                font-size: 5em;
-                                opacity: .7;
-                                margin: 0 auto;
-                                width: auto;
-                                bottom: 20%;
-                                text-align: center;
-                                @media only screen and (max-height: 600px){
-                                    bottom: 45%
-                                }
-                                @media only screen and (max-height: 500px){
-                                    bottom: 55%
-                                }
-                                a{
-                                    color: #fff;//$primary-green;
-                                    letter-spacing: 11px;
-                                    display: block;
-                                    border: 1px solid;
-                                    border-radius: 10px;
-                                    padding: 0 15px;
-                                    background: rgba(255,255,255,.2)
-                                }
-                            }
-                        }
-                    }
-                    .slider:hover .legend{
-                        opacity: .9;
-                    }
+                &#cats {
+                  background-position-y: 30% !important;
                 }
+                &#other {
+                  background-position-y: 50% !important;
+                }
+              @media (max-width: 768px) {
+                &#dogs{
+                  background-position: 10% !important;  
+                }
+                &#cats {
+                  background-position: 50% !important;
+                }
+                &#other {
+                  background-position: 80% !important;
+                }
+              }
+              @media (max-width: 375px) {
+                &#dogs{
+                  background-position: 25% !important;  
+                }
+                &#cats {
+                  background-position: 50% !important;
+                }
+                &#other {
+                  background-position: 55% !important;
+                }
+              }
             }
+            .legend{
+              background: transparent;
+              font-size: 5em;
+              opacity: .7;
+              margin: 0 auto;
+              width: auto;
+              // bottom: 20%;
+              text-align: center;
+              &:hover {
+               a {
+                  background: rgba(255,255,255,.3);
+                  color: $secondary-light-gray;
+               } 
+              }
+              @media (max-height: 768px){
+                // bottom: 45%;
+              }
+              @media (max-height: 375px){
+                top: 80% !important;
+              }
+              a{
+                color: #fff;//$primary-green;
+                letter-spacing: 11px;
+                display: block;
+                border: 1px solid;
+                border-radius: 10px;
+                padding: 0 15px;
+                background: rgba(255,255,255,.2)
+              }
+            }
+          }
         }
+        .slider:hover .legend{
+          opacity: .9;
+        }
+      }
+    }
+  }
 }
