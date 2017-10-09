@@ -8,6 +8,8 @@ export default class ModalBox extends Component {
         this.submit = this.submit.bind(this);
         this.click = this.click.bind(this);
         this.addAnimal = this.addAnimal.bind(this);
+        this.takeAccept = this.takeAccept.bind(this);
+        this.takeAnimal = this.takeAnimal.bind(this);
         this.state = {
             showPhotoUploader:false,
             animalResp: {},
@@ -17,7 +19,6 @@ export default class ModalBox extends Component {
     }
     submit(e) {
         e.preventDefault();
-        //let userKey = this.props.userKey;
         let animal = {
             category: this.category.state.value,
             age: this.age.state.value,
@@ -29,8 +30,6 @@ export default class ModalBox extends Component {
         this.setState({
             animal:animal
         })
-        //this.props.onAddAnimal(userKey,animal);
-
         this.setState({
             showPhotoUploader: true
         })
@@ -51,6 +50,24 @@ export default class ModalBox extends Component {
             animalObj = this.state.animal,
             photo = this.state.files;
         this.props.onAddAnimal(userKey,animalObj,photo);
+        this.setState({
+            animalResp: this.props.addAnimal
+        })
+    }
+
+    takeAccept(){
+        let userKey = this.props.userKey;
+        this.props.onTakeOrder(userKey);
+        this.props.showChange();
+    }
+
+    takeAnimal(){
+        this.props.onTakeAnimal(
+            this.props.message.animalID,
+            this.props.message.category,
+            true
+        )
+        this.props.showChange();
     }
 
     onDrop(files) {
@@ -59,6 +76,7 @@ export default class ModalBox extends Component {
         });
     }
 
+
     componentWillReceiveProps(nextProps){
         this.setState({
             animalResp: nextProps.addAnimal
@@ -66,7 +84,6 @@ export default class ModalBox extends Component {
     }
 
     render() {
-        console.log('this.state.animalResp.isAdding',this.state.animalResp.isAdding);
         if (!this.props.show) {
             console.log('abort');
             return null;
@@ -82,13 +99,12 @@ export default class ModalBox extends Component {
                     </div>
                     </div>
         }else if(this.state.showPhotoUploader){
-            console.log('drop');
             content = 
                 <div className='modal_form drop'>
                     <Dropzone onDrop={this.onDrop.bind(this)}>
-                        <p>Try dropping photos of pet here, or click to select photos to upload.</p>
+                        <p>Drop pet's photos or click to upload.</p>
                     </Dropzone>
-                    <h3>Dropped photos</h3>
+                    <h4>Dropped photos</h4>
                     <ul>
                          {
                             this.state.files.map(f => <li key={f.name}>{f.name}</li>)
@@ -99,6 +115,16 @@ export default class ModalBox extends Component {
                         <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='no'> Cancel </Button>
                     </div>
           </div>
+        }else  if (this.props.message.type == 'get') {
+            content = <div className='modal_form'>
+                        <h1 className = 'message1'>The pet was chosen.</h1>
+                        <p> Link to pet {this.props.linkToPet} </p>  
+                        <p> You can accept the order (Accept) or sent pet back to list (Decline)</p>                       
+                    <div>
+                        <Button onClick = {this.takeAccept} className=" btn waves-effect waves-light" data-key='yes'> Accept </Button>
+                        <Button onClick = {this.takeAnimal} className=" btn waves-effect waves-light" data-key='no'> Decline </Button>
+                    </div>
+                    </div>
         }else{
             content =
                 <form className='modal_form' onSubmit={this.submit} /*style={{height:'600px', paddingTop:'50px'}}*/>

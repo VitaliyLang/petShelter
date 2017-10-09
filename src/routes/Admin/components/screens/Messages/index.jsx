@@ -4,20 +4,25 @@ import Message from './Message/'
 import './styles.scss'
 import giveOrders from 'store/actions/giveOrders'
 import addAnimal from 'store/actions/addAnimal'
+import takeOrder from 'store/actions/takeOrder'
+import takeAnimal from 'store/actions/takeAnimal'
+import getAnimals from 'store/actions/animals'
 
 class Messages extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             messages: this.props.messages,
-            addAnimal: this.props.addAnimal
+            addAnimal: this.props.addAnimal,
+            takenAnimal: this.props.takeAnimal
         }
     }
 
     componentWillReceiveProps(nextProps){
         this.setState({
             messages:nextProps.messages,
-            addAnimal: nextProps.addAnimal
+            addAnimal: nextProps.addAnimal,
+            takenAnimal: nextProps.takenAnimal
         });
     }
 
@@ -37,7 +42,11 @@ class Messages extends React.Component {
                         <Message key={i} message={item} 
                         onGiveOrders={this.props.onGiveOrders}
                         onAddAnimal={this.props.onAddAnimal}
-                        addAnimal={this.state.addAnimal}/>
+                        addAnimal={this.state.addAnimal}
+                        onTakeOrder={this.props.onTakeOrder}
+                        onTakeAnimal={this.props.onTakeAnimal}
+                        onGetAnimals={this.props.onGetAnimals}
+                        takenAnimal={this.state.takenAnimal}/>
                     )
                 })
         return(
@@ -51,10 +60,15 @@ class Messages extends React.Component {
 export default connect(
     state => ({
         messages:state.messages.messages,
-        addAnimal:state.addAnimal
+        addAnimal:state.addAnimal,
+        takeOrder:state.takeOrder,
+        takenAnimal: state.listAnimals.animals
     }),
     dispatch => ({
         onGiveOrders : (userkey) => dispatch(giveOrders(userkey)),
-        onAddAnimal: (userKey, animalObj, photo) => dispatch(addAnimal(userKey, animalObj, photo))
+        onAddAnimal: (userKey, animalObj, photo) => dispatch(addAnimal(userKey, animalObj, photo)),
+        onTakeOrder: (userKey) => dispatch(takeOrder (userKey)),
+        onTakeAnimal: (animalKey, category, status) => dispatch(takeAnimal(animalKey, category, status)),
+        onGetAnimals: (link) => dispatch(getAnimals(link))
     })
 )(Messages)
