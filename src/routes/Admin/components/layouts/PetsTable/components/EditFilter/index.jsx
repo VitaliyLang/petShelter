@@ -31,42 +31,18 @@ class EditFilter extends React.Component {
     	this.handleSubmit = this.handleSubmit.bind(this);
 		}
 
-		// componentWillReceiveProps(nextState, nextProps) {
-			
-		// 	if (nextState.animalStore.animal && 
-		// 			!this.state.animalStore.animal || this.state.animalStore.animal && 
-		// 			nextState.animalStore.animal.key !== this.state.animalStore.animal.key ) {
-				
-		// 		this.setState( {
-		// 				category: nextState.animalStore.animal.category,
-		// 				nickname: nextState.animalStore.animal.alias,
-		// 				age: nextState.animalStore.animal.age,
-		// 				sex: nextState.animalStore.animal.sex,
-		// 				size: nextState.animalStore.animal.size,
-		// 				url: nextState.animalStore.animal.url,
-		// 				key: nextState.animalStore.animal.key
-		// 			 } )
-		// 	}
-		// }
 		
 		handleChange(param, event) {
 	  	this.setState({
 				[param]: event.target.value,
 			});
+			console.log("EDIT",this.state.url);
 	  }
 
- 		handleSubmit(event) {
-    		
-    	
-    	event.preventDefault();
-    	   	
-	this.updatePet(this.state.key,this.state.category);
-  console.log("value after clicked submit",this.state);
-   		// console.log('state in submit moment',this.state);
-   		// document.querySelector('.petEditor').style.display = 'none';
-			// document.querySelector('[data-key]').style.display = 'inline-block';
-			// console.log("findAnimal state after sent",this.props.findAnimal);
-			console.log('OBJ TO SEND:', this.state);
+ 		handleSubmit(event) {	
+	  	event.preventDefault();
+	    	   	
+			this.updatePet(this.state.key,this.state.category);
 			this.props.show();
   	}
 
@@ -126,10 +102,19 @@ class EditFilter extends React.Component {
 							    <option value='large'>Large</option>
     						</select>
 							</label>
-							<label >
-								Image Url:
-								<input type="text" value={this.state.url}  onChange={this.handleChange.bind(this, "url")} key="6" />
-							</label>
+							<div className="url_box">
+								<label >
+									Image Url:
+									{this.state.url.map((number,index) => 
+										<input type="text" value={this.state.url[index]}  onChange={this.handleChange.bind(this, "url")} key={index}  />
+									)}
+								</label>
+								<div className="images">
+									{this.state.url.map((number,index) => 
+										<img className="img" src= {this.state.url[index]} alt=""/>
+								)}
+								</div>
+							</div>
 							<div className="buttons_block">
 								<input type="submit" value="Submit" className='submit btn get waves-effect waves-light'/>
 								<button className="cancel btn get waves-effect waves-light" onClick={this.props.show}>Cancel</button>
@@ -142,16 +127,13 @@ class EditFilter extends React.Component {
 	}
 }
 
-// <input type="text" value={this.state.sex} onChange={this.handleChange.bind(this, "sex")} key="4" />
+// <input type="text" value={this.state.url}  onChange={this.handleChange.bind(this, "url")} key="6" />
 export default connect(
 	state => ({
 		animalStore: state.oneAnimal,
 	}),
 	dispatch => ({
 		updatePet: (animalKey,category,animalObj) => dispatch(updateAnimal(animalKey,category,animalObj)),
-		// findAnimal: (animalObject) => dispatch(findAnimal(animalObject)),
+
 	})
 )(EditFilter)
-
-// className='btn btn get waves-effect waves-light'
-// onClick={this.props.onClick}

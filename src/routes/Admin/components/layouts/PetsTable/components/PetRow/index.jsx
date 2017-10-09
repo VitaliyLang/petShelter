@@ -21,6 +21,7 @@ class PetRow extends React.Component {
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
 				this.props.findAnimal(myArr[i]);
+				console.log(myArr[i].url);
 			}
 		} 
 	}
@@ -52,7 +53,7 @@ class PetRow extends React.Component {
 								<div className="rowItem">{this.props.item.sex}</div>
 								<div className="rowItem ">{String(this.props.item.active)}</div>
 								<div className="rowItem img">
-										<img className="img" src= {this.props.item.url} alt=""/>
+										<img className="img" src= {this.props.item.url[0]} alt=""/>
 								</div>
 								<div className="rowItem ">								
 									<i className="material-icons table_btn"
