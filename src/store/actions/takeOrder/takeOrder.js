@@ -1,4 +1,4 @@
-import database from '../../firebaseConfig/firebase.js'
+import database, {storage} from '../../firebaseConfig/firebase.js'
 
 export function takeOrder (userKey) {
   return dispatch => {
@@ -7,21 +7,21 @@ export function takeOrder (userKey) {
         const animalId = snap.val().animalId,
           category = snap.val().category,
           linkToAnimal = '/animals/' + category + '/' + animalId
+          delRef = storage.ref().child('/animals/' + category+ '/' + animalId);
         const updates = {}
         updates['/users/' + userKey] = null
         updates[linkToAnimal] = null
         return database.ref().update(updates)
-          .then(() => dispatch(getInviteFulfilledAction()))
-          .catch((error) => {
-            throw error
-          })
       })
+      .then(() => {
+        return delRef.delete()
+      })
+      .then(() => dispatch(getInviteFulfilledAction()))
       .catch((error) => {
         dispatch(getInviteRejectedAction(error))
       })
   }
 }
-
 function getInviteRejectedAction () {
   return {
     type: 'TAKE_ORDER_OK'
