@@ -122,9 +122,3 @@ export default connect(
 
 	})
 )(EditFilter)
-
-
-// <label>
-// 								Category:
-// 								<input type="text" value={this.state.category} onChange={this.handleChange.bind(this, "category")} key="1" />
-// 							</label>
