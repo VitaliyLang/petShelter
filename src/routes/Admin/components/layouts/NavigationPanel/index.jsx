@@ -36,15 +36,7 @@ class NavigationPanel extends React.Component {
                         <Link className="links" to={'/admin/dashboard'}>Dashboard</Link>
                     </li>
                     <li>
-                        <Link className="links messages" to={'/admin/messages'}>Messages</Link>
-                        <ul className='adminSubmenu'>
-                            <li>
-                                <Link className="links" to={'/admin/messages/give'}>Give Pet</Link>
-                            </li>
-                            <li>
-                                <Link className="links" to={'/admin/messages/take'}>Take Pet</Link>
-                            </li>
-                        </ul>
+                        <Link className="links" to={'/admin/messages'}>Messages</Link>
                     </li>
                 </ul>
                 <div className='logoutWrapper' onClick={this.clickHandler}>

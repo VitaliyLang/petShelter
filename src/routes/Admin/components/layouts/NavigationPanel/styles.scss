@@ -41,11 +41,6 @@
 				color: $secondary-light-gray;
 				border-bottom: 1px solid $secondary-light-gray;
 			}
-			@media (max-width: 768px) {
-				&.messages {
-	    		display: none;
-	    	}
-			}
 			@media (max-width: 414px) {
 				padding: 5px;
 			}
@@ -75,15 +70,15 @@
 		}
 	}
 	
-	.adminSubmenu {
-		overflow: hidden;
-		// max-height: 0;
-		-webkit-transition: all 1s ease-in-out;
-		@media (max-width: 768px) {
-			display: flex;
-			max-height: 150px;
-				}
-	}
+	// .adminSubmenu {
+	// 	overflow: hidden;
+	// 	// max-height: 0;
+	// 	-webkit-transition: all 1s ease-in-out;
+	// 	@media (max-width: 768px) {
+	// 		display: flex;
+	// 		max-height: 150px;
+	// 			}
+	// }
 	
 }
 
