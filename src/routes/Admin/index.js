@@ -6,6 +6,7 @@ import './styles.scss'
 import { connect } from 'react-redux'
 import getMessages from '../../store/actions/messages'
 import getAnimals from '../../store/actions/animals'
+import getAnimalsv from '../../store/actions/animalsv'
 import signin from '../../store/actions/signin'
 import giveOrders from '../../store/actions/giveOrders'
 import takeAnimal from '../../store/actions/takeAnimal'
@@ -19,6 +20,7 @@ class Admin extends React.Component {
 
   componentWillMount () {
     this.props.onGetAnimals('animals');
+    this.props.onGetAnimalsv('animals');
     this.props.onGetMessages('users');
     //this.props.onRemoveAnimal('dog','-123-');
 
@@ -36,7 +38,7 @@ class Admin extends React.Component {
       <div className='wrapper'>
         <NavigationPanel />
         <MainSection>
-          <Routing action={this.props.params.action} />
+          <Routing action={this.props.params.action} router={this.props.router}/>
         </MainSection>
       </div>
     )
@@ -53,6 +55,7 @@ let mapDispatchToProps = (dispatch) => {
   return {
     onGetMessages: (link) => dispatch(getMessages(link)),
     onGetAnimals: (link) => dispatch(getAnimals(link)),
+    onGetAnimalsv: (link) => dispatch(getAnimalsv(link)),
     onSignin: () => dispatch(signin()),
     onGiveOrders: (userKey) => dispatch(giveOrders(userKey)),
     onTakeAnimal: (animalKey, category) => dispatch(takeAnimal(animalKey, category)),

@@ -3,6 +3,7 @@ import category from './category';
 import filterAnimals from './filterAnimals';
 import categories from './categories';
 import listAnimals from './listAnimals';
+import listAnimalsv from './listAnimalsv';
 import messages from './messages';
 import signup from './signup';
 import signin from './signin';
@@ -23,6 +24,7 @@ const makeRootReducer = combineReducers({
   filterAnimals,
   categories,
   listAnimals,
+  listAnimalsv,
   messages,
   signup,
   signin,
