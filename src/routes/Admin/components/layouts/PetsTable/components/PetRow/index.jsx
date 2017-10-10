@@ -37,13 +37,11 @@ class PetRow extends React.Component {
 				var petKey = allPets[i].key;
 				var userKey = allPets[i].userUid;
 				this.props.onRemoveAnimal(petCategory,petKey,userKey);
-				// console.log("arr after remove",this.props.petsArr);
 			}
 		}
 	}
 
 		render(){
-			console.log("myStore",this.props.AnimalStore);
 				return(
 						<div className="pet_row">
 								<div className="rowItem">{this.props.item.category}</div>
