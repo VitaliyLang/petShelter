@@ -60,10 +60,6 @@ class EditFilter extends React.Component {
 					<div className="petEditor">
 						<h6 className="header">Pet Editor</h6>
 						<form onSubmit={this.handleSubmit.bind(this)}>
-							<label>
-								Category:
-								<input type="text" value={this.state.category} onChange={this.handleChange.bind(this, "category")} key="1" />
-							</label>
 							<label >
 								Nickname
 								<input type="text" value={this.state.nickname} onChange={this.handleChange.bind(this, "nickname")} key="2" />
@@ -126,3 +122,9 @@ export default connect(
 
 	})
 )(EditFilter)
+
+
+// <label>
+// 								Category:
+// 								<input type="text" value={this.state.category} onChange={this.handleChange.bind(this, "category")} key="1" />
+// 							</label>

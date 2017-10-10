@@ -86,7 +86,7 @@ export default class ModalBox extends Component {
             content = 
                 <div className='modal_form drop'>
                     <Dropzone onDrop={this.onDrop.bind(this)}>
-                        <p>Try dropping photos of pet here, or click to select photos to upload.</p>
+                        <p className="drop_area">Try dropping photos of pet here, or click to select photos to upload.</p>
                     </Dropzone>
                     <h3>Dropped photos</h3>
                     <ul>
@@ -94,7 +94,7 @@ export default class ModalBox extends Component {
                             this.state.files.map(f => <li key={f.name}>{f.name}</li>)
                         }
                     </ul>
-                    <div>
+                    <div className='buttons_box'>
                         <Button onClick = {this.addAnimal} className=" btn waves-effect waves-light" data-key='yes'> Save </Button>
                         <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='no'> Cancel </Button>
                     </div>
@@ -126,9 +126,9 @@ export default class ModalBox extends Component {
                         <option value='true'>Vaccinated</option>
                         <option value='false'>Not Vaccinated</option>
 	                </Input>
-                    <Input label="Nickname"  ref={(input) => this.nickname = input} validate={true}/>
+                    <Input label="Nickname"  ref={(input) => this.nickname = input} validate={true} required />
                                    
-                    <div>
+                    <div className='buttons_box'>
                         <Button type="submit" className=" btn waves-effect waves-light"> Apply </Button>
                         <Button onClick={this.click} className=" btn waves-effect waves-light"> Cancel </Button>
                     </div>

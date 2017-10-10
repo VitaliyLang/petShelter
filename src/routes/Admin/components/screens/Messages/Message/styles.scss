@@ -58,8 +58,16 @@
     .modal_form{
         height: 600px;
         padding-top: 50px;
+        .buttons_box {
+            display: flex;
+        }
+        .drop_area {
+            cursor: pointer;
+            height: 100%;
+        }
         input{
             padding-left: 12px;
+            width: 95%;
         }
     }
     .drop div:first-child{
