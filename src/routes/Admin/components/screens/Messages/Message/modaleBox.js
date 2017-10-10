@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'react-materialize';
-import Dropzone from 'react-dropzone'
-
+import Dropzone from 'react-dropzone';
+import {Link} from 'react-router';
 export default class ModalBox extends Component {
     constructor(props) {
         super(props);
@@ -120,9 +120,9 @@ export default class ModalBox extends Component {
         }else  if (this.props.message.type == 'get') {
             content = <div className='modal_form'>
                         <h1 className = 'message1'>The pet was chosen.</h1>
-                        <p> Link to pet {this.props.linkToPet} </p>  
+                        <Link to={this.props.linkToPet} >Link: {this.props.linkToPet}</Link>  
                         <p> You can accept the order (Accept) or sent pet back to list (Decline)</p>                       
-                    <div>
+                    <div className='buttons_box'>
                         <Button onClick = {this.takeAccept} className=" btn waves-effect waves-light" data-key='yes'> Accept </Button>
                         <Button onClick = {this.takeAnimal} className=" btn waves-effect waves-light" data-key='no'> Decline </Button>
                     </div>
