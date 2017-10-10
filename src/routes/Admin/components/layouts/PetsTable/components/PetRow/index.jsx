@@ -35,13 +35,12 @@ class PetRow extends React.Component {
 				var petCategory = allPets[i].category;
 				var petKey = allPets[i].key;
 				var userKey = allPets[i].userUid;
-				this.props.onRemoveAnimal(petCategory,petKey,userKey);				
+				this.props.onRemoveAnimal(petCategory,petKey,userKey);
 			}
 		}
 	}
 
 		render(){
-			console.log("myStore",this.props.AnimalStore);
 				return(
 						<div className="pet_row">
 								<div className="rowItem">{this.props.item.category}</div>
@@ -51,7 +50,7 @@ class PetRow extends React.Component {
 								<div className="rowItem">{this.props.item.sex}</div>
 								<div className="rowItem ">{String(this.props.item.active)}</div>
 								<div className="rowItem img">
-										<img className="img" src= {this.props.item.url[0]} alt=""/>
+									{this.props.item.url && this.props.item.url.length ? <img className="img" src= {this.props.item.url[0]} alt=""/> : <span>no image</span>}	
 								</div>
 								<div className="rowItem ">								
 									<i className="material-icons table_btn"
