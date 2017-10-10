@@ -53,7 +53,7 @@ class PetRow extends React.Component {
 								<div className="rowItem">{this.props.item.sex}</div>
 								<div className="rowItem ">{String(this.props.item.active)}</div>
 								<div className="rowItem img">
-										<img className="img" src= {this.props.item.url[0]} alt=""/>
+									{this.props.item.url && this.props.item.url.length ? <img className="img" src= {this.props.item.url[0]} alt=""/> : <span>no image</span>}	
 								</div>
 								<div className="rowItem ">								
 									<i className="material-icons table_btn"
