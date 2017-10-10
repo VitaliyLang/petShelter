@@ -38,7 +38,7 @@ class Admin extends React.Component {
       <div className='wrapper'>
         <NavigationPanel />
         <MainSection>
-          <Routing action={this.props.params.action} />
+          <Routing action={this.props.params.action} router={this.props.router}/>
         </MainSection>
       </div>
     )

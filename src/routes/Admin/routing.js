@@ -9,6 +9,12 @@ class Routing extends React.Component {
     super(props)
   }
 
+  componentWillReceiveProps(nextProps){
+    if(!['messages', 'dashboard', 'animals', 'takeOrder'].includes(nextProps.action)){
+      this.props.router.replace('/admin/dashboard');
+    }
+  }
+
   render () {
     let path = this.props.action
     switch (path) {
@@ -21,7 +27,7 @@ class Routing extends React.Component {
       case 'takeOrder':
         return <TakeOrder />
       default:
-        return <DashBoard />
+        return null
     }
   }
 }
