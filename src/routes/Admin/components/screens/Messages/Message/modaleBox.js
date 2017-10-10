@@ -95,7 +95,7 @@ export default class ModalBox extends Component {
             content = <div className='modal_form'>
                         <h1 className = 'message1'>The order will be removed!
                     Are you sure?</h1>
-                    <div>
+                    <div className='buttons_box'>
                         <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='yes'> Yes </Button>
                         <Button onClick = {this.click} className=" btn waves-effect waves-light" data-key='no'> No </Button>
                     </div>

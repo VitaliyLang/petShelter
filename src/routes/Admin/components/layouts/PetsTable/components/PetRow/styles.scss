@@ -34,14 +34,6 @@
 			.img {
 				height: 100%;
 				width: 100%;
-				cursor: pointer;
-				&:hover {	
-					transition:all .8s;
-					transform:scale(2.5);
-					@media (max-width: 768px) {
-						 transform: none;
-					}
-				}
 			}
 		}
 	}

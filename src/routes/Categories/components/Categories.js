@@ -20,23 +20,11 @@ class Categories extends React.Component {
     this.categoriesArr = ['Dogs','Cats','Other'];
   }
 
-  /*componentWillMount () {
-    let { onGetInvite } = this.props
-    onGetInvite('/categories')
-  }*/
+ 
 
   render () {
     let { categories, onGetInvite, listAnimals, onGetAnimals } = this.props;
 
-    /*if (categories.error || categories.isLoading) {
-      return null
-    }
-    
-    const keys = Object.keys(categories.categories)
-
-    this.categoriesArr = keys.map((item) => {
-      return categories.categories[item]
-    })*/
 
     if (this.props.children) {
       return (
