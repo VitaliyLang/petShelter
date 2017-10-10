@@ -37,7 +37,7 @@ class Category extends React.Component {
 
     
     let imgStyle = {
-      background: 'url('+objImg[data.toLowerCase()]+')'
+      backgroundImage: 'url('+objImg[data.toLowerCase()]+')'
     };
 
     let legendPos = {

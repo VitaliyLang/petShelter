@@ -41,6 +41,7 @@ class Message extends React.Component {
     }
 
     render(){      
+        console.log(this.props.message);
         if(!this.props.message.active && this.props.message.role != 'admin' && this.props.message.key){
             let prefLink = location.protocol+'//'+location.host;
             let linkToPet = this.props.message.linktoPet?prefLink+this.props.message.linktoPet:'Pet not exist yet'        
@@ -51,7 +52,7 @@ class Message extends React.Component {
                     <div><span>Phone number:</span><span> {this.props.message.tel}</span></div>
                     <div><span>Email:</span> {this.props.message.email}</div>                    
                     <div><span>Date:</span> {this.props.message.date}</div>
-                    <div><span>Link to pet:</span> {linkToPet}</div>
+                    {this.props.message.type == 'get' ? <div><Link to={linkToPet} >Link to pet</Link></div> : null}
                     <div className='btn-offer'>
                         <button data-key={this.props.message.key} id='accept' onClick = {this.onClick}>
                             <Icon small>check</Icon>    

@@ -27,42 +27,42 @@
               background-size: cover;
               height: 100vh;
               &#dogs{
-                  background-position-y: 40% !important;  
+                  background-position-y: 40%;  
                 }
                 &#cats {
-                  background-position-y: 30% !important;
+                  background-position-y: 30%;
                 }
                 &#other {
-                  background-position-y: 50% !important;
+                  background-position-y: 50%;
                 }
               @media (max-width: 768px) {
                 &#dogs{
-                  background-position: 10% !important;  
+                  background-position: 10%;  
                 }
                 &#cats {
-                  background-position: 50% !important;
+                  background-position: 50%;
                 }
                 &#other {
-                  background-position: 80% !important;
+                  background-position: 80%;
                 }
               }
               @media (max-width: 414px) {
                 &#dogs,&#cats,&#other {
-                  background-size: cover !important;
+                  background-size: cover;
                 }
               }
               @media (max-width: 375px) {
                 &#dogs,&#cats,&#other {
-                  background-size: cover !important;
+                  background-size: cover;
                 }
                 &#dogs{
-                  background-position: 25% !important;  
+                  background-position: 25%;  
                 }
                 &#cats {
-                  background-position: 50% !important;
+                  background-position: 50%;
                 }
                 &#other {
-                  background-position: 55% !important;
+                  background-position: 55%;
                 }
               }
             }
@@ -72,7 +72,6 @@
               opacity: .7;
               margin: 0 auto;
               width: auto;
-              // bottom: 20%;
               text-align: center;
               &:hover {
                a {
@@ -84,7 +83,7 @@
                 // bottom: 45%;
               }
               @media (max-height: 375px){
-                top: 80% !important;
+                top: 80%;
               }
               a{
                 color: #fff;//$primary-green;
