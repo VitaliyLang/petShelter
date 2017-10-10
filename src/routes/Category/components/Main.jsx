@@ -11,6 +11,7 @@ import changeB from 'store/actions/category/changeBottom';
 import changeT from 'store/actions/category/changeTop';
 import getAnimals from 'store/actions/animals';
 import placeholder from './job-placeholder.gif';
+import Picture from './Picture.jsx'
 
 
 
@@ -23,6 +24,10 @@ class Main extends Component {
     this.onRowsRendered = this.onRowsRendered.bind(this);
   }
   update() {
+    if(!this.props.listAnimals){
+      this.props.modifyList([]);
+      return;
+    }
     let animals = this.props.listAnimals;
     let keys = Object.keys(animals);
 
@@ -101,15 +106,12 @@ class Main extends Component {
           ? this.props.categoryStore.listModify[index].map((elem, index) => {
             if (!elem) return <div key={index} />;
 
-              
-              return <Link to={`/categories/${this.props.category}/${elem.key}`}
-                key={elem.key}
-                style={{ backgroundImage: `url(${elem.url || placeholder})` }}
-              />
-              
+              return <Picture key = {elem.key}
+                       to={`/categories/${this.props.category}/${elem.key}`}
+                       url = {elem.url}/>
           })
-          : <Link to={`/categories/${this.props.category}/${this.props.categoryStore.listModify[index].key}`}
-            style={{ backgroundImage: `url(${this.props.categoryStore.listModify[index].url || placeholder})` }}
+          : <Picture to={`/categories/${this.props.category}/${this.props.categoryStore.listModify[index].key}`}
+            url = {this.props.categoryStore.listModify[index].url}
             key={index}
           />
         }

@@ -7,8 +7,11 @@ export function signup (personObj) {
         // const key = res.uid;
     const key = database.ref().child('users').push().key
     let updates = {};
-    if(!personObj.animalId){
-      personObj.animalId = '';
+    if(!personObj.animalID){
+      personObj.animalID = '';
+    }else{
+      personObj.linktoPet = '/categories/' + personObj.category + '/' + personObj.animalID;
+          /*location.protocol+'//'+location.host+*/
     }
     personObj.key=key;
     personObj.date = new Date().toLocaleString().split(',')[0];

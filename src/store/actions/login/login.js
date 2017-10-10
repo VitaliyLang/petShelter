@@ -3,6 +3,7 @@ import database from '../../firebaseConfig/firebase.js'
 
 export function login ({ email, password }) {
   return dispatch => {
+    dispatch({ type: 'LOGIN_IN_PROGRESS' })
     return firebase.auth().signInWithEmailAndPassword(email, password)
        .then(res => {
          const key = res.uid

@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import Main from './components/Main.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import './style.scss'
 import { connect } from 'react-redux';
 import modalAdopt from 'store/actions/modalAdopt';
+import { PropTypes } from 'prop-types'
 
 class Category extends Component {
   constructor (props) {
     super(props)
     this.close = this.close.bind(this);
+  }
+  componentWillMount(){
+    let arr = ['dogs', 'cats', 'other'];
+    if(arr.indexOf(this.context.router.params.categID.toLowerCase()) === -1){
+      this.context.router.replace('/notfound');
+    }
   }
   close(){
     this.props.showModal(false);
@@ -36,6 +42,10 @@ class Category extends Component {
       )
     }
   }
+}
+
+Category.contextTypes = {
+  router: PropTypes.object.isRequired
 }
 
 export default connect(
