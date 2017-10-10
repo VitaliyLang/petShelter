@@ -21,7 +21,6 @@ class PetRow extends React.Component {
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
 				this.props.findAnimal(myArr[i]);
-				console.log(myArr[i].url);
 			}
 		} 
 	}
@@ -36,8 +35,7 @@ class PetRow extends React.Component {
 				var petCategory = allPets[i].category;
 				var petKey = allPets[i].key;
 				var userKey = allPets[i].userUid;
-				this.props.onRemoveAnimal(petCategory,petKey,userKey);
-				// console.log("arr after remove",this.props.petsArr);
+				this.props.onRemoveAnimal(petCategory,petKey,userKey);				
 			}
 		}
 	}

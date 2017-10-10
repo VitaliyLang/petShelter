@@ -1,0 +1,11 @@
+.get{
+    position: relative;
+    i{
+        position:absolute;
+        top:1%;
+        left:94%;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
