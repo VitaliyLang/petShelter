@@ -21,7 +21,6 @@ class PetRow extends React.Component {
 		for (var i = 0; i < myArr.length; i++){
 			if (myArr[i].key == key) {
 				this.props.findAnimal(myArr[i]);
-				console.log(myArr[i].url);
 			}
 		} 
 	}

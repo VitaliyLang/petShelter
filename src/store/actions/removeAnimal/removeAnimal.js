@@ -5,8 +5,6 @@ export function removeAnimal (category, animalKey, userKey) {
     const updates = {};
     updates['/animals/' + category + '/' + animalKey] = null;
     updates['/users/' + userKey] = null;
-    console.log('animal', '/animals/' + category + '/' + animalKey);
-    console.log('user','/users/' + userKey);
     return database.ref().update(updates)
       .then(() => dispatch(getInviteFulfilledAction()))
       .catch((error) => {

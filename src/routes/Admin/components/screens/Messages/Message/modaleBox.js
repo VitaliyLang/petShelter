@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'react-materialize';
 import Dropzone from 'react-dropzone';
+import './styleModal.scss';
 import {Link} from 'react-router';
 export default class ModalBox extends Component {
     constructor(props) {
@@ -63,7 +64,6 @@ export default class ModalBox extends Component {
 
     takeAnimal(){
         let userKey = this.props.userKey;
-        console.log('userKey modal',userKey);
         this.props.onTakeAnimal(
             this.props.message.animalID,
             this.props.message.category,
@@ -87,7 +87,6 @@ export default class ModalBox extends Component {
 
     render() {
         if (!this.props.show) {
-            console.log('abort');
             return null;
         }
         let content;
@@ -118,7 +117,8 @@ export default class ModalBox extends Component {
                     </div>
           </div>
         }else  if (this.props.message.type == 'get') {
-            content = <div className='modal_form'>
+            content = <div className='modal_form get'>
+                        <i className="material-icons" onClick={this.click}>cancel</i>
                         <h1 className = 'message1'>The pet was chosen.</h1>
                         <Link to={this.props.linkToPet} >Link: {this.props.linkToPet}</Link>  
                         <p> You can accept the order (Accept) or sent pet back to list (Decline)</p>                       
