@@ -40,9 +40,6 @@ class signIn extends React.Component {
 
   componentDidMount () {
     this.props.onSignin()
-//     if (this.props.signin.isAdmin) {
-//       return this.props.router.replace('/admin/dashboard')
-//     }
   }
 
   componentWillUpdate (nextProps) {
