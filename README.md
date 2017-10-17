@@ -1,5 +1,7 @@
 <b>Pet Shelter</b><br/><br/>
+
 <b>Used technologies :</b> HTML5, CSS3, SASS,React-Materialize,React, Redux,Firebase
+
 <br/><br/>You can visit Pet Shelter here: https://petshelter-15372.firebaseapp.com/
 
 
