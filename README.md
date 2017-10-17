@@ -1,4 +1,4 @@
-<b>Pet Shelter</b><br/><br/>
+<b>Pet Shelter</b>
 
 <b>Used technologies :</b> HTML5, CSS3, SASS,React-Materialize,React, Redux,Firebase
 
