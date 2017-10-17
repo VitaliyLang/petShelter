@@ -1,8 +1,10 @@
-Pet Shelter
+<b>Pet Shelter</b><br/>
+Used technologies : HTML5, CSS3, SASS,React-Materialize,React, Redux,Firebase
+<br/>You can visit Pet Shelter here: https://petshelter-15372.firebaseapp.com/
 
-```bash
+
 $ npm Install project dependencies
-```
+
 
 ## Running the Project
 
